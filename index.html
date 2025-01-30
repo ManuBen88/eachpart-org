@@ -1,39 +1,118 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EachPart</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="description" content="EachPart - Find Recognition, Achieve Fairness, and Preserve Memories" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EachPart - Offizielle Website</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Optional: Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-    <!-- Header mit Slogan -->
-    <header>
+  <!-- Header -->
+  <header id="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo">EachPart</a>
+        <ul class="nav-menu">
+          <li><a href="#about">Über</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div class="hero-content">
         <h1>Find Recognition, Achieve Fairness, and Preserve Memories</h1>
-    </header>
+        <p>EachPart ist eine innovative Plattform, die darauf abzielt, 
+           Anerkennung zu finden, Fairness zu erreichen und Erinnerungen 
+           nachhaltig zu bewahren.</p>
+        <a href="#" class="btn-primary">Jetzt App herunterladen</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Hauptinhalt -->
-    <main>
-        <section id="about">
-            <h2>Über EachPart</h2>
-            <p>EachPart ist eine innovative Plattform, die darauf abzielt, Anerkennung zu finden, Fairness zu erreichen und Erinnerungen zu bewahren.</p>
-        </section>
+  <!-- Über EachPart -->
+  <section id="about" class="section bg-light">
+    <div class="container">
+      <h2>Über EachPart</h2>
+      <p>
+        EachPart ist eine App, mit der du deine persönlichen oder Team-Erfolge 
+        dokumentieren kannst und immer im Blick behältst, wer welchen Anteil hatte. 
+        Ob gemeinsames Projekt, Event-Planung oder sportliche Herausforderung – 
+        wir sorgen für Fairness und Anerkennung.
+      </p>
+    </div>
+  </section>
 
-        <!-- FAQ-Bereich -->
-        <section id="faq">
-            <h2>Häufig gestellte Fragen (FAQ)</h2>
-            <div class="faq-item">
-                <h3>Wie kann ich mein Konto vollständig löschen?</h3>
-                <p>Um das Konto vollständig zu löschen, gehe auf das Zahnradsymbol in der App. Unter den Einstellungen und dort unter Hilfen kann das Konto gelöscht werden.</p>
-            </div>
-            <!-- Weitere FAQ-Items können hier hinzugefügt werden -->
-        </section>
-    </main>
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2>Unsere Kernfunktionen</h2>
+      <div class="features-grid">
+        <div class="feature-box">
+          <img src="assets/recognition.svg" alt="Recognition Icon" />
+          <h3>Anerkennung</h3>
+          <p>Lass dich für deine harte Arbeit und 
+          deinen Einsatz von allen Teammitgliedern würdigen.</p>
+        </div>
+        <div class="feature-box">
+          <img src="assets/fairness.svg" alt="Fairness Icon" />
+          <h3>Fairness</h3>
+          <p>Sieh auf einen Blick, wie viel jeder beigetragen hat, 
+          damit keine Leistung übersehen wird.</p>
+        </div>
+        <div class="feature-box">
+          <img src="assets/memories.svg" alt="Memories Icon" />
+          <h3>Erinnerungen bewahren</h3>
+          <p>Halte alle wichtigen Momente und Ergebnisse fest, 
+          um später darauf zurückzublicken.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
-    </footer>
+  <!-- FAQ-Bereich -->
+  <section id="faq" class="section bg-light">
+    <div class="container">
+      <h2>Häufig gestellte Fragen (FAQ)</h2>
+      <div class="faq-item">
+        <h3>Wie kann ich mein Konto vollständig löschen?</h3>
+        <p>
+          Um das Konto vollständig zu löschen, gehe in der App auf das 
+          Zahnradsymbol und navigiere zu den Einstellungen. Unter "Hilfen" 
+          findest du die Option zum Konto Löschen.
+        </p>
+      </div>
+      <!-- Beispiel für weitere FAQ -->
+      <div class="faq-item">
+        <h3>Ist EachPart kostenlos?</h3>
+        <p>
+          Grundlegende Funktionen sind kostenlos verfügbar. 
+          Zusätzliche Team-Features können durch ein Upgrade freigeschaltet werden.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt / Footer-Aktion -->
+  <section id="contact" class="section">
+    <div class="container contact-container">
+      <h2>Kontakt</h2>
+      <p>Du hast weitere Fragen oder Feedback? Kontaktiere uns gern per E-Mail:</p>
+      <a href="mailto:support@eachpart.com" class="btn-secondary">support@eachpart.com</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
+      <a href="#">Datenschutz</a> |
+      <a href="#">Impressum</a>
+    </div>
+  </footer>
 </body>
 </html>
