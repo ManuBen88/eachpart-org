@@ -7,7 +7,7 @@
 
     <!-- Startseite (Landing Page) -->
     <url>
-        <loc>https://www.eachpart.de/index.html</loc>
+        <loc>https://www.eachpart.org/index.html</loc>
         <lastmod>2025-01-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
@@ -15,7 +15,7 @@
 
     <!-- FAQ-Seite -->
     <url>
-        <loc>https://www.eachpart.de/faq.html</loc>
+        <loc>https://www.eachpart.org/faq.html</loc>
         <lastmod>2025-01-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -23,7 +23,7 @@
 
     <!-- Kontakt-Seite (falls separate contact.html) -->
     <url>
-        <loc>https://www.eachpart.de/contact.html</loc>
+        <loc>https://www.eachpart.org/contact.html</loc>
         <lastmod>2025-01-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -32,7 +32,7 @@
     <!-- Beispiel: Über-Seite (About) -->
     <!-- Falls „about.html“ existiert, sonst löschen. -->
     <url>
-        <loc>https://www.eachpart.de/about.html</loc>
+        <loc>https://www.eachpart.org/about.html</loc>
         <lastmod>2025-01-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
