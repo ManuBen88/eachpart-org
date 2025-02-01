@@ -6,6 +6,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EachPart - Startseite</title>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Übersetzungsobjekt: Alle Texte als Variablen für die unterstützten Sprachen
+    const translations = {
+      de: {
+        nav: {
+          home: "Home",
+          faq: "FAQ",
+          contact: "Kontakt"
+        },
+        hero: {
+          title: "EachPart",
+          description: "Finde Anerkennung, erreiche Fairness und bewahre Erinnerungen.",
+          button: "Jetzt downloaden"
+        },
+        about: {
+          title: "Über EachPart",
+          text1: "EachPart ist eine App, die dir hilft, gemeinsam erreichte Ziele fair zu dokumentieren, das Engagement einzelner Teammitglieder sichtbar zu machen und Erinnerungen für die Zukunft zu bewahren.",
+          text2: "Egal ob du ein Event organisierst, ein gemeinsames Projekt durchführst oder sportliche Herausforderungen bewältigst – EachPart unterstützt dich dabei, Leistungen aufzuschlüsseln und Gerechtigkeit herzustellen."
+        },
+        features: {
+          title: "Unsere Highlights",
+          feature1: {
+            title: "Anerkennung",
+            text: "Sorge dafür, dass kein Einsatz übersehen wird und jeder seine verdiente Wertschätzung erhält."
+          },
+          feature2: {
+            title: "Fairness",
+            text: "Behalte stets den Überblick, wer wie viel beigetragen hat, damit Erfolge transparent und gerecht aufgeteilt werden können."
+          },
+          feature3: {
+            title: "Erinnerungen",
+            text: "Bewahre gemeinsam erzielte Meilensteine und schöne Erlebnisse für die Zukunft."
+          }
+        },
+        contact: {
+          title: "Kontakt",
+          text: "Du hast Fragen oder möchtest Feedback geben? Wir freuen uns darauf, von dir zu hören.",
+          button: "E-Mail an Support"
+        },
+        footer: {
+          text: "&copy; 2025 EachPart. Alle Rechte vorbehalten."
+        }
+      },
+      en: {
+        nav: {
+          home: "Home",
+          faq: "FAQ",
+          contact: "Contact"
+        },
+        hero: {
+          title: "EachPart",
+          description: "Find recognition, achieve fairness, and cherish memories.",
+          button: "Download now"
+        },
+        about: {
+          title: "About EachPart",
+          text1: "EachPart is an app that helps you fairly document collectively achieved goals, make team members' contributions visible, and preserve memories for the future.",
+          text2: "Whether you're organizing an event, running a joint project, or facing athletic challenges, EachPart supports you in breaking down achievements and ensuring fairness."
+        },
+        features: {
+          title: "Our Highlights",
+          feature1: {
+            title: "Recognition",
+            text: "Ensure that no effort goes unnoticed and everyone receives their deserved appreciation."
+          },
+          feature2: {
+            title: "Fairness",
+            text: "Keep track of who contributed what so that successes can be shared transparently and fairly."
+          },
+          feature3: {
+            title: "Memories",
+            text: "Preserve milestones and beautiful experiences achieved together for the future."
+          }
+        },
+        contact: {
+          title: "Contact",
+          text: "Have questions or want to provide feedback? We look forward to hearing from you.",
+          button: "Email Support"
+        },
+        footer: {
+          text: "&copy; 2025 EachPart. All rights reserved."
+        }
+      }
+    };
+
+    // Funktion, um den Seiteninhalt anhand der erkannten Sprache zu setzen
+    function setLanguage(lang) {
+      // Aktualisiere das lang-Attribut des <html>-Elements
+      document.documentElement.lang = lang;
+
+      // Navigation
+      if (document.getElementById("nav-home")) {
+        document.getElementById("nav-home").textContent = translations[lang].nav.home;
+      }
+      if (document.getElementById("nav-faq")) {
+        document.getElementById("nav-faq").textContent = translations[lang].nav.faq;
+      }
+      if (document.getElementById("nav-contact")) {
+        document.getElementById("nav-contact").textContent = translations[lang].nav.contact;
+      }
+
+      // Hero / Header-Section
+      if (document.getElementById("hero-title")) {
+        document.getElementById("hero-title").textContent = translations[lang].hero.title;
+      }
+      if (document.getElementById("hero-description")) {
+        document.getElementById("hero-description").textContent = translations[lang].hero.description;
+      }
+      if (document.getElementById("hero-button")) {
+        document.getElementById("hero-button").textContent = translations[lang].hero.button;
+      }
+
+      // About / Über EachPart
+      if (document.getElementById("about-title")) {
+        document.getElementById("about-title").textContent = translations[lang].about.title;
+      }
+      if (document.getElementById("about-text1")) {
+        document.getElementById("about-text1").textContent = translations[lang].about.text1;
+      }
+      if (document.getElementById("about-text2")) {
+        document.getElementById("about-text2").textContent = translations[lang].about.text2;
+      }
+
+      // Highlights / Features
+      if (document.getElementById("features-title")) {
+        document.getElementById("features-title").textContent = translations[lang].features.title;
+      }
+      if (document.getElementById("feature1-title")) {
+        document.getElementById("feature1-title").textContent = translations[lang].features.feature1.title;
+      }
+      if (document.getElementById("feature1-text")) {
+        document.getElementById("feature1-text").textContent = translations[lang].features.feature1.text;
+      }
+      if (document.getElementById("feature2-title")) {
+        document.getElementById("feature2-title").textContent = translations[lang].features.feature2.title;
+      }
+      if (document.getElementById("feature2-text")) {
+        document.getElementById("feature2-text").textContent = translations[lang].features.feature2.text;
+      }
+      if (document.getElementById("feature3-title")) {
+        document.getElementById("feature3-title").textContent = translations[lang].features.feature3.title;
+      }
+      if (document.getElementById("feature3-text")) {
+        document.getElementById("feature3-text").textContent = translations[lang].features.feature3.text;
+      }
+
+      // Kontakt
+      if (document.getElementById("contact-title")) {
+        document.getElementById("contact-title").textContent = translations[lang].contact.title;
+      }
+      if (document.getElementById("contact-text")) {
+        document.getElementById("contact-text").textContent = translations[lang].contact.text;
+      }
+      if (document.getElementById("contact-button")) {
+        document.getElementById("contact-button").textContent = translations[lang].contact.button;
+      }
+
+      // Footer
+      if (document.getElementById("footer-text")) {
+        document.getElementById("footer-text").innerHTML = translations[lang].footer.text;
+      }
+    }
+
+    // Nach Laden des DOM die Browsersprache ermitteln und setzen
+    document.addEventListener("DOMContentLoaded", function() {
+      let userLang = (navigator.language || navigator.userLanguage).slice(0,2).toLowerCase();
+      if (!translations[userLang]) {
+        userLang = "de"; // Fallback auf Deutsch
+      }
+      setLanguage(userLang);
+    });
+  </script>
 </head>
 <body>
   <!-- Navigation -->
@@ -13,9 +185,9 @@
     <div class="nav-container">
       <a class="nav-logo" href="index.html">EachPart</a>
       <ul class="nav-menu">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="index.html" id="nav-home" class="active">Home</a></li>
+        <li><a href="faq.html" id="nav-faq">FAQ</a></li>
+        <li><a href="#contact" id="nav-contact">Kontakt</a></li>
       </ul>
     </div>
   </nav>
@@ -23,27 +195,21 @@
   <!-- Hero / Header-Section -->
   <header class="hero">
     <div class="hero-content">
-      <h1>EachPart</h1>
-      <p>Finde Anerkennung, erreiche Fairness und bewahre Erinnerungen.</p>
-      <a href="#" class="btn-primary">Jetzt downloaden</a>
+      <h1 id="hero-title">EachPart</h1>
+      <p id="hero-description">Finde Anerkennung, erreiche Fairness und bewahre Erinnerungen.</p>
+      <a href="#" class="btn-primary" id="hero-button">Jetzt downloaden</a>
     </div>
   </header>
 
   <!-- About / Über EachPart -->
   <section class="section">
     <div class="container">
-      <h2>Über EachPart</h2>
-      <p>
-        EachPart ist eine App, die dir hilft, gemeinsam 
-        erreichte Ziele fair zu dokumentieren, das Engagement 
-        einzelner Teammitglieder sichtbar zu machen und 
-        Erinnerungen für die Zukunft zu bewahren.
+      <h2 id="about-title">Über EachPart</h2>
+      <p id="about-text1">
+        EachPart ist eine App, die dir hilft, gemeinsam erreichte Ziele fair zu dokumentieren, das Engagement einzelner Teammitglieder sichtbar zu machen und Erinnerungen für die Zukunft zu bewahren.
       </p>
-      <p>
-        Egal ob du ein Event organisierst, ein gemeinsames 
-        Projekt durchführst oder sportliche Herausforderungen 
-        bewältigst – EachPart unterstützt dich dabei, 
-        Leistungen aufzuschlüsseln und Gerechtigkeit herzustellen.
+      <p id="about-text2">
+        Egal ob du ein Event organisierst, ein gemeinsames Projekt durchführst oder sportliche Herausforderungen bewältigst – EachPart unterstützt dich dabei, Leistungen aufzuschlüsseln und Gerechtigkeit herzustellen.
       </p>
     </div>
   </section>
@@ -51,22 +217,19 @@
   <!-- Highlights / Features -->
   <section class="section bg-light">
     <div class="container">
-      <h2>Unsere Highlights</h2>
+      <h2 id="features-title">Unsere Highlights</h2>
       <div class="features-grid">
         <div class="feature-box">
-          <h3>Anerkennung</h3>
-          <p>Sorge dafür, dass kein Einsatz übersehen wird 
-             und jeder seine verdiente Wertschätzung erhält.</p>
+          <h3 id="feature1-title">Anerkennung</h3>
+          <p id="feature1-text">Sorge dafür, dass kein Einsatz übersehen wird und jeder seine verdiente Wertschätzung erhält.</p>
         </div>
         <div class="feature-box">
-          <h3>Fairness</h3>
-          <p>Behalte stets den Überblick, wer wie viel beigetragen hat, 
-             damit Erfolge transparent und gerecht aufgeteilt werden können.</p>
+          <h3 id="feature2-title">Fairness</h3>
+          <p id="feature2-text">Behalte stets den Überblick, wer wie viel beigetragen hat, damit Erfolge transparent und gerecht aufgeteilt werden können.</p>
         </div>
         <div class="feature-box">
-          <h3>Erinnerungen</h3>
-          <p>Bewahre gemeinsam erzielte Meilensteine und 
-             schöne Erlebnisse für die Zukunft.</p>
+          <h3 id="feature3-title">Erinnerungen</h3>
+          <p id="feature3-text">Bewahre gemeinsam erzielte Meilensteine und schöne Erlebnisse für die Zukunft.</p>
         </div>
       </div>
     </div>
@@ -75,17 +238,16 @@
   <!-- Kontakt -->
   <section class="section" id="contact">
     <div class="container">
-      <h2>Kontakt</h2>
-      <p>Du hast Fragen oder möchtest Feedback geben? 
-         Wir freuen uns darauf, von dir zu hören.</p>
-      <a href="mailto:support@eachpart.com" class="btn-secondary">E-Mail an Support</a>
+      <h2 id="contact-title">Kontakt</h2>
+      <p id="contact-text">Du hast Fragen oder möchtest Feedback geben? Wir freuen uns darauf, von dir zu hören.</p>
+      <a href="mailto:support@eachpart.com" class="btn-secondary" id="contact-button">E-Mail an Support</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-container">
-      <p>&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
+      <p id="footer-text">&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
 </body>
