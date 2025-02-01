@@ -7,7 +7,7 @@
   <title>EachPart - Impressum</title>
   <link rel="stylesheet" href="styles.css" />
   <script>
-    // Übersetzungsobjekt mit Texten für Impressum, Navigation und Footer
+    // Übersetzungsobjekt für Impressum, Navigation und Footer
     const translations = {
       de: {
         nav: {
@@ -17,12 +17,12 @@
         },
         impressum: {
           title: "Impressum",
-          company: "EachPart GmbH",
-          address: "Musterstraße 1, 12345 Musterstadt",
-          phone: "Telefon: +49 123 456789",
-          email: "E-Mail: info@eachpart.com",
-          representative: "Vertreten durch: Max Mustermann",
-          contentResponsibility: "Verantwortlich für den Inhalt: Max Mustermann"
+          company: "EachPart",
+          address: "Neue Str. 2, 29553 Bienbüttel",
+          phone: "Telefon: +491781464442",
+          email: "E-Mail: manuel.benson@gmail.com",
+          representative: "Geschäftsführer: Manuel Benson",
+          contentResponsibility: "Verantwortlich für den Inhalt: Manuel Benson"
         },
         footer: {
           text: "&copy; 2025 EachPart. Alle Rechte vorbehalten."
@@ -36,12 +36,12 @@
         },
         impressum: {
           title: "Imprint",
-          company: "EachPart GmbH",
-          address: "Musterstraße 1, 12345 Musterstadt",
-          phone: "Phone: +49 123 456789",
-          email: "Email: info@eachpart.com",
-          representative: "Represented by: Max Mustermann",
-          contentResponsibility: "Responsible for content: Max Mustermann"
+          company: "EachPart UG (limited liability)",
+          address: "Neue Str. 2, 29553 Bienbüttel",
+          phone: "Phone: +491781464442",
+          email: "Email: manuel.benson@gmail.com",
+          representative: "Managing Director: Manuel Benson",
+          contentResponsibility: "Responsible for content: Manuel Benson"
         },
         footer: {
           text: "&copy; 2025 EachPart. All rights reserved."
@@ -49,7 +49,7 @@
       }
     };
 
-    // Funktion, die den Seiteninhalt anhand der erkannten Sprache aktualisiert
+    // Funktion, um den Seiteninhalt anhand der erkannten Sprache zu setzen
     function setLanguage(lang) {
       document.documentElement.lang = lang;
 
@@ -93,7 +93,7 @@
       }
     }
 
-    // Sobald der DOM geladen ist, ermitteln wir die Browsersprache und setzen die Sprache
+    // Sobald der DOM geladen ist, wird die Browsersprache ermittelt und gesetzt
     document.addEventListener("DOMContentLoaded", function() {
       let userLang = (navigator.language || navigator.userLanguage).slice(0,2).toLowerCase();
       if (!translations[userLang]) {
@@ -120,12 +120,12 @@
   <section class="section">
     <div class="container">
       <h2 id="impressum-title">Impressum</h2>
-      <p id="impressum-company">EachPart GmbH</p>
-      <p id="impressum-address">Musterstraße 1, 12345 Musterstadt</p>
-      <p id="impressum-phone">Telefon: +49 123 456789</p>
-      <p id="impressum-email">E-Mail: info@eachpart.com</p>
-      <p id="impressum-representative">Vertreten durch: Max Mustermann</p>
-      <p id="impressum-contentResponsibility">Verantwortlich für den Inhalt: Max Mustermann</p>
+      <p id="impressum-company">EachPart UG (haftungsbeschränkt)</p>
+      <p id="impressum-address">Neue Str. 2, 29553 Bienbüttel</p>
+      <p id="impressum-phone">Telefon: +491781464442</p>
+      <p id="impressum-email">E-Mail: manuel.benson@gmail.com</p>
+      <p id="impressum-representative">Geschäftsführer: Manuel Benson</p>
+      <p id="impressum-contentResponsibility">Verantwortlich für den Inhalt: Manuel Benson</p>
     </div>
   </section>
 
