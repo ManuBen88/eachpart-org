@@ -2,10 +2,106 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="EachPart Impressum" />
+  <meta name="description" content="EachPart - Impressum" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EachPart - Impressum</title>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Übersetzungsobjekt mit Texten für Impressum, Navigation und Footer
+    const translations = {
+      de: {
+        nav: {
+          home: "Home",
+          faq: "FAQ",
+          contact: "Kontakt"
+        },
+        impressum: {
+          title: "Impressum",
+          company: "EachPart GmbH",
+          address: "Musterstraße 1, 12345 Musterstadt",
+          phone: "Telefon: +49 123 456789",
+          email: "E-Mail: info@eachpart.com",
+          representative: "Vertreten durch: Max Mustermann",
+          contentResponsibility: "Verantwortlich für den Inhalt: Max Mustermann"
+        },
+        footer: {
+          text: "&copy; 2025 EachPart. Alle Rechte vorbehalten."
+        }
+      },
+      en: {
+        nav: {
+          home: "Home",
+          faq: "FAQ",
+          contact: "Contact"
+        },
+        impressum: {
+          title: "Imprint",
+          company: "EachPart GmbH",
+          address: "Musterstraße 1, 12345 Musterstadt",
+          phone: "Phone: +49 123 456789",
+          email: "Email: info@eachpart.com",
+          representative: "Represented by: Max Mustermann",
+          contentResponsibility: "Responsible for content: Max Mustermann"
+        },
+        footer: {
+          text: "&copy; 2025 EachPart. All rights reserved."
+        }
+      }
+    };
+
+    // Funktion, die den Seiteninhalt anhand der erkannten Sprache aktualisiert
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      // Navigation
+      if (document.getElementById("nav-home")) {
+        document.getElementById("nav-home").textContent = translations[lang].nav.home;
+      }
+      if (document.getElementById("nav-faq")) {
+        document.getElementById("nav-faq").textContent = translations[lang].nav.faq;
+      }
+      if (document.getElementById("nav-contact")) {
+        document.getElementById("nav-contact").textContent = translations[lang].nav.contact;
+      }
+
+      // Impressum-Inhalt
+      if (document.getElementById("impressum-title")) {
+        document.getElementById("impressum-title").textContent = translations[lang].impressum.title;
+      }
+      if (document.getElementById("impressum-company")) {
+        document.getElementById("impressum-company").textContent = translations[lang].impressum.company;
+      }
+      if (document.getElementById("impressum-address")) {
+        document.getElementById("impressum-address").textContent = translations[lang].impressum.address;
+      }
+      if (document.getElementById("impressum-phone")) {
+        document.getElementById("impressum-phone").textContent = translations[lang].impressum.phone;
+      }
+      if (document.getElementById("impressum-email")) {
+        document.getElementById("impressum-email").textContent = translations[lang].impressum.email;
+      }
+      if (document.getElementById("impressum-representative")) {
+        document.getElementById("impressum-representative").textContent = translations[lang].impressum.representative;
+      }
+      if (document.getElementById("impressum-contentResponsibility")) {
+        document.getElementById("impressum-contentResponsibility").textContent = translations[lang].impressum.contentResponsibility;
+      }
+
+      // Footer
+      if (document.getElementById("footer-text")) {
+        document.getElementById("footer-text").innerHTML = translations[lang].footer.text;
+      }
+    }
+
+    // Sobald der DOM geladen ist, ermitteln wir die Browsersprache und setzen die Sprache
+    document.addEventListener("DOMContentLoaded", function() {
+      let userLang = (navigator.language || navigator.userLanguage).slice(0,2).toLowerCase();
+      if (!translations[userLang]) {
+        userLang = "de"; // Fallback auf Deutsch
+      }
+      setLanguage(userLang);
+    });
+  </script>
 </head>
 <body>
   <!-- Navigation -->
@@ -13,44 +109,30 @@
     <div class="nav-container">
       <a class="nav-logo" href="index.html">EachPart</a>
       <ul class="nav-menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="index.html#contact">Kontakt</a></li>
+        <li><a href="index.html" id="nav-home">Home</a></li>
+        <li><a href="faq.html" id="nav-faq">FAQ</a></li>
+        <li><a href="datenschutz.html" id="nav-contact">Kontakt</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Impressum -->
+  <!-- Impressum Content -->
   <section class="section">
     <div class="container">
-      <h2>Impressum</h2>
-      <p>
-        Angaben gemäß § 5 TMG:
-      </p>
-      <p>
-        EachPart GmbH<br>
-        Musterstraße 1<br>
-        12345 Musterstadt<br>
-        Telefon: +49 123 456789<br>
-        E-Mail: info@eachpart.com
-      </p>
-      <h3>Vertreten durch:</h3>
-      <p>
-        Max Mustermann
-      </p>
-      <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h3>
-      <p>
-        Max Mustermann<br>
-        Musterstraße 1<br>
-        12345 Musterstadt
-      </p>
+      <h2 id="impressum-title">Impressum</h2>
+      <p id="impressum-company">EachPart GmbH</p>
+      <p id="impressum-address">Musterstraße 1, 12345 Musterstadt</p>
+      <p id="impressum-phone">Telefon: +49 123 456789</p>
+      <p id="impressum-email">E-Mail: info@eachpart.com</p>
+      <p id="impressum-representative">Vertreten durch: Max Mustermann</p>
+      <p id="impressum-contentResponsibility">Verantwortlich für den Inhalt: Max Mustermann</p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-container">
-      <p>&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
+      <p id="footer-text">&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
 </body>
