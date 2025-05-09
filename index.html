@@ -6,31 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EachPart - Startseite</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Responsive Styling für die Download-Buttons -->
+  <!-- Responsive Styling für die Download-Buttons und Features -->
   <style>
     /* Gruppiere beide Download-Buttons als flexible Reihe */
     .btn-group {
       display: flex;
-      gap: 1rem;          /* Abstand zwischen den Buttons */
-      flex-wrap: wrap;    /* Umbruch, wenn's zu eng wird */
+      gap: 1rem;
+      flex-wrap: wrap;
       justify-content: center;
-      margin-top: 1rem;   /* etwas Luft nach oben */
+      margin-top: 1rem;
     }
 
-    /* Jeder Button darf gleichmäßig Platz einnehmen */
+    /* Jeder Button darf gleichmäßig Platz einnehmen, mit etwas weniger Mindestbreite */
     .btn-group .btn-primary {
-      flex: 1 1 200px;    /* wächst, schrumpft, mindestens 200px breit */
-      text-align: center; /* Text mittig */
+      flex: 1 1 150px;      /* jetzt min-width 150px */
+      padding: 0.75rem 1rem;/* etwas weniger vertikales Padding */
+      font-size: 0.95rem;   /* etwas kleinere Schrift */
+      text-align: center;
     }
 
-    /* Auf sehr schmalen Bildschirmen stapel die Buttons untereinander */
+    /* Auf sehr schmalen Bildschirmen zwei Buttons pro Reihe */
     @media (max-width: 480px) {
       .btn-group {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
       }
       .btn-group .btn-primary {
-        width: 100%;
-        margin: 0;        /* kein zusätzlicher äußerer Abstand nötig */
+        flex: none;         /* Flex abschalten */
+        width: 100%;        /* füllt jetzt jeweils eine Grid-Zelle */
+        min-width: 0;       /* kein Mindestwert mehr */
+        margin: 0;          /* kein zusätzlicher Außenabstand */
       }
     }
 
@@ -97,7 +103,7 @@
     <div class="container">
       <h2 id="about-title">Über EachPart</h2>
       <p id="about-text1">
-        EachPart ist eine App, die dir hilft, gemeinsam erreichte Ziele fair zu dokumentieren, das Engagement einzelner Teammitglieder sichtbar zu machen und Erinnerungen für die Zukunft zu bewahren.
+        EachPart ist deine App, um gemeinsame Erfolge fair darzustellen, das Engagement jedes Teammitglieds sichtbar zu machen, wertvolle Erinnerungen zu bewahren – und dich zu motivieren: Wer kennt nicht die nie endenden Wäscheberge, den schmutzigen Geschirrstapel oder das Chaos im Zimmer?
       </p>
       <p id="about-text2">
         Egal ob du ein Event organisierst, ein gemeinsames Projekt durchführst oder sportliche Herausforderungen bewältigst – EachPart unterstützt dich dabei, Leistungen aufzuschlüsseln und Gerechtigkeit herzustellen.
@@ -125,7 +131,7 @@
         <div class="feature-box">
           <h3 id="feature3-title">Erinnerungen</h3>
           <p id="feature3-text">
-            Bewahre gemeinsam erzielte Meilensteine und schöne Erlebnisse für die Zukunft.
+            Bewahre gemeinsam erzielte Meilensteine und schöne Erlebnisse.
           </p>
         </div>
         <div class="feature-box">
