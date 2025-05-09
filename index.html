@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="description" content="EachPart - Anerkennung, Fairness und Erinnerungen bewahren" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EachPart - Startseite</title>
+  <title data-i18n="hero.title">EachPart</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Responsive Styling für die Download-Buttons und Features -->
   <style>
     /* Gruppiere beide Download-Buttons als flexible Reihe */
     .btn-group {
@@ -16,16 +15,12 @@
       justify-content: center;
       margin-top: 1rem;
     }
-
-    /* Jeder Button darf gleichmäßig Platz einnehmen, mit etwas weniger Mindestbreite */
     .btn-group .btn-primary {
-      flex: 1 1 150px;      /* jetzt min-width 150px */
-      padding: 0.75rem 1rem;/* etwas weniger vertikales Padding */
-      font-size: 0.95rem;   /* etwas kleinere Schrift */
+      flex: 1 1 150px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
       text-align: center;
     }
-
-    /* Auf sehr schmalen Bildschirmen zwei Buttons pro Reihe */
     @media (max-width: 480px) {
       .btn-group {
         display: grid;
@@ -33,21 +28,18 @@
         gap: 0.75rem;
       }
       .btn-group .btn-primary {
-        flex: none;         /* Flex abschalten */
-        width: 100%;        /* füllt jetzt jeweils eine Grid-Zelle */
-        min-width: 0;       /* kein Mindestwert mehr */
-        margin: 0;          /* kein zusätzlicher Außenabstand */
+        flex: none;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
       }
     }
-
-    /* Grid für Features */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
     }
-
     .feature-box {
       background: #fff;
       border-radius: 8px;
@@ -55,18 +47,10 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       text-align: center;
     }
-
-    .feature-box h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
-    }
-
-    .feature-box p {
-      font-size: 1rem;
-      line-height: 1.4;
-    }
+    .feature-box h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+    .feature-box p  { font-size: 1rem; line-height: 1.4; }
   </style>
-  <!-- Einbindung der Übersetzungslogik -->
+  <!-- Dein translate.js, das gleich das Übersetzen übernimmt -->
   <script src="translate.js"></script>
 </head>
 <body>
@@ -75,8 +59,8 @@
     <div class="nav-container">
       <a class="nav-logo" href="index.html">EachPart</a>
       <ul class="nav-menu">
-        <li><a href="index.html" id="nav-home" class="active">Home</a></li>
-        <li><a href="faq.html" id="nav-faq">FAQ</a></li>
+        <li><a href="index.html" id="nav-home">Home</a></li>
+        <li><a href="faq.html"       id="nav-faq">FAQ</a></li>
         <li><a href="impressum.html" id="nav-contact">Kontakt</a></li>
       </ul>
     </div>
@@ -86,14 +70,14 @@
   <header class="hero">
     <div class="hero-content">
       <h1 id="hero-title">EachPart</h1>
-      <p id="hero-description">Steigere deine Motivation, finde Anerkennung, lebe Fairness und bewahre Erinnerungen.</p>
+      <p id="hero-description">…</p>
       <div class="btn-group">
         <a href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
            class="btn-primary"
-           id="hero-android">Für Android herunterladen</a>
+           id="hero-android">Android</a>
         <a href="https://testflight.apple.com/join/aRwmwwBd"
            class="btn-primary"
-           id="hero-ios">Für iOS herunterladen</a>
+           id="hero-ios">iOS</a>
       </div>
     </div>
   </header>
@@ -101,44 +85,32 @@
   <!-- About / Über EachPart -->
   <section class="section">
     <div class="container">
-      <h2 id="about-title">Über EachPart</h2>
-      <p id="about-text1">
-        EachPart ist deine App, um gemeinsame Erfolge fair darzustellen, das Engagement jedes Teammitglieds sichtbar zu machen, wertvolle Erinnerungen zu bewahren – und dich zu motivieren: Wer kennt nicht die nie endenden Wäscheberge, den schmutzigen Geschirrstapel oder das Chaos im Zimmer?
-      </p>
-      <p id="about-text2">
-        Egal ob du ein Event organisierst, ein gemeinsames Projekt durchführst oder sportliche Herausforderungen bewältigst – EachPart unterstützt dich dabei, Leistungen aufzuschlüsseln und Gerechtigkeit herzustellen.
-      </p>
+      <h2 id="about-title">…</h2>
+      <p id="about-text1">…</p>
+      <p id="about-text2">…</p>
     </div>
   </section>
 
   <!-- Highlights / Features -->
   <section class="section bg-light">
     <div class="container">
-      <h2 id="features-title">Unsere Highlights</h2>
+      <h2 id="features-title">…</h2>
       <div class="features-grid">
         <div class="feature-box">
-          <h3 id="feature1-title">Anerkennung</h3>
-          <p id="feature1-text">
-            Sorge dafür, dass kein Einsatz übersehen wird und jeder seine verdiente Wertschätzung erhält.
-          </p>
+          <h3 id="feature1-title">…</h3>
+          <p  id="feature1-text">…</p>
         </div>
         <div class="feature-box">
-          <h3 id="feature2-title">Fairness</h3>
-          <p id="feature2-text">
-            Behalte stets den Überblick, wer wie viel beigetragen hat, damit Erfolge transparent und gerecht aufgeteilt werden können.
-          </p>
+          <h3 id="feature2-title">…</h3>
+          <p  id="feature2-text">…</p>
         </div>
         <div class="feature-box">
-          <h3 id="feature3-title">Erinnerungen</h3>
-          <p id="feature3-text">
-            Bewahre gemeinsam erzielte Meilensteine und schöne Erlebnisse.
-          </p>
+          <h3 id="feature3-title">…</h3>
+          <p  id="feature3-text">…</p>
         </div>
         <div class="feature-box">
-          <h3 id="feature4-title">Motivation</h3>
-          <p id="feature4-text">
-            Stärke euren Teamgeist durch spielerisches Kräftemessen: Setzt euch gemeinsame Ziele, verfolgt eure Fortschritte in Echtzeit und feuert euch gegenseitig an, um immer das nächste Level zu erreichen.
-          </p>
+          <h3 id="feature4-title">…</h3>
+          <p  id="feature4-text">…</p>
         </div>
       </div>
     </div>
@@ -147,23 +119,21 @@
   <!-- Kontakt -->
   <section class="section" id="contact">
     <div class="container">
-      <h2 id="contact-title">Kontakt</h2>
-      <p id="contact-text">Du hast Fragen oder möchtest Feedback geben? Wir freuen uns darauf, von dir zu hören.</p>
+      <h2 id="contact-title">…</h2>
+      <p  id="contact-text">…</p>
       <a href="mailto:support@eachpart.com"
          class="btn-secondary"
-         id="contact-button">E-Mail an Support</a>
+         id="contact-button">…</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-container">
-      <p id="footer-text">&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
+      <p id="footer-text">&copy; 2025 EachPart. …</p>
       <nav class="footer-nav">
-        <a href="impressum.html">Impressum</a> |
-        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html" id="footer-impressum">Impressum</a> |
+        <a href="datenschutz.html" id="footer-datenschutz">Datenschutz</a>
       </nav>
     </div>
   </footer>
-</body>
-</html>
