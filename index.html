@@ -6,7 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EachPart - Startseite</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Einbindung der Übersetzungslogik aus der externen Datei -->
+  <!-- Responsive Styling für die Download-Buttons -->
+  <style>
+    /* Gruppiere beide Download-Buttons als flexible Reihe */
+    .btn-group {
+      display: flex;
+      gap: 1rem;          /* Abstand zwischen den Buttons */
+      flex-wrap: wrap;    /* Umbruch, wenn's zu eng wird */
+      justify-content: center;
+      margin-top: 1rem;   /* etwas Luft nach oben */
+    }
+
+    /* Jeder Button darf gleichmäßig Platz einnehmen */
+    .btn-group .btn-primary {
+      flex: 1 1 200px;    /* wächst, schrumpft, mindestens 200px breit */
+      text-align: center; /* Text mittig */
+    }
+
+    /* Auf sehr schmalen Bildschirmen stapel die Buttons untereinander */
+    @media (max-width: 480px) {
+      .btn-group {
+        flex-direction: column;
+      }
+      .btn-group .btn-primary {
+        width: 100%;
+        margin: 0;        /* kein zusätzlicher äußerer Abstand nötig */
+      }
+    }
+
+    /* Grid für Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-box {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .feature-box h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .feature-box p {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+  </style>
+  <!-- Einbindung der Übersetzungslogik -->
   <script src="translate.js"></script>
 </head>
 <body>
@@ -28,8 +82,12 @@
       <h1 id="hero-title">EachPart</h1>
       <p id="hero-description">Finde Anerkennung, erreiche Fairness und bewahre Erinnerungen.</p>
       <div class="btn-group">
-        <a href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart" class="btn-primary" id="hero-android">Für Android herunterladen</a>
-        <a href="https://testflight.apple.com/join/aRwmwwBd" class="btn-primary" id="hero-ios">Für iOS herunterladen</a>
+        <a href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
+           class="btn-primary"
+           id="hero-android">Für Android herunterladen</a>
+        <a href="https://testflight.apple.com/join/aRwmwwBd"
+           class="btn-primary"
+           id="hero-ios">Für iOS herunterladen</a>
       </div>
     </div>
   </header>
@@ -54,15 +112,27 @@
       <div class="features-grid">
         <div class="feature-box">
           <h3 id="feature1-title">Anerkennung</h3>
-          <p id="feature1-text">Sorge dafür, dass kein Einsatz übersehen wird und jeder seine verdiente Wertschätzung erhält.</p>
+          <p id="feature1-text">
+            Sorge dafür, dass kein Einsatz übersehen wird und jeder seine verdiente Wertschätzung erhält.
+          </p>
         </div>
         <div class="feature-box">
           <h3 id="feature2-title">Fairness</h3>
-          <p id="feature2-text">Behalte stets den Überblick, wer wie viel beigetragen hat, damit Erfolge transparent und gerecht aufgeteilt werden können.</p>
+          <p id="feature2-text">
+            Behalte stets den Überblick, wer wie viel beigetragen hat, damit Erfolge transparent und gerecht aufgeteilt werden können.
+          </p>
         </div>
         <div class="feature-box">
           <h3 id="feature3-title">Erinnerungen</h3>
-          <p id="feature3-text">Bewahre gemeinsam erzielte Meilensteine und schöne Erlebnisse für die Zukunft.</p>
+          <p id="feature3-text">
+            Bewahre gemeinsam erzielte Meilensteine und schöne Erlebnisse für die Zukunft.
+          </p>
+        </div>
+        <div class="feature-box">
+          <h3 id="feature4-title">Motivation</h3>
+          <p id="feature4-text">
+            Stärke euren Teamgeist durch spielerisches Kräftemessen: Setzt euch gemeinsame Ziele, verfolgt eure Fortschritte in Echtzeit und feuert euch gegenseitig an, um immer das nächste Level zu erreichen.
+          </p>
         </div>
       </div>
     </div>
@@ -73,7 +143,9 @@
     <div class="container">
       <h2 id="contact-title">Kontakt</h2>
       <p id="contact-text">Du hast Fragen oder möchtest Feedback geben? Wir freuen uns darauf, von dir zu hören.</p>
-      <a href="mailto:support@eachpart.com" class="btn-secondary" id="contact-button">E-Mail an Support</a>
+      <a href="mailto:support@eachpart.com"
+         class="btn-secondary"
+         id="contact-button">E-Mail an Support</a>
     </div>
   </section>
 
@@ -82,7 +154,7 @@
     <div class="container footer-container">
       <p id="footer-text">&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
       <nav class="footer-nav">
-        <a href="impressum.html">Impressum</a> | 
+        <a href="impressum.html">Impressum</a> |
         <a href="datenschutz.html">Datenschutz</a>
       </nav>
     </div>
