@@ -6,92 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EachPart - Startseite</title>
 
-  <!-- Dein globales Stylesheet -->
+  <!-- Globales Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Zusatz-Styles (Buttons, Grid, Zweispalter mit Portrait-Video) -->
-  <style>
-    /* Download-Buttons als flexible Reihe */
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .btn-group .btn-primary {
-      flex: 1 1 150px;
-      padding: 0.75rem 1rem;
-      font-size: 0.95rem;
-      text-align: center;
-    }
-    @media (max-width: 480px) {
-      .btn-group {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-      }
-      .btn-group .btn-primary {
-        flex: none;
-        width: 100%;
-        min-width: 0;
-        margin: 0;
-      }
-    }
-
-    /* Grid für Features */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .feature-box {
-      background: #fff;
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .feature-box h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
-    .feature-box p  { font-size: 1rem; line-height: 1.4; }
-
-    /* Hero: Zweispalter (links Video, rechts Text) */
-    .hero { padding: clamp(24px, 4vw, 64px) 0; }
-    .hero-split {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: clamp(20px, 3vw, 40px);
-      align-items: center;
-    }
-    @media (min-width: 900px) {
-      .hero-split { grid-template-columns: auto 1fr; }
-    }
-
-    /* Video-Karte – „fügt sich schön ein“ für Hochformat 9:16 */
-    .video-card { display: grid; place-items: center; }
-    .video-frame {
-      width: clamp(240px, 32vw, 420px); /* passt sich an, aber nicht zu groß */
-      aspect-ratio: 9 / 16;             /* ideal für 1080x1920 */
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 28px rgba(0,0,0,.16);
-      background: #000;                 /* beim Laden */
-    }
-    .hero-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;                /* füllt den Rahmen ohne Balken */
-      display: block;
-    }
-
-    /* Copy-Block rechts etwas luftiger */
-    .hero .hero-content h1 { font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; margin: 0 0 .5rem; }
-    .hero .hero-content p  { font-size: clamp(1rem, 1.4vw, 1.25rem); margin: 0 0 1rem; }
-  </style>
-
-  <!-- (Optional) Deine Übersetzungslogik -->
-  <script src="translate.js"></script>
+  <!-- (Optional) Übersetzungslogik -->
+  <script src="translate.js" defer></script>
 </head>
 <body>
   <!-- Navigation -->
@@ -99,7 +18,7 @@
     <div class="nav-container">
       <a class="nav-logo" href="index.html">EachPart</a>
       <ul class="nav-menu">
-        <li><a href="index.html"       id="nav-home">Home</a></li>
+        <li><a href="index.html"       id="nav-home" class="active">Home</a></li>
         <li><a href="faq.html"         id="nav-faq">FAQ</a></li>
         <li><a href="impressum.html"   id="nav-contact">Kontakt</a></li>
       </ul>
@@ -109,15 +28,15 @@
   <!-- Hero mit Zweispalter -->
   <header class="hero">
     <div class="container hero-split">
-      <!-- Links: Video (Portrait) -->
+      <!-- Links: Intro-Video (Portrait 9:16) -->
       <div class="video-card">
         <div class="video-frame">
           <video
+            id="introVideo"
             class="hero-video"
             playsinline
             muted
             autoplay
-            loop
             preload="metadata"
             controls
             title="EachPart Intro"
@@ -128,8 +47,8 @@
         </div>
       </div>
 
-      <!-- Rechts: Text & Buttons -->
-      <div class="hero-content copy-block">
+      <!-- Rechts: erst Text & Buttons -->
+      <div class="hero-content" id="heroCopy">
         <h1 id="hero-title">EachPart</h1>
         <p id="hero-description">
           Steigere deine Motivation, finde Anerkennung, lebe Fairness und bewahre Erinnerungen.
@@ -139,6 +58,29 @@
              class="btn-primary" id="hero-android">Für Android herunterladen</a>
           <a href="https://testflight.apple.com/join/aRwmwwBd"
              class="btn-primary" id="hero-ios">Für iOS herunterladen</a>
+        </div>
+      </div>
+
+      <!-- Rechts: Explain-Video (zunächst versteckt) -->
+      <div class="video-card right-video hidden" id="rightVideoWrap" aria-hidden="true">
+        <div class="video-frame right">
+          <video
+            id="explainVideo"
+            class="hero-video"
+            playsinline
+            muted
+            preload="metadata"
+            controls
+            title="EachPart – Erklärung"
+          >
+            <source src="assets/videos/eachpart_explain.mp4" type="video/mp4" />
+            <!-- Falls du eine kleinere Version nutzt, ersetze die Zeile oben durch:
+            <source src="assets/videos/eachpart_explain_720p.mp4" type="video/mp4" />
+            -->
+          </video>
+
+          <!-- Fallback-Button falls Autoplay blockiert wird -->
+          <button type="button" id="playExplainBtn" class="play-overlay" hidden aria-label="Video abspielen">▶</button>
         </div>
       </div>
     </div>
@@ -211,5 +153,41 @@
       </nav>
     </div>
   </footer>
+
+  <!-- Hero-Logik: Rechtsvideo nach Ende des Intro-Videos starten -->
+  <script>
+    (function(){
+      const intro = document.getElementById('introVideo');
+      const copy  = document.getElementById('heroCopy');
+      const wrap  = document.getElementById('rightVideoWrap');
+      const exp   = document.getElementById('explainVideo');
+      const btn   = document.getElementById('playExplainBtn');
+
+      if(!intro || !copy || !wrap || !exp) return;
+
+      // Wenn das Intro-Video fertig ist -> rechts Video zeigen & starten
+      intro.addEventListener('ended', async () => {
+        copy.classList.add('hidden');            // Text ausblenden (falls behalten: Zeile entfernen)
+        wrap.classList.remove('hidden');
+        wrap.setAttribute('aria-hidden', 'false');
+
+        try {
+          await exp.play();                      // muted -> Autoplay meist erlaubt
+        } catch (e) {
+          if (btn) btn.hidden = false;           // Overlay-Play zeigen, falls blockiert
+        }
+      });
+
+      // Fallback: manuelles Starten per Overlay
+      if (btn) {
+        btn.addEventListener('click', async () => {
+          try {
+            await exp.play();
+            btn.hidden = true;
+          } catch(e){}
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
