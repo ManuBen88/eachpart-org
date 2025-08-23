@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EachPart - Startseite</title>
 
-  <!-- Externes Stylesheet (deins) -->
+  <!-- Dein globales Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Zusatz-Styles (Buttons, Grid, Video) -->
+  <!-- Zusatz-Styles (Buttons, Grid, Zweispalter mit Portrait-Video) -->
   <style>
     /* Download-Buttons als flexible Reihe */
     .btn-group {
@@ -56,50 +56,41 @@
     .feature-box h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
     .feature-box p  { font-size: 1rem; line-height: 1.4; }
 
-    /* Hero-Video oben */
-    .hero-video-wrap{
-      max-width: 980px;
-      margin: 0 auto 1.25rem auto;
-      position: relative;
-      aspect-ratio: 16 / 9;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    /* Hero: Zweispalter (links Video, rechts Text) */
+    .hero { padding: clamp(24px, 4vw, 64px) 0; }
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 3vw, 40px);
+      align-items: center;
     }
-    .hero-video{
+    @media (min-width: 900px) {
+      .hero-split { grid-template-columns: auto 1fr; }
+    }
+
+    /* Video-Karte – „fügt sich schön ein“ für Hochformat 9:16 */
+    .video-card { display: grid; place-items: center; }
+    .video-frame {
+      width: clamp(240px, 32vw, 420px); /* passt sich an, aber nicht zu groß */
+      aspect-ratio: 9 / 16;             /* ideal für 1080x1920 */
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,.16);
+      background: #000;                 /* beim Laden */
+    }
+    .hero-video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover;                /* füllt den Rahmen ohne Balken */
       display: block;
-      background: #000;
     }
-    .video-lang-toggle{
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      gap: 6px;
-      z-index: 2;
-    }
-    .video-lang-toggle button{
-      border: 0;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(6px);
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .video-lang-toggle button.active{
-      background: #111;
-      color: #fff;
-    }
-    @media (max-width: 640px){
-      .hero-video-wrap{ border-radius: 8px; }
-    }
+
+    /* Copy-Block rechts etwas luftiger */
+    .hero .hero-content h1 { font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.1; margin: 0 0 .5rem; }
+    .hero .hero-content p  { font-size: clamp(1rem, 1.4vw, 1.25rem); margin: 0 0 1rem; }
   </style>
 
-  <!-- Deine Übersetzungslogik (falls vorhanden) -->
+  <!-- (Optional) Deine Übersetzungslogik -->
   <script src="translate.js"></script>
 </head>
 <body>
@@ -115,40 +106,40 @@
     </div>
   </nav>
 
-  <!-- Hero mit Intro-Video -->
+  <!-- Hero mit Zweispalter -->
   <header class="hero">
-    <div class="hero-video-wrap">
-      <video
-        id="introVideo"
-        class="hero-video"
-        playsinline
-        muted
-        autoplay
-        loop
-        preload="metadata"
-        controls
-        poster="assets/videos/poster.jpg"  <!-- optional: Vorschaubild -->
-      >
-        <!-- Quellen werden per JS gesetzt -->
-        Ihr Browser unterstützt das Video-Tag nicht.
-      </video>
-
-      <!-- Sprache umschalten -->
-      <div class="video-lang-toggle" aria-label="Video-Sprache">
-        <button type="button" data-lang="de" class="active">DE</button>
-        <button type="button" data-lang="en">EN</button>
+    <div class="container hero-split">
+      <!-- Links: Video (Portrait) -->
+      <div class="video-card">
+        <div class="video-frame">
+          <video
+            class="hero-video"
+            playsinline
+            muted
+            autoplay
+            loop
+            preload="metadata"
+            controls
+            title="EachPart Intro"
+          >
+            <source src="assets/videos/eachpart_intro.mp4" type="video/mp4" />
+            Dein Browser unterstützt das Video-Tag nicht.
+          </video>
+        </div>
       </div>
-    </div>
 
-    <!-- Hero-Text + Buttons -->
-    <div class="hero-content">
-      <h1 id="hero-title">EachPart</h1>
-      <p id="hero-description">Steigere deine Motivation, finde Anerkennung, lebe Fairness und bewahre Erinnerungen.</p>
-      <div class="btn-group">
-        <a href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
-           class="btn-primary" id="hero-android">Für Android herunterladen</a>
-        <a href="https://testflight.apple.com/join/aRwmwwBd"
-           class="btn-primary" id="hero-ios">Für iOS herunterladen</a>
+      <!-- Rechts: Text & Buttons -->
+      <div class="hero-content copy-block">
+        <h1 id="hero-title">EachPart</h1>
+        <p id="hero-description">
+          Steigere deine Motivation, finde Anerkennung, lebe Fairness und bewahre Erinnerungen.
+        </p>
+        <div class="btn-group">
+          <a href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
+             class="btn-primary" id="hero-android">Für Android herunterladen</a>
+          <a href="https://testflight.apple.com/join/aRwmwwBd"
+             class="btn-primary" id="hero-ios">Für iOS herunterladen</a>
+        </div>
       </div>
     </div>
   </header>
@@ -220,55 +211,5 @@
       </nav>
     </div>
   </footer>
-
-  <!-- Video-Logik: Quellen je Sprache setzen -->
-  <script>
-  (function () {
-    const video = document.getElementById('introVideo');
-    if (!video) return;
-
-    // Aktuell dieselbe Datei für DE & EN – später EN-Variante ergänzen
-    const sources = {
-      de: [{ src: 'assets/videos/eachpart_intro.mp4', type: 'video/mp4' }],
-      en: [{ src: 'assets/videos/eachpart_intro.mp4', type: 'video/mp4' }]
-      // Beispiel später:
-      // en: [{ src: 'assets/videos/eachpart_intro_en.mp4', type: 'video/mp4' }]
-    };
-
-    const buttons = document.querySelectorAll('.video-lang-toggle [data-lang]');
-    const normalize = (lang) => (String(lang || '').toLowerCase().startsWith('de') ? 'de' : 'en');
-    const wantsAutoplay = () =>
-      !(navigator.connection && navigator.connection.saveData) &&
-      !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-
-    function setVideoLang(lang, userInitiated = false) {
-      lang = normalize(lang);
-      video.innerHTML = '';
-      (sources[lang] || sources.de).forEach(({ src, type }) => {
-        const s = document.createElement('source');
-        s.src = src;
-        s.type = type;
-        video.appendChild(s);
-      });
-      localStorage.setItem('videoLang', lang);
-      buttons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-
-      video.load();
-      if (userInitiated || wantsAutoplay()) {
-        video.play().catch(() => { /* Autoplay kann geblockt sein – ignorieren */ });
-      }
-    }
-
-    // Umschalter
-    buttons.forEach(b => b.addEventListener('click', () => setVideoLang(b.dataset.lang, true)));
-
-    // Initiale Sprachwahl: URL > gespeicherte Wahl > <html lang> > Browser
-    const urlLang = new URLSearchParams(location.search).get('lang');
-    const stored  = localStorage.getItem('videoLang');
-    const docLang = document.documentElement.lang;
-    const navLang = navigator.language || 'de';
-    setVideoLang(urlLang || stored || docLang || navLang);
-  })();
-  </script>
 </body>
 </html>
