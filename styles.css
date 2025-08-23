@@ -190,6 +190,7 @@ p {
     padding: 5px;
   }
 }
+
 /* ===== Hero: Zweispalter (Video links, Text rechts) ===== */
 .hero { /* behält deine Farben bei (#333, weißer Text) */
   /* padding hast du schon – optional: etwas luftiger */
@@ -256,4 +257,93 @@ p {
     gap: 12px;
   }
 }
+
+/* ===== HERO: Zweispalter + Video-Rahmen ===== */
+
+/* 1) Grid-Layout im Hero (links Video, rechts Text/Buttons) */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr;   /* mobil: untereinander */
+  gap: 24px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .hero-split {
+    grid-template-columns: auto 1fr; /* desktop: links Video, rechts Text */
+    gap: 40px;
+  }
+}
+
+/* 2) Text rechts: auf Desktop linksbündig, mobil mittig */
+.hero .hero-content {
+  max-width: 680px;
+  text-align: left;
+  margin: 0;              /* überschreibt dein zentrierendes margin:auto aus .hero-content */
+}
+@media (max-width: 899px) {
+  .hero .hero-content { text-align: center; }
+}
+
+/* 3) Video-Karten */
+.video-card { display: grid; place-items: center; }
+
+/* Linkes Intro-Video: Portrait 9:16 */
+.video-frame {
+  position: relative;               /* nötig für Overlay-Button */
+  width: clamp(240px, 32vw, 420px); /* skaliert schön */
+  aspect-ratio: 9 / 16;             /* ideal für 1080x1920 */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+}
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                /* füllt den Rahmen ohne Balken */
+  display: block;
+}
+
+/* Rechtes Explain-Video: 16:9 und etwas breiter */
+.video-card.right-video .video-frame.right {
+  width: clamp(320px, 40vw, 640px);
+  aspect-ratio: 16 / 9;
+}
+
+/* 4) Button-Gruppe (wird im Hero verwendet) */
+.btn-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+@media (max-width: 480px) {
+  .btn-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* 5) Utilities */
+.hidden { display: none !important; }
+
+/* Fallback-Play-Overlay (falls Autoplay blockiert) */
+.play-overlay{
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  font-size: 28px;
+  line-height: 72px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+}
+
 
