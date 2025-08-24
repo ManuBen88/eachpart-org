@@ -9,7 +9,7 @@
   <!-- Globales Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- (Optional) Übersetzungslogik -->
+  <!-- (Optional) Übersetzungslogik, falls vorhanden -->
   <script src="translate.js" defer></script>
 </head>
 <body>
@@ -18,18 +18,18 @@
     <div class="nav-container">
       <a class="nav-logo" href="index.html">EachPart</a>
       <ul class="nav-menu">
-        <li><a href="index.html"       id="nav-home" class="active">Home</a></li>
-        <li><a href="faq.html"         id="nav-faq">FAQ</a></li>
-        <li><a href="impressum.html"   id="nav-contact">Kontakt</a></li>
+        <li><a href="index.html" id="nav-home" class="active">Home</a></li>
+        <li><a href="faq.html" id="nav-faq">FAQ</a></li>
+        <li><a href="impressum.html" id="nav-contact">Kontakt</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero mit Zweispalter -->
+  <!-- Hero: links Intro-Video (9:16), rechts Text -> danach rechts Explain-Video (9:16) -->
   <header class="hero">
     <div class="container hero-split">
-      <!-- Links: Intro-Video (Portrait 9:16) -->
-      <div class="video-card">
+      <!-- LINKS: Intro-Video (Portrait 9:16) -->
+      <div class="video-card" id="leftVideoWrap">
         <div class="video-frame">
           <video
             id="introVideo"
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <!-- Rechts: erst Text & Buttons -->
+      <!-- RECHTS: Text/Buttons (zuerst sichtbar) -->
       <div class="hero-content" id="heroCopy">
         <h1 id="hero-title">EachPart</h1>
         <p id="hero-description">
@@ -61,9 +61,9 @@
         </div>
       </div>
 
-      <!-- Rechts: Explain-Video (zunächst versteckt) -->
+      <!-- RECHTS: Explain-Video (gleicher 9:16-Rahmen, anfänglich versteckt) -->
       <div class="video-card right-video hidden" id="rightVideoWrap" aria-hidden="true">
-        <div class="video-frame right">
+        <div class="video-frame">
           <video
             id="explainVideo"
             class="hero-video"
@@ -74,12 +74,9 @@
             title="EachPart – Erklärung"
           >
             <source src="assets/videos/eachpart_explain.mp4" type="video/mp4" />
-            <!-- Falls du eine kleinere Version nutzt, ersetze die Zeile oben durch:
-            <source src="assets/videos/eachpart_explain_720p.mp4" type="video/mp4" />
-            -->
+            Dein Browser unterstützt das Video-Tag nicht.
           </video>
-
-          <!-- Fallback-Button falls Autoplay blockiert wird -->
+          <!-- Fallback-Button, falls Autoplay blockiert wird -->
           <button type="button" id="playExplainBtn" class="play-overlay" hidden aria-label="Video abspielen">▶</button>
         </div>
       </div>
@@ -148,37 +145,39 @@
     <div class="container footer-container">
       <p id="footer-text">&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
       <nav class="footer-nav">
-        <a href="impressum.html"  id="footer-impressum">Impressum</a> |
+        <a href="impressum.html" id="footer-impressum">Impressum</a> |
         <a href="datenschutz.html" id="footer-datenschutz">Datenschutz</a>
       </nav>
     </div>
   </footer>
 
-  <!-- Hero-Logik: Rechtsvideo nach Ende des Intro-Videos starten -->
+  <!-- Hero-Logik: Linkes Video ausblenden, rechts gleiches 9:16 starten -->
   <script>
     (function(){
       const intro = document.getElementById('introVideo');
+      const left  = document.getElementById('leftVideoWrap');
       const copy  = document.getElementById('heroCopy');
       const wrap  = document.getElementById('rightVideoWrap');
       const exp   = document.getElementById('explainVideo');
       const btn   = document.getElementById('playExplainBtn');
 
-      if(!intro || !copy || !wrap || !exp) return;
+      if(!intro || !left || !copy || !wrap || !exp) return;
 
-      // Wenn das Intro-Video fertig ist -> rechts Video zeigen & starten
+      // Wenn das Intro-Video endet: Links & Text ausblenden, rechts zeigen & abspielen
       intro.addEventListener('ended', async () => {
-        copy.classList.add('hidden');            // Text ausblenden (falls behalten: Zeile entfernen)
-        wrap.classList.remove('hidden');
+        left.classList.add('hidden');       // linkes Video verschwinden
+        copy.classList.add('hidden');       // (optional) Text auch ausblenden
+        wrap.classList.remove('hidden');    // rechtes Video einblenden
         wrap.setAttribute('aria-hidden', 'false');
 
         try {
-          await exp.play();                      // muted -> Autoplay meist erlaubt
+          await exp.play();                 // muted -> Autoplay i.d.R. erlaubt
         } catch (e) {
-          if (btn) btn.hidden = false;           // Overlay-Play zeigen, falls blockiert
+          if (btn) btn.hidden = false;      // Fallback: Play-Overlay einblenden
         }
       });
 
-      // Fallback: manuelles Starten per Overlay
+      // Fallback: manuelles Starten über Overlay-Button
       if (btn) {
         btn.addEventListener('click', async () => {
           try {
