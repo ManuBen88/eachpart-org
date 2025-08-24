@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="EachPart – Video-Anleitung: So nutzt du die App" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EachPart – Anleitung</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="translate.js" defer></script>
+
+  <!-- kleine Seite-spezifische Hilfe, damit das Video schön groß ist -->
+  <style>
+    .howto-hero { padding: 40px 20px; background:#333; color:#fff; text-align:center; }
+    .howto-wrapper { display:grid; place-items:center; }
+    .howto-video { width: min(960px, 92vw); aspect-ratio: 16 / 9; background:#000; border-radius:12px; box-shadow: 0 8px 28px rgba(0,0,0,.16); }
+    @media (max-width: 520px){ .howto-hero{ padding: 28px 16px; } }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a class="nav-logo" href="index.html">EachPart</a>
+      <ul class="nav-menu">
+        <li><a href="index.html" id="nav-home">Home</a></li>
+        <li><a href="anleitung.html" id="nav-howto" class="active">Anleitung</a></li>
+        <li><a href="faq.html" id="nav-faq">FAQ</a></li>
+        <li><a href="impressum.html" id="nav-contact">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Kopfbereich -->
+  <header class="howto-hero">
+    <div class="container">
+      <h1>Video-Anleitung</h1>
+      <p>So nutzt du EachPart – Schritt für Schritt.</p>
+    </div>
+  </header>
+
+  <!-- Video-Bereich -->
+  <section class="section">
+    <div class="container howto-wrapper">
+      <video
+        class="howto-video"
+        controls
+        playsinline
+        preload="metadata"
+        title="EachPart – Anleitung"
+        poster="assets/videos/poster_explain.jpg"
+      >
+        <source src="assets/videos/eachpart_explain.mp4" type="video/mp4" />
+        Dein Browser unterstützt das Video-Tag nicht.
+      </video>
+      <div style="margin-top:14px;">
+        <a href="assets/videos/eachpart_explain.mp4" download class="btn-secondary">Video herunterladen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
+      <nav class="footer-nav">
+        <a href="impressum.html">Impressum</a> |
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
