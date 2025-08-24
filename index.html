@@ -6,10 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EachPart - Startseite</title>
 
-  <!-- Globales Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- (Optional) Übersetzungslogik, falls vorhanden -->
   <script src="translate.js" defer></script>
 </head>
 <body>
@@ -19,24 +16,25 @@
       <a class="nav-logo" href="index.html">EachPart</a>
       <ul class="nav-menu">
         <li><a href="index.html" id="nav-home" class="active">Home</a></li>
+        <li><a href="anleitung.html" id="nav-howto">Anleitung</a></li>
         <li><a href="faq.html" id="nav-faq">FAQ</a></li>
         <li><a href="impressum.html" id="nav-contact">Kontakt</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero: links Intro-Video (9:16), rechts Text -> danach rechts Explain-Video (9:16) -->
+  <!-- Hero: links Intro-Video (9:16, loop), rechts Text/Buttons -->
   <header class="hero">
     <div class="container hero-split">
       <!-- LINKS: Intro-Video (Portrait 9:16) -->
-      <div class="video-card" id="leftVideoWrap">
+      <div class="video-card">
         <div class="video-frame">
           <video
-            id="introVideo"
             class="hero-video"
             playsinline
             muted
             autoplay
+            loop
             preload="metadata"
             controls
             title="EachPart Intro"
@@ -47,8 +45,8 @@
         </div>
       </div>
 
-      <!-- RECHTS: Text/Buttons (zuerst sichtbar) -->
-      <div class="hero-content" id="heroCopy">
+      <!-- RECHTS: Text/Buttons -->
+      <div class="hero-content">
         <h1 id="hero-title">EachPart</h1>
         <p id="hero-description">
           Steigere deine Motivation, finde Anerkennung, lebe Fairness und bewahre Erinnerungen.
@@ -58,26 +56,7 @@
              class="btn-primary" id="hero-android">Für Android herunterladen</a>
           <a href="https://testflight.apple.com/join/aRwmwwBd"
              class="btn-primary" id="hero-ios">Für iOS herunterladen</a>
-        </div>
-      </div>
-
-      <!-- RECHTS: Explain-Video (gleicher 9:16-Rahmen, anfänglich versteckt) -->
-      <div class="video-card right-video hidden" id="rightVideoWrap" aria-hidden="true">
-        <div class="video-frame">
-          <video
-            id="explainVideo"
-            class="hero-video"
-            playsinline
-            muted
-            preload="metadata"
-            controls
-            title="EachPart – Erklärung"
-          >
-            <source src="assets/videos/eachpart_explain.mp4" type="video/mp4" />
-            Dein Browser unterstützt das Video-Tag nicht.
-          </video>
-          <!-- Fallback-Button, falls Autoplay blockiert wird -->
-          <button type="button" id="playExplainBtn" class="play-overlay" hidden aria-label="Video abspielen">▶</button>
+          <a href="anleitung.html" class="btn-secondary">Video-Anleitung ansehen</a>
         </div>
       </div>
     </div>
@@ -150,43 +129,5 @@
       </nav>
     </div>
   </footer>
-
-  <!-- Hero-Logik: Linkes Video ausblenden, rechts gleiches 9:16 starten -->
-  <script>
-    (function(){
-      const intro = document.getElementById('introVideo');
-      const left  = document.getElementById('leftVideoWrap');
-      const copy  = document.getElementById('heroCopy');
-      const wrap  = document.getElementById('rightVideoWrap');
-      const exp   = document.getElementById('explainVideo');
-      const btn   = document.getElementById('playExplainBtn');
-
-      if(!intro || !left || !copy || !wrap || !exp) return;
-
-      // Wenn das Intro-Video endet: Links & Text ausblenden, rechts zeigen & abspielen
-      intro.addEventListener('ended', async () => {
-        left.classList.add('hidden');       // linkes Video verschwinden
-        copy.classList.add('hidden');       // (optional) Text auch ausblenden
-        wrap.classList.remove('hidden');    // rechtes Video einblenden
-        wrap.setAttribute('aria-hidden', 'false');
-
-        try {
-          await exp.play();                 // muted -> Autoplay i.d.R. erlaubt
-        } catch (e) {
-          if (btn) btn.hidden = false;      // Fallback: Play-Overlay einblenden
-        }
-      });
-
-      // Fallback: manuelles Starten über Overlay-Button
-      if (btn) {
-        btn.addEventListener('click', async () => {
-          try {
-            await exp.play();
-            btn.hidden = true;
-          } catch(e){}
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
