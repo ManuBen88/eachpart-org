@@ -61,6 +61,7 @@ body {
   padding: 60px 20px;
 }
 
+/* Standard-Hero-Content (Basis) */
 .hero-content {
   max-width: 600px;
   margin: 0 auto;
@@ -76,6 +77,7 @@ body {
   margin-bottom: 30px;
 }
 
+/* Buttons */
 .btn-primary {
   display: inline-block;
   background-color: #f06c00;
@@ -133,7 +135,7 @@ p {
   margin-bottom: 10px;
 }
 
-/* Buttons */
+/* Sekundär-Button */
 .btn-secondary {
   display: inline-block;
   background-color: #555;
@@ -179,7 +181,7 @@ p {
   margin-bottom: 5px;
 }
 
-/* Responsiv */
+/* Responsiv (Navbar) */
 @media (max-width: 768px) {
   .nav-menu {
     display: flex;
@@ -191,79 +193,14 @@ p {
   }
 }
 
-/* ===== Hero: Zweispalter (Video links, Text rechts) ===== */
-.hero { /* behält deine Farben bei (#333, weißer Text) */
-  /* padding hast du schon – optional: etwas luftiger */
-  padding: 60px 0;
-}
+/* ================================
+   HERO: Zweispalter + Videos (9:16)
+   ================================ */
 
-/* Grid-Container im Hero (verwende in HTML: <div class="container hero-split">) */
+/* Grid-Layout im Hero (links Video, rechts Text/Buttons) */
 .hero-split {
   display: grid;
   grid-template-columns: 1fr;        /* mobil: untereinander */
-  gap: 24px;
-  align-items: center;
-}
-
-/* Desktop: nebeneinander */
-@media (min-width: 900px) {
-  .hero-split {
-    grid-template-columns: auto 1fr; /* links: Video, rechts: Text */
-    gap: 40px;
-  }
-}
-
-/* Textblock im Hero rechts: linksbündig im Desktop, mobil mittig */
-.hero .hero-content {
-  margin: 0;              /* überschreibt dein zentrierendes margin:auto */
-  text-align: left;
-  max-width: 680px;       /* angenehme Zeilenlänge */
-}
-@media (max-width: 899px) {
-  .hero .hero-content { text-align: center; }
-}
-
-/* ===== Video-Karte (Portrait 9:16, fügt sich „sauber“ ein) ===== */
-.video-card { display: grid; place-items: center; }
-
-.video-frame {
-  width: clamp(240px, 32vw, 420px);  /* skaliert schön mit */
-  aspect-ratio: 9 / 16;              /* ideal für 1080x1920 */
-  border-radius: 12px;
-  overflow: hidden;
-  background: #000;                  /* beim Laden */
-  box-shadow: 0 8px 28px rgba(0,0,0,0.16);
-}
-
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;                  /* füllt den Rahmen ohne Balken */
-  display: block;
-}
-
-/* ===== Button-Gruppe (optional, falls du <div class="btn-group"> nutzt) ===== */
-.btn-group {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 16px;
-}
-@media (max-width: 480px) {
-  .btn-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-}
-
-/* ===== HERO: Zweispalter + Video-Rahmen ===== */
-
-/* 1) Grid-Layout im Hero (links Video, rechts Text/Buttons) */
-.hero-split {
-  display: grid;
-  grid-template-columns: 1fr;   /* mobil: untereinander */
   gap: 24px;
   align-items: center;
 }
@@ -274,43 +211,45 @@ p {
   }
 }
 
-/* 2) Text rechts: auf Desktop linksbündig, mobil mittig */
+/* Text rechts: auf Desktop linksbündig, mobil mittig */
 .hero .hero-content {
-  max-width: 680px;
+  max-width: 680px;  /* angenehme Zeilenlänge */
   text-align: left;
-  margin: 0;              /* überschreibt dein zentrierendes margin:auto aus .hero-content */
+  margin: 0;         /* überschreibt margin:auto aus der Basis */
 }
 @media (max-width: 899px) {
   .hero .hero-content { text-align: center; }
 }
 
-/* 3) Video-Karten */
+/* Videokarten */
 .video-card { display: grid; place-items: center; }
 
-/* Linkes Intro-Video: Portrait 9:16 */
+/* Gemeinsamer Video-Rahmen – PORTRAIT 9:16 */
 .video-frame {
-  position: relative;               /* nötig für Overlay-Button */
-  width: clamp(240px, 32vw, 420px); /* skaliert schön */
-  aspect-ratio: 9 / 16;             /* ideal für 1080x1920 */
+  position: relative;                    /* für Overlay-Button */
+  width: clamp(240px, 32vw, 420px);      /* gleiche Breite links & rechts */
+  aspect-ratio: 9 / 16;                  /* ideal für 1080x1920 */
   border-radius: 12px;
   overflow: hidden;
   background: #000;
   box-shadow: 0 8px 28px rgba(0,0,0,0.16);
 }
+
+/* Video füllt den Rahmen */
 .hero-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;                /* füllt den Rahmen ohne Balken */
+  object-fit: cover;                     /* keine Balken */
   display: block;
 }
 
-/* Rechtes Explain-Video: 16:9 und etwas breiter */
-.video-card.right-video .video-frame.right {
-  width: clamp(320px, 40vw, 640px);
-  aspect-ratio: 16 / 9;
+/* Rechte Videokarte bekommt EXAKT den gleichen Rahmen wie links */
+.video-card.right-video .video-frame {
+  width: clamp(240px, 32vw, 420px);
+  aspect-ratio: 9 / 16;
 }
 
-/* 4) Button-Gruppe (wird im Hero verwendet) */
+/* Button-Gruppe im Hero */
 .btn-group {
   display: flex;
   gap: 16px;
@@ -326,7 +265,7 @@ p {
   }
 }
 
-/* 5) Utilities */
+/* Utilities */
 .hidden { display: none !important; }
 
 /* Fallback-Play-Overlay (falls Autoplay blockiert) */
@@ -345,5 +284,3 @@ p {
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(0,0,0,.35);
 }
-
-
