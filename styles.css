@@ -9,7 +9,6 @@
   --bg2: #0b1226;
   --card: #ffffff;
   --text: #111827;
-  --muted: rgba(17, 24, 39, 0.72);
   --border: rgba(0,0,0,.08);
 
   --accent: #f06c00;
@@ -159,7 +158,6 @@ p{ line-height: 1.7; }
 .hero-badge{
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   width: fit-content;
   padding: 8px 12px;
   border-radius: 999px;
@@ -203,28 +201,6 @@ p{ line-height: 1.7; }
   text-wrap: balance;
 }
 
-.pill-row{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 14px 0 16px;
-  justify-content: flex-start;
-}
-
-@media (max-width: 979px){
-  .pill-row{ justify-content: center; }
-}
-
-.pill{
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(255,255,255,.06);
-  color: rgba(255,255,255,.92);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 0.95rem;
-}
-
 .hero-bullets{
   margin: 10px 0 18px;
   padding-left: 18px;
@@ -249,7 +225,7 @@ p{ line-height: 1.7; }
 }
 
 /* =========================
-   Video (9:16) + Sound overlay
+   Video (9:16) + overlays
    ========================= */
 .video-card{
   display: grid;
@@ -281,6 +257,12 @@ p{ line-height: 1.7; }
   text-align: center;
 }
 
+/* Hidden helper (used for video + sound button) */
+.is-hidden{
+  display: none !important;
+}
+
+/* Sound overlay button */
 .sound-overlay{
   position: absolute;
   left: 12px;
@@ -295,11 +277,173 @@ p{ line-height: 1.7; }
   cursor: pointer;
   backdrop-filter: blur(6px);
   transition: background .15s ease, transform .15s ease;
+  z-index: 6;
 }
 
 .sound-overlay:hover{
   background: rgba(0,0,0,.68);
   transform: translateY(-1px);
+}
+
+/* =========================
+   Intro Animation: Mosaic build + shutter + flash
+   ========================= */
+.intro-anim{
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(600px 420px at 40% 25%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25));
+}
+
+.intro-anim.fade-out{
+  animation: introFade 300ms ease forwards;
+}
+
+@keyframes introFade{
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.mosaic{
+  width: 88%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 6), 1fr);
+  grid-template-rows: repeat(var(--rows, 6), 1fr);
+  gap: 6px;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+}
+
+/* Each tile */
+.tile{
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.08);
+
+  /* image layer + fallback gradient */
+  background-image:
+    var(--mosaic-img, none),
+    radial-gradient(140px 120px at 30% 30%, rgba(255,138,42,.30), transparent 60%),
+    linear-gradient(135deg, rgba(10, 24, 40, .95), rgba(22, 54, 66, .85));
+  background-blend-mode: normal, screen, normal;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: saturate(1.05) contrast(1.02);
+
+  opacity: 0;
+  transform: translate(var(--fromX, 0px), var(--fromY, 0px)) rotate(var(--rot, 0deg)) scale(.70);
+  animation: tileIn 780ms cubic-bezier(.18,.85,.22,1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes tileIn{
+  to{
+    opacity: 1;
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+}
+
+/* camera ui */
+.camera-ui{
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: rgba(255,255,255,.82);
+  font-weight: 900;
+  font-size: 0.92rem;
+  pointer-events: none;
+}
+
+.camera-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 64, 64, .95);
+  box-shadow: 0 0 18px rgba(255, 64, 64, .45);
+  animation: recPulse 900ms ease-in-out infinite;
+}
+
+@keyframes recPulse{
+  0%, 100%{ transform: scale(1); opacity: .9; }
+  50%{ transform: scale(1.25); opacity: 1; }
+}
+
+.camera-text{
+  opacity: .85;
+}
+
+/* shutter effect */
+.shutter{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shutter::before,
+.shutter::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: rgba(0,0,0,.88);
+  transform: translateY(-110%);
+}
+
+.shutter::after{
+  top: auto;
+  bottom: 0;
+  transform: translateY(110%);
+}
+
+.shutter.do-shot::before{
+  animation: shutterTop 260ms ease-in-out forwards;
+}
+.shutter.do-shot::after{
+  animation: shutterBottom 260ms ease-in-out forwards;
+}
+
+@keyframes shutterTop{
+  0%{ transform: translateY(-110%); }
+  50%{ transform: translateY(0%); }
+  100%{ transform: translateY(-110%); }
+}
+@keyframes shutterBottom{
+  0%{ transform: translateY(110%); }
+  50%{ transform: translateY(0%); }
+  100%{ transform: translateY(110%); }
+}
+
+/* flash */
+.flash{
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flash.do-flash{
+  animation: flashPop 220ms ease-out forwards;
+}
+
+@keyframes flashPop{
+  0%{ opacity: 0; }
+  40%{ opacity: .95; }
+  100%{ opacity: 0; }
 }
 
 /* =========================
