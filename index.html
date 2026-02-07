@@ -30,42 +30,12 @@
   <!-- Hero -->
   <header class="hero">
     <div class="container hero-split">
-      <!-- LINKS: Video + Intro-Animation -->
+      <!-- LINKS: Video -->
       <div class="video-card">
         <div class="video-frame" id="heroFrame">
-
-          <!-- Intro Animation Overlay -->
-          <div class="intro-anim" id="introAnim" aria-hidden="true">
-            <div class="shard-stage" id="shardStage" aria-hidden="true"></div>
-
-            <!-- Lens overlay (more obvious "photo lens") -->
-            <div class="lens" id="lens" aria-hidden="true">
-              <div class="lens-core"></div>
-              <div class="lens-glint"></div>
-            </div>
-
-            <!-- focus corners -->
-            <div class="focus-frame" aria-hidden="true">
-              <span class="fc tl"></span>
-              <span class="fc tr"></span>
-              <span class="fc bl"></span>
-              <span class="fc br"></span>
-            </div>
-
-            <!-- small camera ui -->
-            <div class="camera-ui" aria-hidden="true">
-              <div class="camera-dot"></div>
-              <div class="camera-text">capturing…</div>
-            </div>
-
-            <div class="shutter" id="shutter" aria-hidden="true"></div>
-            <div class="flash" id="flash" aria-hidden="true"></div>
-          </div>
-
-          <!-- Actual video (revealed after intro anim) -->
           <video
             id="heroVideo"
-            class="hero-video is-hidden"
+            class="hero-video"
             playsinline
             autoplay
             loop
@@ -79,58 +49,88 @@
           </video>
 
           <!-- Sound-Button (Autoplay mit Sound ist meist blockiert → Click löst es sauber) -->
-          <button id="soundOverlay" class="sound-overlay is-hidden" type="button">
+          <button id="soundOverlay" class="sound-overlay" type="button">
             🔊 Mit Sound starten
           </button>
         </div>
 
         <div class="video-caption" id="hero-video-caption">
-          Intro: Scherben → Linse → Foto → Video
+          Tipp: Ein Klick auf „Mit Sound starten“ aktiviert den Ton.
         </div>
       </div>
 
-      <!-- RECHTS: Premium-Panel -->
-      <div class="hero-content hero-panel">
-        <div class="hero-badge" id="hero-badge">Nicht perfekt. Nur echt.</div>
+      <!-- RECHTS: Premium-Panel + INTRO-EFFEKT AUF TEXTFELD -->
+      <div class="hero-content hero-panel" id="heroPanel">
+        <!-- Panel Intro Overlay -->
+        <div class="panel-intro" id="panelIntro" aria-hidden="true">
+          <div class="panel-shard-stage" id="panelShardStage" aria-hidden="true"></div>
 
-        <h1 id="hero-title" class="hero-title">
-          Mach aus heute etwas, das bleibt.
-        </h1>
+          <!-- Lens overlay (obvious photo lens) -->
+          <div class="lens" id="panelLens" aria-hidden="true">
+            <div class="lens-core"></div>
+            <div class="lens-glint"></div>
+          </div>
 
-        <p id="hero-tagline" class="hero-tagline">
-          Momente festhalten. Ziele schaffen. Gemeinsam dranbleiben.
-        </p>
+          <!-- focus corners -->
+          <div class="focus-frame" aria-hidden="true">
+            <span class="fc tl"></span>
+            <span class="fc tr"></span>
+            <span class="fc bl"></span>
+            <span class="fc br"></span>
+          </div>
 
-        <ul class="hero-bullets" aria-label="Vorteile">
-          <li id="hero-b1">Einfach festhalten, was wirklich zählt – ohne Perfektionsdruck.</li>
-          <li id="hero-b2">Mini-Ziele, die machbar sind – und sich gut anfühlen, wenn sie geschafft sind.</li>
-          <li id="hero-b3">Gemeinsam leichter: Reaktionen, Support und kleine Feiern.</li>
-        </ul>
+          <div class="camera-ui" aria-hidden="true">
+            <div class="camera-dot"></div>
+            <div class="camera-text">capturing…</div>
+          </div>
 
-        <div class="btn-group btn-group-wrap">
-          <a
-            href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
-            class="btn-primary"
-            id="hero-android"
-            target="_blank"
-            rel="noopener"
-          >Android herunterladen</a>
-
-          <a
-            href="https://testflight.apple.com/join/aRwmwwBd"
-            class="btn-secondary"
-            id="hero-ios"
-            target="_blank"
-            rel="noopener"
-          >iOS (TestFlight)</a>
-
-          <a href="anleitung.html" class="btn-ghost" id="hero-howto">Video-Anleitung</a>
-          <a href="#how" class="btn-ghost" id="hero-more">Mehr erfahren</a>
+          <div class="shutter" id="panelShutter" aria-hidden="true"></div>
+          <div class="flash" id="panelFlash" aria-hidden="true"></div>
         </div>
 
-        <p class="hero-note" id="hero-note">
-          Hinweis: Wir entwickeln aktiv weiter – transparent und Schritt für Schritt.
-        </p>
+        <!-- Actual content (revealed after intro) -->
+        <div class="panel-content" id="panelContent">
+          <div class="hero-badge" id="hero-badge">Nicht perfekt. Nur echt.</div>
+
+          <h1 id="hero-title" class="hero-title">
+            Mach aus heute etwas, das bleibt.
+          </h1>
+
+          <p id="hero-tagline" class="hero-tagline">
+            Momente festhalten. Ziele schaffen. Gemeinsam dranbleiben.
+          </p>
+
+          <ul class="hero-bullets" aria-label="Vorteile">
+            <li id="hero-b1">Einfach festhalten, was wirklich zählt – ohne Perfektionsdruck.</li>
+            <li id="hero-b2">Mini-Ziele, die machbar sind – und sich gut anfühlen, wenn sie geschafft sind.</li>
+            <li id="hero-b3">Gemeinsam leichter: Reaktionen, Support und kleine Feiern.</li>
+          </ul>
+
+          <div class="btn-group btn-group-wrap">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
+              class="btn-primary"
+              id="hero-android"
+              target="_blank"
+              rel="noopener"
+            >Android herunterladen</a>
+
+            <a
+              href="https://testflight.apple.com/join/aRwmwwBd"
+              class="btn-secondary"
+              id="hero-ios"
+              target="_blank"
+              rel="noopener"
+            >iOS (TestFlight)</a>
+
+            <a href="anleitung.html" class="btn-ghost" id="hero-howto">Video-Anleitung</a>
+            <a href="#how" class="btn-ghost" id="hero-more">Mehr erfahren</a>
+          </div>
+
+          <p class="hero-note" id="hero-note">
+            Hinweis: Wir entwickeln aktiv weiter – transparent und Schritt für Schritt.
+          </p>
+        </div>
       </div>
     </div>
   </header>
@@ -325,141 +325,19 @@
     </div>
   </footer>
 
-  <!-- Intro animation + sound handling -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const intro   = document.getElementById('introAnim');
-      const stage   = document.getElementById('shardStage');
-      const lens    = document.getElementById('lens');
-      const flash   = document.getElementById('flash');
-      const shutter = document.getElementById('shutter');
+      // ======================
+      // VIDEO SOUND BUTTON
+      // ======================
+      const video = document.getElementById('heroVideo');
+      const soundBtn = document.getElementById('soundOverlay');
 
-      const video   = document.getElementById('heroVideo');
-      const soundBtn= document.getElementById('soundOverlay');
+      // Autoplay works best muted (browser policy)
+      video.muted = true;
+      const p = video.play();
+      if (p) p.catch(() => {});
 
-      // Initial: video hidden + sound button hidden
-      video.classList.add('is-hidden');
-      soundBtn.classList.add('is-hidden');
-
-      // Photo source (optional) – if missing, shards still look good due to gradients.
-      stage.style.setProperty('--photo', "url('assets/images/world_teaser.jpg')");
-
-      // Define "shards": irregular pieces (percent-based layout)
-      // They roughly cover the stage but leave tiny "crack" gaps on purpose.
-      const shards = [
-        {x: 0,  y: 0,  w: 30, h: 24, clip: "polygon(0 0, 100% 0, 88% 100%, 6% 86%)"},
-        {x: 28, y: 0,  w: 26, h: 20, clip: "polygon(6% 0, 100% 0, 92% 92%, 0 100%)"},
-        {x: 52, y: 0,  w: 24, h: 26, clip: "polygon(0 0, 100% 10%, 86% 100%, 10% 90%)"},
-        {x: 74, y: 0,  w: 26, h: 30, clip: "polygon(0 12%, 100% 0, 100% 100%, 12% 92%)"},
-
-        {x: 0,  y: 22, w: 22, h: 28, clip: "polygon(0 0, 96% 12%, 82% 100%, 0 86%)"},
-        {x: 18, y: 18, w: 28, h: 32, clip: "polygon(10% 0, 100% 8%, 90% 100%, 0 86%)"},
-        {x: 44, y: 18, w: 24, h: 34, clip: "polygon(0 10%, 100% 0, 90% 100%, 12% 92%)"},
-        {x: 66, y: 24, w: 34, h: 28, clip: "polygon(0 0, 96% 10%, 100% 100%, 10% 92%)"},
-
-        {x: 0,  y: 48, w: 28, h: 26, clip: "polygon(0 8%, 92% 0, 100% 100%, 10% 88%)"},
-        {x: 24, y: 50, w: 22, h: 28, clip: "polygon(0 0, 100% 10%, 88% 100%, 12% 92%)"},
-        {x: 44, y: 52, w: 28, h: 24, clip: "polygon(10% 0, 100% 18%, 90% 100%, 0 82%)"},
-        {x: 68, y: 50, w: 32, h: 28, clip: "polygon(0 12%, 100% 0, 92% 100%, 12% 92%)"},
-
-        {x: 0,  y: 72, w: 34, h: 28, clip: "polygon(0 0, 100% 12%, 82% 100%, 8% 90%)"},
-        {x: 30, y: 74, w: 26, h: 26, clip: "polygon(8% 0, 100% 10%, 92% 100%, 0 86%)"},
-        {x: 54, y: 72, w: 22, h: 28, clip: "polygon(0 10%, 100% 0, 90% 100%, 10% 92%)"},
-        {x: 74, y: 74, w: 26, h: 26, clip: "polygon(0 0, 100% 10%, 92% 100%, 8% 90%)"},
-      ];
-
-      const rand = (min, max) => Math.random() * (max - min) + min;
-
-      function buildShards() {
-        // clear old
-        stage.innerHTML = '';
-
-        const rect = stage.getBoundingClientRect();
-        const W = rect.width;
-        const H = rect.height;
-
-        shards.forEach((s, i) => {
-          const el = document.createElement('div');
-          el.className = 'shard';
-
-          // final position in px
-          const left = (s.x / 100) * W;
-          const top  = (s.y / 100) * H;
-          const w    = (s.w / 100) * W;
-          const h    = (s.h / 100) * H;
-
-          // delay: wave + jitter (not uniform)
-          const baseDelay = i * 55 + rand(0, 140);
-
-          // random "fly in" from outside
-          const fromX = rand(-160, 160);
-          const fromY = rand(-200, 200);
-          const rot   = rand(-22, 22);
-
-          el.style.left = `${left}px`;
-          el.style.top  = `${top}px`;
-          el.style.width  = `${w}px`;
-          el.style.height = `${h}px`;
-          el.style.clipPath = s.clip;
-
-          el.style.setProperty('--d', `${baseDelay}ms`);
-          el.style.setProperty('--fromX', `${fromX}px`);
-          el.style.setProperty('--fromY', `${fromY}px`);
-          el.style.setProperty('--rot', `${rot}deg`);
-
-          // map correct crop of photo onto shard
-          el.style.backgroundImage = `var(--photo, none),
-            radial-gradient(160px 140px at 30% 30%, rgba(255,138,42,.28), transparent 62%),
-            linear-gradient(135deg, rgba(10,24,40,.98), rgba(22,54,66,.86))`;
-
-          el.style.backgroundSize = `${W}px ${H}px, cover, cover`;
-          el.style.backgroundPosition = `-${left}px -${top}px, center, center`;
-          el.style.backgroundRepeat = 'no-repeat';
-
-          stage.appendChild(el);
-        });
-      }
-
-      // Build shards after layout
-      requestAnimationFrame(() => {
-        buildShards();
-      });
-
-      // Timeline
-      const lensOnAt  = 1100;
-      const shotAt    = 1500;
-      const endAt     = 2050;
-
-      // Lens appears (more obvious)
-      setTimeout(() => {
-        intro.classList.add('lens-on');
-      }, lensOnAt);
-
-      // Shutter + flash + "captured" look
-      setTimeout(() => {
-        shutter.classList.add('do-shot');
-        flash.classList.add('do-flash');
-        stage.classList.add('captured');
-      }, shotAt);
-
-      // Fade out intro, reveal video
-      setTimeout(() => {
-        intro.classList.add('fade-out');
-
-        setTimeout(() => {
-          intro.style.display = 'none';
-
-          video.classList.remove('is-hidden');
-          soundBtn.classList.remove('is-hidden');
-
-          // Autoplay works best muted
-          video.muted = true;
-          const p = video.play();
-          if (p) p.catch(() => {});
-        }, 320);
-      }, endAt);
-
-      // Sound button (user click required by browsers)
       soundBtn.addEventListener('click', async () => {
         try {
           video.muted = false;
@@ -475,7 +353,124 @@
         if (!video.muted && video.volume > 0) soundBtn.style.display = 'none';
       });
 
-      // Rebuild shards on resize so crop stays correct
+      // ======================
+      // PANEL INTRO EFFECT (RIGHT)
+      // ======================
+      const intro   = document.getElementById('panelIntro');
+      const stage   = document.getElementById('panelShardStage');
+      const flash   = document.getElementById('panelFlash');
+      const shutter = document.getElementById('panelShutter');
+      const content = document.getElementById('panelContent');
+
+      // Content starts hidden, revealed after intro
+      content.classList.add('panel-hidden');
+
+      // Optional background source for shards (looks cool even if missing)
+      stage.style.setProperty('--photo', "url('assets/images/world_teaser.jpg')");
+
+      // Irregular shards (percent layout), designed for rectangular panel
+      const shards = [
+        {x: 0,  y: 0,  w: 24, h: 22, clip: "polygon(0 0, 100% 0, 86% 100%, 6% 78%)"},
+        {x: 20, y: 0,  w: 18, h: 18, clip: "polygon(6% 0, 100% 0, 90% 90%, 0 100%)"},
+        {x: 36, y: 0,  w: 22, h: 26, clip: "polygon(0 0, 100% 10%, 86% 100%, 8% 92%)"},
+        {x: 56, y: 0,  w: 24, h: 24, clip: "polygon(0 12%, 100% 0, 100% 100%, 10% 90%)"},
+        {x: 78, y: 0,  w: 22, h: 28, clip: "polygon(0 0, 100% 8%, 92% 100%, 12% 86%)"},
+
+        {x: 0,  y: 18, w: 18, h: 26, clip: "polygon(0 0, 96% 10%, 82% 100%, 0 90%)"},
+        {x: 14, y: 16, w: 26, h: 30, clip: "polygon(10% 0, 100% 8%, 90% 100%, 0 86%)"},
+        {x: 38, y: 18, w: 20, h: 32, clip: "polygon(0 12%, 100% 0, 88% 100%, 10% 92%)"},
+        {x: 56, y: 20, w: 22, h: 30, clip: "polygon(8% 0, 100% 12%, 90% 100%, 0 86%)"},
+        {x: 76, y: 22, w: 24, h: 26, clip: "polygon(0 0, 96% 12%, 100% 100%, 10% 92%)"},
+
+        {x: 0,  y: 42, w: 24, h: 24, clip: "polygon(0 10%, 92% 0, 100% 100%, 10% 88%)"},
+        {x: 22, y: 44, w: 22, h: 26, clip: "polygon(0 0, 100% 10%, 88% 100%, 12% 90%)"},
+        {x: 42, y: 48, w: 28, h: 22, clip: "polygon(10% 0, 100% 18%, 90% 100%, 0 82%)"},
+        {x: 68, y: 46, w: 32, h: 26, clip: "polygon(0 12%, 100% 0, 92% 100%, 12% 92%)"},
+
+        {x: 0,  y: 64, w: 30, h: 36, clip: "polygon(0 0, 100% 12%, 82% 100%, 8% 90%)"},
+        {x: 28, y: 68, w: 24, h: 32, clip: "polygon(8% 0, 100% 10%, 92% 100%, 0 86%)"},
+        {x: 50, y: 64, w: 22, h: 36, clip: "polygon(0 10%, 100% 0, 90% 100%, 10% 92%)"},
+        {x: 70, y: 68, w: 30, h: 32, clip: "polygon(0 0, 100% 10%, 92% 100%, 8% 90%)"},
+      ];
+
+      const rand = (min, max) => Math.random() * (max - min) + min;
+
+      function buildShards() {
+        stage.innerHTML = '';
+
+        const rect = stage.getBoundingClientRect();
+        const W = rect.width;
+        const H = rect.height;
+
+        shards.forEach((s, i) => {
+          const el = document.createElement('div');
+          el.className = 'shard';
+
+          const left = (s.x / 100) * W;
+          const top  = (s.y / 100) * H;
+          const w    = (s.w / 100) * W;
+          const h    = (s.h / 100) * H;
+
+          const baseDelay = i * 50 + rand(0, 160);
+          const fromX = rand(-180, 180);
+          const fromY = rand(-220, 220);
+          const rot   = rand(-24, 24);
+
+          el.style.left = `${left}px`;
+          el.style.top  = `${top}px`;
+          el.style.width  = `${w}px`;
+          el.style.height = `${h}px`;
+
+          el.style.clipPath = s.clip;
+          el.style.setProperty('--d', `${baseDelay}ms`);
+          el.style.setProperty('--fromX', `${fromX}px`);
+          el.style.setProperty('--fromY', `${fromY}px`);
+          el.style.setProperty('--rot', `${rot}deg`);
+
+          // Photo crop + premium gradients
+          el.style.backgroundImage = `var(--photo, none),
+            radial-gradient(180px 150px at 30% 30%, rgba(255,138,42,.22), transparent 62%),
+            linear-gradient(135deg, rgba(10,24,40,.98), rgba(22,54,66,.86))`;
+
+          el.style.backgroundSize = `${W}px ${H}px, cover, cover`;
+          el.style.backgroundPosition = `-${left}px -${top}px, center, center`;
+          el.style.backgroundRepeat = 'no-repeat';
+
+          stage.appendChild(el);
+        });
+      }
+
+      // Build shards after layout is stable
+      requestAnimationFrame(() => {
+        buildShards();
+      });
+
+      // Timeline
+      const lensOnAt = 900;
+      const shotAt   = 1300;
+      const endAt    = 1850;
+
+      setTimeout(() => {
+        intro.classList.add('lens-on');
+      }, lensOnAt);
+
+      setTimeout(() => {
+        shutter.classList.add('do-shot');
+        flash.classList.add('do-flash');
+        stage.classList.add('captured');
+      }, shotAt);
+
+      setTimeout(() => {
+        intro.classList.add('fade-out');
+
+        setTimeout(() => {
+          intro.style.display = 'none';
+          content.classList.remove('panel-hidden');
+          content.classList.add('panel-reveal');
+        }, 320);
+      }, endAt);
+
+      // Rebuild shards on resize
       let resizeT;
       window.addEventListener('resize', () => {
         clearTimeout(resizeT);
