@@ -36,15 +36,30 @@
 
           <!-- Intro Animation Overlay -->
           <div class="intro-anim" id="introAnim" aria-hidden="true">
-            <div class="mosaic" id="mosaic"></div>
+            <div class="shard-stage" id="shardStage" aria-hidden="true"></div>
 
-            <div class="camera-ui">
+            <!-- Lens overlay (more obvious "photo lens") -->
+            <div class="lens" id="lens" aria-hidden="true">
+              <div class="lens-core"></div>
+              <div class="lens-glint"></div>
+            </div>
+
+            <!-- focus corners -->
+            <div class="focus-frame" aria-hidden="true">
+              <span class="fc tl"></span>
+              <span class="fc tr"></span>
+              <span class="fc bl"></span>
+              <span class="fc br"></span>
+            </div>
+
+            <!-- small camera ui -->
+            <div class="camera-ui" aria-hidden="true">
               <div class="camera-dot"></div>
               <div class="camera-text">capturing…</div>
             </div>
 
-            <div class="shutter" id="shutter"></div>
-            <div class="flash" id="flash"></div>
+            <div class="shutter" id="shutter" aria-hidden="true"></div>
+            <div class="flash" id="flash" aria-hidden="true"></div>
           </div>
 
           <!-- Actual video (revealed after intro anim) -->
@@ -70,7 +85,7 @@
         </div>
 
         <div class="video-caption" id="hero-video-caption">
-          Startanimation: Feld → Foto → Video
+          Intro: Scherben → Linse → Foto → Video
         </div>
       </div>
 
@@ -313,73 +328,124 @@
   <!-- Intro animation + sound handling -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const intro = document.getElementById('introAnim');
-      const mosaic = document.getElementById('mosaic');
-      const flash = document.getElementById('flash');
+      const intro   = document.getElementById('introAnim');
+      const stage   = document.getElementById('shardStage');
+      const lens    = document.getElementById('lens');
+      const flash   = document.getElementById('flash');
       const shutter = document.getElementById('shutter');
 
-      const video = document.getElementById('heroVideo');
-      const soundBtn = document.getElementById('soundOverlay');
+      const video   = document.getElementById('heroVideo');
+      const soundBtn= document.getElementById('soundOverlay');
 
-      // Start: video hidden, sound button hidden
+      // Initial: video hidden + sound button hidden
       video.classList.add('is-hidden');
       soundBtn.classList.add('is-hidden');
 
-      // Build mosaic tiles (game-field feeling)
-      const rows = 6;
-      const cols = 6;
-      const total = rows * cols;
+      // Photo source (optional) – if missing, shards still look good due to gradients.
+      stage.style.setProperty('--photo', "url('assets/images/world_teaser.jpg')");
 
-      mosaic.style.setProperty('--rows', rows);
-      mosaic.style.setProperty('--cols', cols);
+      // Define "shards": irregular pieces (percent-based layout)
+      // They roughly cover the stage but leave tiny "crack" gaps on purpose.
+      const shards = [
+        {x: 0,  y: 0,  w: 30, h: 24, clip: "polygon(0 0, 100% 0, 88% 100%, 6% 86%)"},
+        {x: 28, y: 0,  w: 26, h: 20, clip: "polygon(6% 0, 100% 0, 92% 92%, 0 100%)"},
+        {x: 52, y: 0,  w: 24, h: 26, clip: "polygon(0 0, 100% 10%, 86% 100%, 10% 90%)"},
+        {x: 74, y: 0,  w: 26, h: 30, clip: "polygon(0 12%, 100% 0, 100% 100%, 12% 92%)"},
 
-      // Background layers: try image, fallback gradient
-      // (If image missing, gradient layer will still show.)
-      mosaic.style.setProperty('--mosaic-img', "url('assets/images/world_teaser.jpg')");
+        {x: 0,  y: 22, w: 22, h: 28, clip: "polygon(0 0, 96% 12%, 82% 100%, 0 86%)"},
+        {x: 18, y: 18, w: 28, h: 32, clip: "polygon(10% 0, 100% 8%, 90% 100%, 0 86%)"},
+        {x: 44, y: 18, w: 24, h: 34, clip: "polygon(0 10%, 100% 0, 90% 100%, 12% 92%)"},
+        {x: 66, y: 24, w: 34, h: 28, clip: "polygon(0 0, 96% 10%, 100% 100%, 10% 92%)"},
+
+        {x: 0,  y: 48, w: 28, h: 26, clip: "polygon(0 8%, 92% 0, 100% 100%, 10% 88%)"},
+        {x: 24, y: 50, w: 22, h: 28, clip: "polygon(0 0, 100% 10%, 88% 100%, 12% 92%)"},
+        {x: 44, y: 52, w: 28, h: 24, clip: "polygon(10% 0, 100% 18%, 90% 100%, 0 82%)"},
+        {x: 68, y: 50, w: 32, h: 28, clip: "polygon(0 12%, 100% 0, 92% 100%, 12% 92%)"},
+
+        {x: 0,  y: 72, w: 34, h: 28, clip: "polygon(0 0, 100% 12%, 82% 100%, 8% 90%)"},
+        {x: 30, y: 74, w: 26, h: 26, clip: "polygon(8% 0, 100% 10%, 92% 100%, 0 86%)"},
+        {x: 54, y: 72, w: 22, h: 28, clip: "polygon(0 10%, 100% 0, 90% 100%, 10% 92%)"},
+        {x: 74, y: 74, w: 26, h: 26, clip: "polygon(0 0, 100% 10%, 92% 100%, 8% 90%)"},
+      ];
 
       const rand = (min, max) => Math.random() * (max - min) + min;
 
-      for (let i = 0; i < total; i++) {
-        const r = Math.floor(i / cols);
-        const c = i % cols;
+      function buildShards() {
+        // clear old
+        stage.innerHTML = '';
 
-        const tile = document.createElement('div');
-        tile.className = 'tile';
+        const rect = stage.getBoundingClientRect();
+        const W = rect.width;
+        const H = rect.height;
 
-        // Delay wave + some random jitter
-        const delay = (r * 70 + c * 45) + rand(0, 120);
-        tile.style.setProperty('--d', `${delay}ms`);
+        shards.forEach((s, i) => {
+          const el = document.createElement('div');
+          el.className = 'shard';
 
-        // Random start offsets (fly-in)
-        tile.style.setProperty('--fromX', `${rand(-90, 90)}px`);
-        tile.style.setProperty('--fromY', `${rand(-120, 120)}px`);
-        tile.style.setProperty('--rot', `${rand(-14, 14)}deg`);
+          // final position in px
+          const left = (s.x / 100) * W;
+          const top  = (s.y / 100) * H;
+          const w    = (s.w / 100) * W;
+          const h    = (s.h / 100) * H;
 
-        // Make tiles look like a single image (mosaic effect)
-        const x = (c / (cols - 1)) * 100;
-        const y = (r / (rows - 1)) * 100;
-        tile.style.backgroundPosition = `${x}% ${y}%`;
-        tile.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+          // delay: wave + jitter (not uniform)
+          const baseDelay = i * 55 + rand(0, 140);
 
-        mosaic.appendChild(tile);
+          // random "fly in" from outside
+          const fromX = rand(-160, 160);
+          const fromY = rand(-200, 200);
+          const rot   = rand(-22, 22);
+
+          el.style.left = `${left}px`;
+          el.style.top  = `${top}px`;
+          el.style.width  = `${w}px`;
+          el.style.height = `${h}px`;
+          el.style.clipPath = s.clip;
+
+          el.style.setProperty('--d', `${baseDelay}ms`);
+          el.style.setProperty('--fromX', `${fromX}px`);
+          el.style.setProperty('--fromY', `${fromY}px`);
+          el.style.setProperty('--rot', `${rot}deg`);
+
+          // map correct crop of photo onto shard
+          el.style.backgroundImage = `var(--photo, none),
+            radial-gradient(160px 140px at 30% 30%, rgba(255,138,42,.28), transparent 62%),
+            linear-gradient(135deg, rgba(10,24,40,.98), rgba(22,54,66,.86))`;
+
+          el.style.backgroundSize = `${W}px ${H}px, cover, cover`;
+          el.style.backgroundPosition = `-${left}px -${top}px, center, center`;
+          el.style.backgroundRepeat = 'no-repeat';
+
+          stage.appendChild(el);
+        });
       }
 
-      // Timeline (ms)
-      const assembleDoneAt = 1200; // tiles mostly assembled
-      const shotAt = 1450;         // shutter + flash moment
-      const introEndAt = 1900;      // fade out + reveal video
+      // Build shards after layout
+      requestAnimationFrame(() => {
+        buildShards();
+      });
 
-      // Trigger shutter + flash
+      // Timeline
+      const lensOnAt  = 1100;
+      const shotAt    = 1500;
+      const endAt     = 2050;
+
+      // Lens appears (more obvious)
+      setTimeout(() => {
+        intro.classList.add('lens-on');
+      }, lensOnAt);
+
+      // Shutter + flash + "captured" look
       setTimeout(() => {
         shutter.classList.add('do-shot');
         flash.classList.add('do-flash');
+        stage.classList.add('captured');
       }, shotAt);
 
-      // Fade out intro + reveal video
+      // Fade out intro, reveal video
       setTimeout(() => {
         intro.classList.add('fade-out');
 
-        // Reveal video shortly after fade starts
         setTimeout(() => {
           intro.style.display = 'none';
 
@@ -391,7 +457,7 @@
           const p = video.play();
           if (p) p.catch(() => {});
         }, 320);
-      }, introEndAt);
+      }, endAt);
 
       // Sound button (user click required by browsers)
       soundBtn.addEventListener('click', async () => {
@@ -407,6 +473,15 @@
 
       video.addEventListener('volumechange', () => {
         if (!video.muted && video.volume > 0) soundBtn.style.display = 'none';
+      });
+
+      // Rebuild shards on resize so crop stays correct
+      let resizeT;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeT);
+        resizeT = setTimeout(() => {
+          if (intro.style.display !== 'none') buildShards();
+        }, 120);
       });
     });
   </script>
