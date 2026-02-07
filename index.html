@@ -2,31 +2,56 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="EachPart - Motivation, Anerkennung, Fairness leben und Erinnerungen bewahren" />
+  <meta name="description" content="EachPart – Spontane Momente festhalten, Mini-Tagebuch führen, Ziele mit Freunden schaffen – als Spiel, das dich dranbleiben lässt." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EachPart - Startseite</title>
+  <title>EachPart – Tagebuch & Motivation als Spiel</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="EachPart – Tagebuch & Motivation als Spiel" />
+  <meta property="og:description" content="Spontane Momente. Mini-Tagebuch. Motivation mit Freunden. Eine Spielwelt als Belohnung." />
+  <meta property="og:type" content="website" />
+  <!-- Optional: <meta property="og:image" content="assets/og/eachpart_og.jpg" /> -->
 
   <link rel="stylesheet" href="styles.css" />
   <script src="translate.js" defer></script>
+
+  <!-- Optional: Preload hero video poster (falls vorhanden) -->
+  <!-- <link rel="preload" as="image" href="assets/videos/eachpart_intro_poster.jpg"> -->
 </head>
+
 <body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span id="ann-text">
+        🚀 Kickstarter kommt bald: Werde Founding Member & gestalte EachPart mit.
+      </span>
+      <a class="ann-link" id="ann-link" href="KICKSTARTER_URL" target="_blank" rel="noopener">
+        Jetzt folgen →
+      </a>
+    </div>
+  </div>
+
   <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-container">
-      <a class="nav-logo" href="index.html">EachPart</a>
+      <a class="nav-logo" href="index.html" aria-label="EachPart Startseite">EachPart</a>
+
       <ul class="nav-menu">
         <li><a href="index.html" id="nav-home" class="active">Home</a></li>
-        <li><a href="anleitung.html" id="nav-howto">Anleitung</a></li>
-        <li><a href="faq.html" id="nav-faq">FAQ</a></li>
-        <li><a href="impressum.html" id="nav-contact">Kontakt</a></li>
+        <li><a href="#how" id="nav-how">So funktioniert’s</a></li>
+        <li><a href="#roadmap" id="nav-roadmap">Roadmap</a></li>
+        <li><a href="#rewards" id="nav-rewards">Rewards</a></li>
+        <li><a href="#faq" id="nav-faq">FAQ</a></li>
+        <li><a href="#contact" id="nav-contact">Kontakt</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero: links Intro-Video (9:16, loop), rechts Text/Buttons -->
+  <!-- Hero -->
   <header class="hero">
     <div class="container hero-split">
-      <!-- LINKS: Intro-Video (Portrait 9:16) -->
+      <!-- LEFT: Video -->
       <div class="video-card">
         <div class="video-frame">
           <video
@@ -43,91 +68,397 @@
             Dein Browser unterstützt das Video-Tag nicht.
           </video>
         </div>
+
+        <div class="video-caption">
+          <span id="hero-video-caption">
+            „Spontane Momente. Mini-Tagebuch. Motivation. Spiel.“
+          </span>
+        </div>
       </div>
 
-      <!-- RECHTS: Text/Buttons -->
+      <!-- RIGHT: Value + CTAs -->
       <div class="hero-content">
         <h1 id="hero-title">EachPart</h1>
-        <p id="hero-description">
-          Steigere deine Motivation, finde Anerkennung, lebe Fairness und bewahre Erinnerungen.
+
+        <p class="hero-tagline" id="hero-tagline">
+          BeReal-inspiriertes Mini-Tagebuch + Motivation mit Freunden – als Spiel, das dich dranbleiben lässt.
         </p>
-        <div class="btn-group">
-          <a href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
-             class="btn-primary" id="hero-android">Für Android herunterladen</a>
-          <a href="https://testflight.apple.com/join/aRwmwwBd"
-             class="btn-primary" id="hero-ios">Für iOS herunterladen</a>
-          <a href="anleitung.html" class="btn-secondary">Video-Anleitung ansehen</a>
+
+        <ul class="hero-bullets" aria-label="Kernvorteile">
+          <li id="hero-b1">📸 Spontane Momente festhalten – ohne Perfektion</li>
+          <li id="hero-b2">📝 1 Moment → 1 Satz → gespeichert</li>
+          <li id="hero-b3">🤝 Ziele teilen, Support geben, Erfolge feiern</li>
+          <li id="hero-b4">🗺️ Eine gemeinsame Spielwelt als Belohnung</li>
+        </ul>
+
+        <div class="btn-group btn-group-wrap">
+          <a
+            href="KICKSTARTER_URL"
+            class="btn-primary"
+            id="hero-kickstarter"
+            target="_blank"
+            rel="noopener"
+          >Kickstarter folgen</a>
+
+          <a
+            href="#rewards"
+            class="btn-secondary"
+            id="hero-rewards"
+          >Rewards ansehen</a>
+
+          <a
+            href="anleitung.html"
+            class="btn-secondary"
+            id="hero-howto"
+          >Video-Anleitung</a>
         </div>
+
+        <div class="store-links" aria-label="App Links">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
+            class="btn-ghost"
+            id="hero-android"
+            target="_blank"
+            rel="noopener"
+          >Android</a>
+
+          <a
+            href="https://testflight.apple.com/join/aRwmwwBd"
+            class="btn-ghost"
+            id="hero-ios"
+            target="_blank"
+            rel="noopener"
+          >iOS (TestFlight)</a>
+        </div>
+
+        <p class="hero-note" id="hero-note">
+          Hinweis: Einige Features sind in Entwicklung – auf Kickstarter zeigen wir transparent, was bereits da ist und was als Nächstes kommt.
+        </p>
       </div>
     </div>
   </header>
 
-  <!-- About / Über EachPart -->
+  <!-- Problem / Why -->
   <section class="section">
     <div class="container">
-      <h2 id="about-title">Über EachPart</h2>
-      <p id="about-text1">
-        EachPart ist deine App, um gemeinsame Erfolge fair darzustellen, das Engagement jedes Teammitglieds sichtbar zu machen, wertvolle Erinnerungen zu bewahren – und dich zu motivieren: Wer kennt nicht die nie endenden Wäscheberge, den schmutzigen Geschirrstapel oder das Chaos im Zimmer?
-      </p>
-      <p id="about-text2">
-        Egal ob du ein Event organisierst, ein gemeinsames Projekt durchführst oder sportliche Herausforderungen bewältigst – EachPart unterstützt dich dabei, Leistungen aufzuschlüsseln und Gerechtigkeit herzustellen.
-      </p>
+      <div class="split-2">
+        <div>
+          <h2 id="why-title">Warum EachPart?</h2>
+          <p id="why-text1">
+            Das echte Leben passiert zwischendurch: kleine Momente, kleine Fortschritte.
+            Aber sie gehen schnell unter – verteilt auf Fotos, Notizen, To-dos und Chats.
+          </p>
+          <p id="why-text2">
+            Motivation alleine hält selten lange. In EachPart bleiben Momente & Erfolge sichtbar –
+            und Freunde helfen dir dran zu bleiben. Nicht mit Druck. Sondern mit Support.
+          </p>
+        </div>
+
+        <div class="card soft">
+          <h3 id="why-card-title">One-Liner</h3>
+          <p class="big" id="why-card-text">
+            „Dein Leben als Mini-Tagebuch – gemeinsam motiviert – belohnt durch eine Spielwelt.“
+          </p>
+          <div class="mini-tags" aria-label="Schlagwörter">
+            <span class="tag" id="tag-1">Momente</span>
+            <span class="tag" id="tag-2">Tagebuch</span>
+            <span class="tag" id="tag-3">Ziele</span>
+            <span class="tag" id="tag-4">Support</span>
+            <span class="tag" id="tag-5">Spielwelt</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Highlights / Features -->
-  <section class="section bg-light">
+  <!-- How it works -->
+  <section class="section bg-light" id="how">
     <div class="container">
-      <h2 id="features-title">Unsere Highlights</h2>
+      <h2 id="how-title">So funktioniert’s</h2>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3 id="how-1-title">Capture the unexpected</h3>
+          <p id="how-1-text">
+            Halte echte Augenblicke fest – schnell, ehrlich, ohne Perfektion.
+          </p>
+          <p class="step-mini" id="how-1-mini">„1 Moment → 1 Satz → gespeichert.“</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3 id="how-2-title">Kleine Ziele, echter Support</h3>
+          <p id="how-2-text">
+            Teile Mini-Ziele (z.B. 15 Min. aufräumen, 10 Min. Sport) und motiviert euch gegenseitig.
+          </p>
+          <p class="step-mini" id="how-2-mini">Ziele → Support → Erfolg</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3 id="how-3-title">Dein Leben. Eure Welt.</h3>
+          <p id="how-3-text">
+            Erfolge werden sichtbar – und fließen als Fortschritt in eine gemeinsame Spielwelt.
+          </p>
+          <p class="step-mini" id="how-3-mini">Belohnung, die sich gut anfühlt</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section">
+    <div class="container">
+      <h2 id="features-title">Highlights</h2>
+
       <div class="features-grid">
         <div class="feature-box">
-          <h3 id="feature1-title">Anerkennung</h3>
+          <h3 id="feature1-title">Spontane Momente</h3>
           <p id="feature1-text">
-            Sorge dafür, dass kein Einsatz übersehen wird und jeder seine verdiente Wertschätzung erhält.
+            Ein schneller Capture-Flow für echte Augenblicke – damit du sie nicht verlierst.
           </p>
         </div>
+
         <div class="feature-box">
-          <h3 id="feature2-title">Fairness</h3>
+          <h3 id="feature2-title">Mini-Tagebuch</h3>
           <p id="feature2-text">
-            Behalte stets den Überblick, wer wie viel beigetragen hat, damit Erfolge transparent und gerecht aufgeteilt werden können.
+            Kurz notieren, wie es war – und später wiederfinden. Keine langen Texte nötig.
           </p>
         </div>
+
         <div class="feature-box">
-          <h3 id="feature3-title">Erinnerungen</h3>
+          <h3 id="feature3-title">Ziele & Motivation</h3>
           <p id="feature3-text">
-            Bewahre gemeinsam erzielte Meilensteine und schöne Erlebnisse.
+            Kleine Ziele setzen, Fortschritt markieren, Support bekommen – fair, freundlich, einfach.
           </p>
         </div>
+
         <div class="feature-box">
-          <h3 id="feature4-title">Motivation</h3>
+          <h3 id="feature4-title">Gemeinsame Spielwelt</h3>
           <p id="feature4-text">
-            Stärke euren Teamgeist durch spielerisches Kräftemessen: Setzt euch gemeinsame Ziele, verfolgt eure Fortschritte in Echtzeit und feuert euch gegenseitig an, um immer das nächste Level zu erreichen.
+            Fortschritt wird belohnt: gemeinsam bauen/erkunden und sichtbar wachsen – als Teamgefühl.
+          </p>
+        </div>
+
+        <div class="feature-box">
+          <h3 id="feature5-title">Gruppen: Freunde, Familie, neue Leute</h3>
+          <p id="feature5-text">
+            Private Gruppen für Nähe – und optionale Community-Bereiche, um Menschen kennenzulernen.
+          </p>
+        </div>
+
+        <div class="feature-box">
+          <h3 id="feature6-title">Transparente Entwicklung</h3>
+          <p id="feature6-text">
+            Kickstarter-Roadmap mit klaren Milestones: was schon da ist, was als Nächstes kommt.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Kontakt -->
+  <!-- Game world teaser -->
+  <section class="section bg-light" id="world">
+    <div class="container">
+      <div class="split-2">
+        <div>
+          <h2 id="world-title">Die Spielwelt ist deine Belohnung</h2>
+          <p id="world-text1">
+            EachPart verbindet echte Momente & echte Erfolge mit einem spielerischen Fortschrittsgefühl.
+            Nicht „Gamification um jeden Preis“, sondern eine Welt, die euer Dranbleiben sichtbar macht.
+          </p>
+          <ul class="checklist">
+            <li id="world-li1">Gemeinsam bauen & erkunden</li>
+            <li id="world-li2">Fortschritt als visuelles „Wow-Gefühl“</li>
+            <li id="world-li3">Neue Inhalte über Updates & Kickstarter-Goals</li>
+          </ul>
+        </div>
+
+        <div class="card media">
+          <!-- Du kannst hier auch ein kurzes Gameplay-Video einbauen -->
+          <img
+            src="assets/images/world_teaser.jpg"
+            alt="EachPart Spielwelt Teaser"
+            loading="lazy"
+            onerror="this.style.display='none';"
+          />
+          <div class="media-fallback" id="world-fallback">
+            (Optional) Lege ein Bild unter <code>assets/images/world_teaser.jpg</code> ab oder ersetze es durch ein Video.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="section" id="roadmap">
+    <div class="container">
+      <h2 id="roadmap-title">Roadmap & wofür wir Kickstarter nutzen</h2>
+
+      <p class="muted" id="roadmap-sub">
+        Kickstarter finanziert die nächsten großen Schritte: bessere Gruppen-Features, mehr Spiel-Inhalte, bessere Tools für Motivation & Tagebuch – plus Stabilität/Performance.
+      </p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-badge">Q1</div>
+          <div>
+            <h3 id="rm-1-title">Stabilität & schnelleres Onboarding</h3>
+            <p id="rm-1-text">Bessere Tutorials, klarer Start-Flow, Performance-Optimierungen, Bugfix-Sprint.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-badge">Q2</div>
+          <div>
+            <h3 id="rm-2-title">Gruppen-Upgrade</h3>
+            <p id="rm-2-text">Mehr Rollen/Permissions, bessere Reactions/Support-Mechaniken, Gruppen-Feeds, Moderation.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-badge">Q3</div>
+          <div>
+            <h3 id="rm-3-title">Spielwelt-Content</h3>
+            <p id="rm-3-text">Neue Biome/Items/Events, gemeinsamer Fortschritt, mehr „Belohnungs-Momente“.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-badge">Q4</div>
+          <div>
+            <h3 id="rm-4-title">Creator & Community Tools</h3>
+            <p id="rm-4-text">Bessere Sharing-Optionen, Export/Archiv, optionale Community-Bereiche, Safety-Tools.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-card">
+        <div>
+          <h3 id="rm-cta-title">Mitgestalten statt nur zuschauen</h3>
+          <p id="rm-cta-text">
+            Als Backer bekommst du Early Access (je nach Reward) und hilfst, die Roadmap zu priorisieren.
+          </p>
+        </div>
+        <a href="KICKSTARTER_URL" class="btn-primary" id="rm-cta-btn" target="_blank" rel="noopener">Auf Kickstarter folgen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rewards -->
+  <section class="section bg-light" id="rewards">
+    <div class="container">
+      <h2 id="rewards-title">Rewards (Beispiele)</h2>
+      <p class="muted" id="rewards-sub">
+        Du kannst das später 1:1 an deine Kickstarter-Reward-Stufen anpassen.
+      </p>
+
+      <div class="rewards-grid">
+        <div class="reward-card">
+          <h3 id="rw-1-title">Supporter</h3>
+          <p id="rw-1-text">Danke + Founding-Badge in der App (optional sichtbar).</p>
+        </div>
+
+        <div class="reward-card">
+          <h3 id="rw-2-title">Early Access</h3>
+          <p id="rw-2-text">Früher Zugang zu neuen Features + Feedback-Channel.</p>
+        </div>
+
+        <div class="reward-card">
+          <h3 id="rw-3-title">Founding Member</h3>
+          <p id="rw-3-text">Exklusives Profil-Badge + Name in Credits + Community-Rolle.</p>
+        </div>
+
+        <div class="reward-card">
+          <h3 id="rw-4-title">Co-Creator</h3>
+          <p id="rw-4-text">Mitbestimmung bei Prioritäten + kleiner Feature-Vote-Pass (limitiert).</p>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a href="KICKSTARTER_URL" class="btn-primary" id="rewards-btn" target="_blank" rel="noopener">Projekt auf Kickstarter ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <h2 id="faq-title">FAQ</h2>
+
+      <div class="faq">
+        <details class="faq-item">
+          <summary id="faq-q1">Was ist bereits fertig – und was kommt noch?</summary>
+          <p id="faq-a1">
+            Wir zeigen im Kickstarter transparent den aktuellen Stand und die nächsten Milestones.
+            Alles, was noch nicht final ist, ist klar als „in Entwicklung“ markiert.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary id="faq-q2">Ist EachPart privat?</summary>
+          <p id="faq-a2">
+            Ja: Du kannst private Gruppen nutzen (Freunde/Familie). Community-Bereiche sind optional.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary id="faq-q3">Brauche ich viele Freunde, damit es funktioniert?</summary>
+          <p id="faq-a3">
+            Nein. Schon mit 1–2 Personen entsteht Support. Und wenn du willst, kannst du später neue Leute kennenlernen.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary id="faq-q4">Warum eine Spielwelt?</summary>
+          <p id="faq-a4">
+            Weil Fortschritt dann nicht nur „abgehakt“ ist, sondern sichtbar wird – als gemeinsames Erlebnis.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
   <section class="section" id="contact">
     <div class="container">
       <h2 id="contact-title">Kontakt</h2>
       <p id="contact-text">Du hast Fragen oder möchtest Feedback geben? Wir freuen uns darauf, von dir zu hören.</p>
-      <a href="mailto:support@eachpart.com"
-         class="btn-secondary"
-         id="contact-button">E-Mail an Support</a>
+
+      <div class="btn-group btn-group-wrap">
+        <a href="mailto:support@eachpart.com" class="btn-secondary" id="contact-button">E-Mail an Support</a>
+        <a href="KICKSTARTER_URL" class="btn-primary" id="contact-kickstarter" target="_blank" rel="noopener">Kickstarter folgen</a>
+      </div>
+
+      <p class="muted small" id="contact-note">
+        Presse/Creator: Wenn du Material brauchst, schreiben wir dir gern ein Press-Kit zusammen.
+      </p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-container">
-      <p id="footer-text">&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
+      <p id="footer-text">&copy; 2026 EachPart. Alle Rechte vorbehalten.</p>
       <nav class="footer-nav">
         <a href="impressum.html" id="footer-impressum">Impressum</a> |
         <a href="datenschutz.html" id="footer-datenschutz">Datenschutz</a>
       </nav>
     </div>
   </footer>
+
+  <!-- Replace placeholder URLs at runtime if you want (optional) -->
+  <script>
+    // Setze hier deinen echten Kickstarter-Link:
+    const KICKSTARTER_URL = "https://www.kickstarter.com/"; // <-- ERSETZEN
+
+    // Replace all placeholder href="KICKSTARTER_URL"
+    (function replaceKickstarterLinks() {
+      const links = document.querySelectorAll('a[href="KICKSTARTER_URL"]');
+      links.forEach(a => a.setAttribute('href', KICKSTARTER_URL));
+    })();
+  </script>
 </body>
 </html>
+
