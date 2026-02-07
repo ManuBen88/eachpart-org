@@ -1,5 +1,5 @@
 /* =========================
-   styles.css (FINAL / premium clean)
+   styles.css (FINAL / premium clean + shard intro)
    ========================= */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -7,7 +7,6 @@
 :root{
   --bg: #0b0f1a;
   --bg2: #0b1226;
-  --card: #ffffff;
   --text: #111827;
   --border: rgba(0,0,0,.08);
 
@@ -91,7 +90,7 @@ p{ line-height: 1.7; }
   font-size: 0.95rem;
   padding: 8px 10px;
   border-radius: 10px;
-  transition: background .2s ease, color .2s ease, transform .2s ease;
+  transition: background .2s ease, color .2s ease;
 }
 
 .nav-menu li a:hover{
@@ -225,7 +224,7 @@ p{ line-height: 1.7; }
 }
 
 /* =========================
-   Video (9:16) + overlays
+   Video frame + overlays
    ========================= */
 .video-card{
   display: grid;
@@ -257,10 +256,7 @@ p{ line-height: 1.7; }
   text-align: center;
 }
 
-/* Hidden helper (used for video + sound button) */
-.is-hidden{
-  display: none !important;
-}
+.is-hidden{ display: none !important; }
 
 /* Sound overlay button */
 .sound-overlay{
@@ -277,7 +273,7 @@ p{ line-height: 1.7; }
   cursor: pointer;
   backdrop-filter: blur(6px);
   transition: background .15s ease, transform .15s ease;
-  z-index: 6;
+  z-index: 9;
 }
 
 .sound-overlay:hover{
@@ -286,72 +282,98 @@ p{ line-height: 1.7; }
 }
 
 /* =========================
-   Intro Animation: Mosaic build + shutter + flash
+   Intro Animation (Scherben + Linse)
    ========================= */
 .intro-anim{
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 8;
   display: grid;
   place-items: center;
   background:
     radial-gradient(600px 420px at 40% 25%, rgba(255,255,255,.10), transparent 60%),
-    linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25));
+    linear-gradient(180deg, rgba(0,0,0,.58), rgba(0,0,0,.25));
 }
 
-.intro-anim.fade-out{
-  animation: introFade 300ms ease forwards;
-}
+.intro-anim.fade-out{ animation: introFade 300ms ease forwards; }
 
 @keyframes introFade{
   from { opacity: 1; }
   to   { opacity: 0; }
 }
 
-.mosaic{
+/* Stage for shards */
+.shard-stage{
+  position: relative;
   width: 88%;
   max-width: 360px;
   aspect-ratio: 1 / 1;
-  display: grid;
-  grid-template-columns: repeat(var(--cols, 6), 1fr);
-  grid-template-rows: repeat(var(--rows, 6), 1fr);
-  gap: 6px;
-  padding: 10px;
   border-radius: 18px;
-  background: rgba(255,255,255,.06);
+  padding: 10px;
   border: 1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(260px 220px at 30% 30%, rgba(240,108,0,.12), transparent 60%),
+    radial-gradient(240px 220px at 70% 70%, rgba(255,138,42,.10), transparent 60%),
+    rgba(255,255,255,.04);
   box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  overflow: hidden;
 }
 
-/* Each tile */
-.tile{
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,.08);
+/* After "photo capture" make it crisp/bright */
+.shard-stage.captured .shard{
+  filter: none;
+  opacity: 1;
+}
 
-  /* image layer + fallback gradient */
-  background-image:
-    var(--mosaic-img, none),
-    radial-gradient(140px 120px at 30% 30%, rgba(255,138,42,.30), transparent 60%),
-    linear-gradient(135deg, rgba(10, 24, 40, .95), rgba(22, 54, 66, .85));
-  background-blend-mode: normal, screen, normal;
-  background-repeat: no-repeat;
+/* A faint underlying photo appears after capture to fill cracks subtly */
+.shard-stage::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--photo, none);
   background-size: cover;
-  filter: saturate(1.05) contrast(1.02);
-
+  background-position: center;
   opacity: 0;
-  transform: translate(var(--fromX, 0px), var(--fromY, 0px)) rotate(var(--rot, 0deg)) scale(.70);
-  animation: tileIn 780ms cubic-bezier(.18,.85,.22,1) forwards;
+  filter: contrast(1.05) saturate(1.08);
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.shard-stage.captured::after{
+  opacity: 0.22;
+}
+
+/* Shard piece */
+.shard{
+  position: absolute;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 12px 26px rgba(0,0,0,.22);
+
+  /* During build: looks like glassy fragments */
+  opacity: 0;
+  filter: grayscale(1) contrast(0.92) brightness(0.78) saturate(0.85);
+
+  transform: translate(var(--fromX, 0px), var(--fromY, 0px)) rotate(var(--rot, 0deg)) scale(.74);
+  animation: shardIn 880ms cubic-bezier(.18,.85,.22,1) forwards;
   animation-delay: var(--d, 0ms);
 }
 
-@keyframes tileIn{
-  to{
+@keyframes shardIn{
+  0%{
+    opacity: 0;
+    transform: translate(var(--fromX), var(--fromY)) rotate(var(--rot)) scale(.70);
+  }
+  60%{
+    opacity: 1;
+  }
+  100%{
     opacity: 1;
     transform: translate(0px, 0px) rotate(0deg) scale(1);
   }
 }
 
-/* camera ui */
+/* Camera UI */
 .camera-ui{
   position: absolute;
   top: 14px;
@@ -361,10 +383,11 @@ p{ line-height: 1.7; }
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  color: rgba(255,255,255,.82);
+  color: rgba(255,255,255,.84);
   font-weight: 900;
   font-size: 0.92rem;
   pointer-events: none;
+  z-index: 9;
 }
 
 .camera-dot{
@@ -381,15 +404,114 @@ p{ line-height: 1.7; }
   50%{ transform: scale(1.25); opacity: 1; }
 }
 
-.camera-text{
-  opacity: .85;
+.camera-text{ opacity: .85; }
+
+/* Lens (obvious photo lens) */
+.lens{
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%) scale(.86);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9;
+  transition: opacity 220ms ease, transform 260ms ease;
 }
 
-/* shutter effect */
+/* lens appears after shards settle */
+.intro-anim.lens-on .lens{
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.lens::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.28);
+  background:
+    radial-gradient(circle at 34% 32%, rgba(255,255,255,.22), transparent 38%),
+    radial-gradient(circle at 50% 55%, rgba(0,0,0,.35), rgba(0,0,0,.86) 62%),
+    conic-gradient(from 20deg,
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.02),
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.02),
+      rgba(255,255,255,.10));
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.45),
+    inset 0 0 0 8px rgba(0,0,0,.18);
+}
+
+.lens-core{
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.14);
+  background:
+    radial-gradient(circle at 35% 35%, rgba(255,255,255,.18), transparent 45%),
+    radial-gradient(circle at 50% 60%, rgba(0,0,0,.30), rgba(0,0,0,.90) 70%),
+    conic-gradient(from 0deg,
+      rgba(240,108,0,.22),
+      rgba(255,255,255,.04),
+      rgba(255,138,42,.18),
+      rgba(255,255,255,.04),
+      rgba(240,108,0,.22));
+  animation: lensPulse 1100ms ease-in-out infinite;
+}
+
+@keyframes lensPulse{
+  0%,100%{ transform: scale(1); opacity: .95; }
+  50%{ transform: scale(1.02); opacity: 1; }
+}
+
+.lens-glint{
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  left: 40px;
+  top: 34px;
+  background: radial-gradient(circle, rgba(255,255,255,.65), transparent 70%);
+  opacity: .65;
+  filter: blur(.2px);
+}
+
+/* Focus frame corners */
+.focus-frame{
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9;
+  opacity: .65;
+}
+
+.fc{
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255,255,255,.22);
+}
+
+.fc.tl{ left: 0; top: 0; border-right: 0; border-bottom: 0; border-radius: 10px 0 0 0; }
+.fc.tr{ right: 0; top: 0; border-left: 0; border-bottom: 0; border-radius: 0 10px 0 0; }
+.fc.bl{ left: 0; bottom: 0; border-right: 0; border-top: 0; border-radius: 0 0 0 10px; }
+.fc.br{ right: 0; bottom: 0; border-left: 0; border-top: 0; border-radius: 0 0 10px 0; }
+
+/* Shutter + flash */
 .shutter{
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 10;
 }
 
 .shutter::before,
@@ -409,12 +531,8 @@ p{ line-height: 1.7; }
   transform: translateY(110%);
 }
 
-.shutter.do-shot::before{
-  animation: shutterTop 260ms ease-in-out forwards;
-}
-.shutter.do-shot::after{
-  animation: shutterBottom 260ms ease-in-out forwards;
-}
+.shutter.do-shot::before{ animation: shutterTop 260ms ease-in-out forwards; }
+.shutter.do-shot::after { animation: shutterBottom 260ms ease-in-out forwards; }
 
 @keyframes shutterTop{
   0%{ transform: translateY(-110%); }
@@ -427,18 +545,16 @@ p{ line-height: 1.7; }
   100%{ transform: translateY(110%); }
 }
 
-/* flash */
 .flash{
   position: absolute;
   inset: 0;
   background: #fff;
   opacity: 0;
   pointer-events: none;
+  z-index: 11;
 }
 
-.flash.do-flash{
-  animation: flashPop 220ms ease-out forwards;
-}
+.flash.do-flash{ animation: flashPop 220ms ease-out forwards; }
 
 @keyframes flashPop{
   0%{ opacity: 0; }
@@ -476,7 +592,6 @@ p{ line-height: 1.7; }
   font-weight: 900;
   letter-spacing: -0.01em;
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
-  will-change: transform;
 }
 
 .btn-primary{
@@ -530,7 +645,7 @@ p{ line-height: 1.7; }
 .section .btn-secondary:hover{ background: #0b1226; }
 
 /* =========================
-   Layout helpers
+   Layout helpers + cards + grids
    ========================= */
 .split-2{
   display: grid;
@@ -543,7 +658,6 @@ p{ line-height: 1.7; }
   .split-2{ grid-template-columns: 1fr; }
 }
 
-/* Cards */
 .card{
   background: #fff;
   border-radius: var(--radius);
@@ -588,9 +702,6 @@ p{ line-height: 1.7; }
   font-size: .9rem;
 }
 
-/* =========================
-   Steps
-   ========================= */
 .steps-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -636,9 +747,6 @@ p{ line-height: 1.7; }
   font-weight: 700;
 }
 
-/* =========================
-   Features
-   ========================= */
 .features-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -665,9 +773,6 @@ p{ line-height: 1.7; }
   letter-spacing: -0.01em;
 }
 
-/* =========================
-   Checklist
-   ========================= */
 .checklist{
   margin-top: 12px;
   padding-left: 18px;
@@ -675,9 +780,6 @@ p{ line-height: 1.7; }
 
 .checklist li{ margin: 8px 0; }
 
-/* =========================
-   FAQ
-   ========================= */
 .faq{
   display: grid;
   gap: 10px;
@@ -701,17 +803,10 @@ details.faq-item summary{
 
 details.faq-item summary::-webkit-details-marker{ display: none; }
 
-details.faq-item[open] summary{
-  margin-bottom: 8px;
-}
+details.faq-item[open] summary{ margin-bottom: 8px; }
 
-details.faq-item p{
-  color: rgba(0,0,0,.70);
-}
+details.faq-item p{ color: rgba(0,0,0,.70); }
 
-/* =========================
-   Footer
-   ========================= */
 .footer{
   background: var(--bg);
   color: rgba(255,255,255,.86);
@@ -719,9 +814,7 @@ details.faq-item p{
   border-top: 1px solid rgba(255,255,255,.06);
 }
 
-.footer-container{
-  text-align: center;
-}
+.footer-container{ text-align: center; }
 
 .footer-nav a{
   color: rgba(255,255,255,.86);
@@ -732,3 +825,11 @@ details.faq-item p{
 
 .muted{ opacity: .82; }
 .small{ font-size: .95rem; }
+
+/* Reduce motion support */
+@media (prefers-reduced-motion: reduce){
+  .shard{ animation: none; opacity: 1; transform: none; }
+  .lens-core{ animation: none; }
+  .camera-dot{ animation: none; }
+  .intro-anim.fade-out{ animation: none; opacity: 0; }
+}
