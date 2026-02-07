@@ -6,15 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EachPart – Momente, Ziele & Spielwelt</title>
 
-  <!-- Open Graph (optional) -->
-  <meta property="og:title" content="EachPart – Momente, Ziele & Spielwelt" />
-  <meta property="og:description" content="Mach aus heute etwas, das bleibt. Momente festhalten. Ziele schaffen. Gemeinsam dranbleiben." />
-  <meta property="og:type" content="website" />
-  <!-- <meta property="og:image" content="assets/og/eachpart_og.jpg" /> -->
-
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- optional falls du Übersetzungen per IDs nutzt -->
   <script src="translate.js" defer></script>
 </head>
 
@@ -38,12 +30,27 @@
   <!-- Hero -->
   <header class="hero">
     <div class="container hero-split">
-      <!-- LINKS: Video -->
+      <!-- LINKS: Video + Intro-Animation -->
       <div class="video-card">
-        <div class="video-frame">
+        <div class="video-frame" id="heroFrame">
+
+          <!-- Intro Animation Overlay -->
+          <div class="intro-anim" id="introAnim" aria-hidden="true">
+            <div class="mosaic" id="mosaic"></div>
+
+            <div class="camera-ui">
+              <div class="camera-dot"></div>
+              <div class="camera-text">capturing…</div>
+            </div>
+
+            <div class="shutter" id="shutter"></div>
+            <div class="flash" id="flash"></div>
+          </div>
+
+          <!-- Actual video (revealed after intro anim) -->
           <video
             id="heroVideo"
-            class="hero-video"
+            class="hero-video is-hidden"
             playsinline
             autoplay
             loop
@@ -56,14 +63,14 @@
             Dein Browser unterstützt das Video-Tag nicht.
           </video>
 
-          <!-- Sound-Button (Autoplay mit Sound ist meist blockiert, click löst es sauber) -->
-          <button id="soundOverlay" class="sound-overlay" type="button">
+          <!-- Sound-Button (Autoplay mit Sound ist meist blockiert → Click löst es sauber) -->
+          <button id="soundOverlay" class="sound-overlay is-hidden" type="button">
             🔊 Mit Sound starten
           </button>
         </div>
 
         <div class="video-caption" id="hero-video-caption">
-          Tipp: Ein Klick auf „Mit Sound starten“ aktiviert den Ton.
+          Startanimation: Feld → Foto → Video
         </div>
       </div>
 
@@ -78,13 +85,6 @@
         <p id="hero-tagline" class="hero-tagline">
           Momente festhalten. Ziele schaffen. Gemeinsam dranbleiben.
         </p>
-
-        <div class="pill-row" aria-label="Kernpunkte">
-          <span class="pill">📸 Moment</span>
-          <span class="pill">📝 1 Satz</span>
-          <span class="pill">🤝 Support</span>
-          <span class="pill">🗺️ Spielwelt</span>
-        </div>
 
         <ul class="hero-bullets" aria-label="Vorteile">
           <li id="hero-b1">Einfach festhalten, was wirklich zählt – ohne Perfektionsdruck.</li>
@@ -161,27 +161,21 @@
         <div class="step-card">
           <div class="step-num">1</div>
           <h3 id="how-1-title">Moment festhalten</h3>
-          <p id="how-1-text">
-            Öffnen, aufnehmen, speichern. Ein Satz reicht.
-          </p>
+          <p id="how-1-text">Öffnen, aufnehmen, speichern. Ein Satz reicht.</p>
           <p class="step-mini" id="how-1-mini">1 Moment → 1 Satz → gespeichert</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">2</div>
           <h3 id="how-2-title">Mini-Ziele setzen</h3>
-          <p id="how-2-text">
-            Kleine Ziele, die du wirklich schaffst – mit Reactions und Support von Freunden oder Familie.
-          </p>
+          <p id="how-2-text">Kleine Ziele, die du wirklich schaffst – mit Reactions und Support.</p>
           <p class="step-mini" id="how-2-mini">Ziele → Support → Erfolg</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">3</div>
           <h3 id="how-3-title">Spielwelt als Belohnung</h3>
-          <p id="how-3-text">
-            Fortschritt wird sichtbar – als gemeinsames Wachstum in eurer Welt.
-          </p>
+          <p id="how-3-text">Fortschritt wird sichtbar – als gemeinsames Wachstum in eurer Welt.</p>
           <p class="step-mini" id="how-3-mini">Dein Leben. Eure Welt.</p>
         </div>
       </div>
@@ -267,30 +261,22 @@
       <div class="faq">
         <details class="faq-item">
           <summary id="faq-q1">Ist EachPart privat?</summary>
-          <p id="faq-a1">
-            Ja. Du kannst private Gruppen nutzen (Freunde/Familie). Öffentliche Bereiche sind optional.
-          </p>
+          <p id="faq-a1">Ja. Du kannst private Gruppen nutzen (Freunde/Familie). Öffentliche Bereiche sind optional.</p>
         </details>
 
         <details class="faq-item">
           <summary id="faq-q2">Muss ich täglich aktiv sein?</summary>
-          <p id="faq-a2">
-            Nein. EachPart soll unterstützen – auch wenn du nur ab und zu Momente speicherst oder Ziele markierst.
-          </p>
+          <p id="faq-a2">Nein. EachPart soll unterstützen – auch wenn du nur ab und zu Momente speicherst oder Ziele markierst.</p>
         </details>
 
         <details class="faq-item">
           <summary id="faq-q3">Brauche ich viele Freunde?</summary>
-          <p id="faq-a3">
-            Schon 1–2 Personen reichen, um Support und Motivation zu spüren.
-          </p>
+          <p id="faq-a3">Schon 1–2 Personen reichen, um Support und Motivation zu spüren.</p>
         </details>
 
         <details class="faq-item">
           <summary id="faq-q4">Was bringt die Spielwelt?</summary>
-          <p id="faq-a4">
-            Weil Fortschritt nicht nur „abgehakt“ ist, sondern sichtbar wird – als gemeinsames Erlebnis.
-          </p>
+          <p id="faq-a4">Weil Fortschritt nicht nur „abgehakt“ ist, sondern sichtbar wird – als gemeinsames Erlebnis.</p>
         </details>
       </div>
     </div>
@@ -324,34 +310,103 @@
     </div>
   </footer>
 
-  <!-- Sound-Handling -->
+  <!-- Intro animation + sound handling -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const v = document.getElementById('heroVideo');
-      const btn = document.getElementById('soundOverlay');
+      const intro = document.getElementById('introAnim');
+      const mosaic = document.getElementById('mosaic');
+      const flash = document.getElementById('flash');
+      const shutter = document.getElementById('shutter');
 
-      // Autoplay funktioniert am zuverlässigsten muted (Browser-Policy)
-      v.muted = true;
+      const video = document.getElementById('heroVideo');
+      const soundBtn = document.getElementById('soundOverlay');
 
-      // Versuch zu starten (wenn blockiert, ist ok – Controls sind da)
-      const p = v.play();
-      if (p) p.catch(() => {});
+      // Start: video hidden, sound button hidden
+      video.classList.add('is-hidden');
+      soundBtn.classList.add('is-hidden');
 
-      btn.addEventListener('click', async () => {
+      // Build mosaic tiles (game-field feeling)
+      const rows = 6;
+      const cols = 6;
+      const total = rows * cols;
+
+      mosaic.style.setProperty('--rows', rows);
+      mosaic.style.setProperty('--cols', cols);
+
+      // Background layers: try image, fallback gradient
+      // (If image missing, gradient layer will still show.)
+      mosaic.style.setProperty('--mosaic-img', "url('assets/images/world_teaser.jpg')");
+
+      const rand = (min, max) => Math.random() * (max - min) + min;
+
+      for (let i = 0; i < total; i++) {
+        const r = Math.floor(i / cols);
+        const c = i % cols;
+
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+
+        // Delay wave + some random jitter
+        const delay = (r * 70 + c * 45) + rand(0, 120);
+        tile.style.setProperty('--d', `${delay}ms`);
+
+        // Random start offsets (fly-in)
+        tile.style.setProperty('--fromX', `${rand(-90, 90)}px`);
+        tile.style.setProperty('--fromY', `${rand(-120, 120)}px`);
+        tile.style.setProperty('--rot', `${rand(-14, 14)}deg`);
+
+        // Make tiles look like a single image (mosaic effect)
+        const x = (c / (cols - 1)) * 100;
+        const y = (r / (rows - 1)) * 100;
+        tile.style.backgroundPosition = `${x}% ${y}%`;
+        tile.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+
+        mosaic.appendChild(tile);
+      }
+
+      // Timeline (ms)
+      const assembleDoneAt = 1200; // tiles mostly assembled
+      const shotAt = 1450;         // shutter + flash moment
+      const introEndAt = 1900;      // fade out + reveal video
+
+      // Trigger shutter + flash
+      setTimeout(() => {
+        shutter.classList.add('do-shot');
+        flash.classList.add('do-flash');
+      }, shotAt);
+
+      // Fade out intro + reveal video
+      setTimeout(() => {
+        intro.classList.add('fade-out');
+
+        // Reveal video shortly after fade starts
+        setTimeout(() => {
+          intro.style.display = 'none';
+
+          video.classList.remove('is-hidden');
+          soundBtn.classList.remove('is-hidden');
+
+          // Autoplay works best muted
+          video.muted = true;
+          const p = video.play();
+          if (p) p.catch(() => {});
+        }, 320);
+      }, introEndAt);
+
+      // Sound button (user click required by browsers)
+      soundBtn.addEventListener('click', async () => {
         try {
-          v.muted = false;
-          v.volume = 1;
-          await v.play();
-          btn.style.display = 'none';
+          video.muted = false;
+          video.volume = 1;
+          await video.play();
+          soundBtn.style.display = 'none';
         } catch (e) {
-          // Falls der Browser trotzdem blockt: Nutzer kann über Controls starten
           alert('Tippe auf Play im Video-Player, dann kannst du den Ton aktivieren.');
         }
       });
 
-      // Wenn User manuell Ton aktiviert, Overlay weg
-      v.addEventListener('volumechange', () => {
-        if (!v.muted && v.volume > 0) btn.style.display = 'none';
+      video.addEventListener('volumechange', () => {
+        if (!video.muted && video.volume > 0) soundBtn.style.display = 'none';
       });
     });
   </script>
