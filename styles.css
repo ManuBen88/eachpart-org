@@ -1,3 +1,7 @@
+/* =========================
+   styles.css (FINAL)
+   ========================= */
+
 /* Gemeinsamer Reset */
 * {
   margin: 0;
@@ -12,7 +16,34 @@ body {
   color: #333;
 }
 
-/* Navbar */
+/* =========================
+   Announcement Bar (Kickstarter später / Warteliste)
+   ========================= */
+.announcement-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #111;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.announcement-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ann-link {
+  color: #fff;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+/* =========================
+   Navbar
+   ========================= */
 .navbar {
   background: #222;
   padding: 10px 0;
@@ -53,7 +84,9 @@ body {
   color: #f06c00;
 }
 
-/* Hero / Header Section */
+/* =========================
+   Hero / Header Section
+   ========================= */
 .hero {
   background: #333;
   color: #fff;
@@ -77,7 +110,33 @@ body {
   margin-bottom: 30px;
 }
 
-/* Buttons */
+/* Kickstarter-Landing Ergänzungen */
+.hero-tagline {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.hero-bullets {
+  margin: 12px 0 18px;
+  padding-left: 18px;
+  text-align: left;
+}
+
+.hero-bullets li {
+  margin: 8px 0;
+}
+
+.hero-note {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* =========================
+   Buttons
+   ========================= */
 .btn-primary {
   display: inline-block;
   background-color: #f06c00;
@@ -92,7 +151,70 @@ body {
   background-color: #d85f00;
 }
 
-/* Sections / Container */
+/* Sekundär-Button */
+.btn-secondary {
+  display: inline-block;
+  background-color: #555;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #333;
+}
+
+/* Ghost Button (Store Links) */
+.btn-ghost {
+  display: inline-block;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.95;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+}
+
+/* Button-Gruppe im Hero / allgemein */
+.btn-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.btn-group-wrap {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .btn-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Store links row */
+.store-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   Sections / Container
+   ========================= */
 .section {
   padding: 40px 20px;
 }
@@ -116,7 +238,9 @@ p {
   line-height: 1.6;
 }
 
-/* Features Grid */
+/* =========================
+   Features Grid
+   ========================= */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -135,35 +259,9 @@ p {
   margin-bottom: 10px;
 }
 
-/* Sekundär-Button */
-.btn-secondary {
-  display: inline-block;
-  background-color: #555;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background-color: #333;
-}
-
-/* FAQ-Items */
-.faq-item {
-  background: #fff;
-  margin-bottom: 15px;
-  padding: 15px 20px;
-  border-radius: 5px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.faq-item h3 {
-  margin-bottom: 10px;
-}
-
-/* Footer */
+/* =========================
+   Footer
+   ========================= */
 .footer {
   background: #222;
   color: #fff;
@@ -181,15 +279,23 @@ p {
   margin-bottom: 5px;
 }
 
-/* Responsiv (Navbar) */
+/* =========================
+   Responsiv (Navbar)
+   ========================= */
 @media (max-width: 768px) {
   .nav-menu {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
+
   .nav-menu li a {
     padding: 5px;
+  }
+
+  .announcement-inner {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -204,6 +310,7 @@ p {
   gap: 24px;
   align-items: center;
 }
+
 @media (min-width: 900px) {
   .hero-split {
     grid-template-columns: auto 1fr; /* desktop: links Video, rechts Text */
@@ -217,12 +324,25 @@ p {
   text-align: left;
   margin: 0;         /* überschreibt margin:auto aus der Basis */
 }
+
 @media (max-width: 899px) {
   .hero .hero-content { text-align: center; }
+  .hero-bullets { text-align: left; margin-left: auto; margin-right: auto; max-width: 520px; }
+  .store-links { justify-content: center; }
 }
 
 /* Videokarten */
-.video-card { display: grid; place-items: center; }
+.video-card {
+  display: grid;
+  place-items: center;
+}
+
+.video-caption {
+  margin-top: 10px;
+  opacity: 0.9;
+  font-size: 0.95rem;
+  text-align: center;
+}
 
 /* Gemeinsamer Video-Rahmen – PORTRAIT 9:16 */
 .video-frame {
@@ -243,37 +363,22 @@ p {
   display: block;
 }
 
-/* Rechte Videokarte bekommt EXAKT den gleichen Rahmen wie links */
+/* Rechte Videokarte bekommt EXAKT den gleichen Rahmen wie links (falls du sie nutzt) */
 .video-card.right-video .video-frame {
   width: clamp(240px, 32vw, 420px);
   aspect-ratio: 9 / 16;
-}
-
-/* Button-Gruppe im Hero */
-.btn-group {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 16px;
-}
-@media (max-width: 480px) {
-  .btn-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
 }
 
 /* Utilities */
 .hidden { display: none !important; }
 
 /* Fallback-Play-Overlay (falls Autoplay blockiert) */
-.play-overlay{
+.play-overlay {
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 72px; height: 72px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   border: 0;
   background: rgba(0,0,0,.55);
@@ -284,3 +389,227 @@ p {
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(0,0,0,.35);
 }
+
+/* =========================
+   Kickstarter Landing Layout Blocks
+   ========================= */
+
+.split-2 {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .split-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards */
+.card {
+  border-radius: 16px;
+  padding: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+.card.soft {
+  background: rgba(0,0,0,0.02);
+}
+
+.card.media img {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
+}
+
+.media-fallback {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.big {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.mini-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.12);
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+/* Steps */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .steps-grid { grid-template-columns: 1fr; }
+}
+
+.step-card {
+  border-radius: 16px;
+  padding: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+.step-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0,0,0,0.12);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.step-mini {
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* Check list */
+.checklist {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+
+.checklist li {
+  margin: 8px 0;
+}
+
+/* Timeline */
+.timeline {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+.tl-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.12);
+  font-weight: 700;
+}
+
+/* CTA Card */
+.cta-card {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(0,0,0,0.02);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Rewards */
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
+
+@media (max-width: 1000px) {
+  .rewards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .rewards-grid { grid-template-columns: 1fr; }
+}
+
+.reward-card {
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+.btn-row {
+  margin-top: 14px;
+}
+
+/* =========================
+   FAQ (works for <details> + older blocks)
+   ========================= */
+.faq {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* Wenn du <details class="faq-item"> nutzt */
+details.faq-item {
+  padding: 12px 14px;
+}
+
+details.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  outline: none;
+  list-style: none;
+}
+
+details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+details.faq-item[open] summary {
+  margin-bottom: 10px;
+}
+
+/* Dein alter FAQ-Block-Stil bleibt kompatibel */
+.faq-item {
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.faq-item h3 {
+  margin-bottom: 10px;
+}
+
+/* Text helpers */
+.muted { opacity: 0.8; }
+.small { font-size: 0.95rem; }
+
