@@ -24,6 +24,12 @@
         <li><a href="#faq" id="nav-faq">FAQ</a></li>
         <li><a href="#contact" id="nav-contact">Kontakt</a></li>
       </ul>
+
+      <!-- Language Switch -->
+      <div class="lang-switch" role="group" aria-label="Sprache auswählen">
+        <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
     </div>
   </nav>
 
@@ -49,13 +55,12 @@
             Dein Browser unterstützt das Video-Tag nicht.
           </video>
 
-          <!-- Autoplay mit Sound wird vom Browser geblockt -> Click nötig -->
           <button id="soundOverlay" class="sound-overlay" type="button">
             🔊 Mit Sound starten
           </button>
         </div>
 
-        <div class="video-caption">
+        <div class="video-caption" id="hero-video-caption">
           Tipp: Ein Klick auf „Mit Sound starten“ aktiviert den Ton.
         </div>
       </div>
@@ -90,22 +95,23 @@
 
         <!-- Der eigentliche Text-Content -->
         <div class="panel-content" id="panelContent">
-          <div class="hero-badge">Nicht perfekt. Nur echt.</div>
+          <div class="hero-badge" id="hero-badge">Nicht perfekt. Nur echt.</div>
 
-          <h1 class="hero-title">Mach aus heute etwas, das bleibt.</h1>
+          <h1 class="hero-title" id="hero-headline">Mach aus heute etwas, das bleibt.</h1>
 
-          <p class="hero-tagline">Momente festhalten. Ziele schaffen. Gemeinsam dranbleiben.</p>
+          <p class="hero-tagline" id="hero-tagline">Momente festhalten. Ziele schaffen. Gemeinsam dranbleiben.</p>
 
-          <ul class="hero-bullets">
-            <li>Einfach festhalten, was wirklich zählt – ohne Perfektionsdruck.</li>
-            <li>Mini-Ziele, die machbar sind – und sich gut anfühlen, wenn sie geschafft sind.</li>
-            <li>Gemeinsam leichter: Reaktionen, Support und kleine Feiern.</li>
+          <ul class="hero-bullets" aria-label="Vorteile">
+            <li id="hero-b1">Einfach festhalten, was wirklich zählt – ohne Perfektionsdruck.</li>
+            <li id="hero-b2">Mini-Ziele, die machbar sind – und sich gut anfühlen, wenn sie geschafft sind.</li>
+            <li id="hero-b3">Gemeinsam leichter: Reaktionen, Support und kleine Feiern.</li>
           </ul>
 
           <div class="btn-group btn-group-wrap">
             <a
               href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
               class="btn-primary"
+              id="hero-android"
               target="_blank"
               rel="noopener"
             >Android herunterladen</a>
@@ -113,15 +119,16 @@
             <a
               href="https://testflight.apple.com/join/aRwmwwBd"
               class="btn-secondary"
+              id="hero-ios"
               target="_blank"
               rel="noopener"
             >iOS (TestFlight)</a>
 
-            <a href="anleitung.html" class="btn-ghost">Video-Anleitung</a>
-            <a href="#how" class="btn-ghost">Mehr erfahren</a>
+            <a href="anleitung.html" class="btn-ghost" id="hero-howto">Video-Anleitung</a>
+            <a href="#how" class="btn-ghost" id="hero-more">Mehr erfahren</a>
           </div>
 
-          <p class="hero-note">
+          <p class="hero-note" id="hero-note">
             Hinweis: Wir entwickeln aktiv weiter – transparent und Schritt für Schritt.
           </p>
         </div>
@@ -135,18 +142,18 @@
     <div class="container">
       <div class="split-2">
         <div>
-          <h2>Warum EachPart?</h2>
-          <p>Im Alltag gehen die guten Dinge oft leise unter: kleine Momente, kleine Fortschritte, kleine Siege.</p>
-          <p>EachPart gibt ihnen einen Platz – damit du dich erinnerst, was war, und ihr gemeinsam dranbleibt.</p>
+          <h2 id="about-title">Warum EachPart?</h2>
+          <p id="about-text1">Im Alltag gehen die guten Dinge oft leise unter: kleine Momente, kleine Fortschritte, kleine Siege.</p>
+          <p id="about-text2">EachPart gibt ihnen einen Platz – damit du dich erinnerst, was war, und ihr gemeinsam dranbleibt.</p>
         </div>
 
         <div class="card soft">
-          <h3>Kurz erklärt</h3>
-          <p class="big">
+          <h3 id="about-card-title">Kurz erklärt</h3>
+          <p class="big" id="about-card-text">
             Mini-Tagebuch + Motivation mit Freunden – belohnt durch eine Spielwelt, die euren Fortschritt sichtbar macht.
           </p>
 
-          <div class="mini-tags">
+          <div class="mini-tags" aria-label="Schlagwörter">
             <span class="tag">Momente</span>
             <span class="tag">Tagebuch</span>
             <span class="tag">Ziele</span>
@@ -161,28 +168,28 @@
   <!-- How -->
   <section class="section bg-light" id="how">
     <div class="container">
-      <h2>So funktioniert’s</h2>
+      <h2 id="how-title">So funktioniert’s</h2>
 
       <div class="steps-grid">
         <div class="step-card">
           <div class="step-num">1</div>
-          <h3>Moment festhalten</h3>
-          <p>Öffnen, aufnehmen, speichern. Ein Satz reicht.</p>
-          <p class="step-mini">1 Moment → 1 Satz → gespeichert</p>
+          <h3 id="how-1-title">Moment festhalten</h3>
+          <p id="how-1-text">Öffnen, aufnehmen, speichern. Ein Satz reicht.</p>
+          <p class="step-mini" id="how-1-mini">1 Moment → 1 Satz → gespeichert</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">2</div>
-          <h3>Mini-Ziele setzen</h3>
-          <p>Kleine Ziele, die du wirklich schaffst – mit Reactions und Support.</p>
-          <p class="step-mini">Ziele → Support → Erfolg</p>
+          <h3 id="how-2-title">Mini-Ziele setzen</h3>
+          <p id="how-2-text">Kleine Ziele, die du wirklich schaffst – mit Reactions und Support.</p>
+          <p class="step-mini" id="how-2-mini">Ziele → Support → Erfolg</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">3</div>
-          <h3>Spielwelt als Belohnung</h3>
-          <p>Fortschritt wird sichtbar – als gemeinsames Wachstum in eurer Welt.</p>
-          <p class="step-mini">Dein Leben. Eure Welt.</p>
+          <h3 id="how-3-title">Spielwelt als Belohnung</h3>
+          <p id="how-3-text">Fortschritt wird sichtbar – als gemeinsames Wachstum in eurer Welt.</p>
+          <p class="step-mini" id="how-3-mini">Dein Leben. Eure Welt.</p>
         </div>
       </div>
     </div>
@@ -191,32 +198,37 @@
   <!-- Features -->
   <section class="section" id="features">
     <div class="container">
-      <h2>Highlights</h2>
+      <h2 id="features-title">Highlights</h2>
 
       <div class="features-grid">
         <div class="feature-box">
-          <h3>Spontane Momente</h3>
-          <p>Schnell festhalten statt später bereuen – ohne Perfektionismus.</p>
+          <h3 id="feature1-title">Spontane Momente</h3>
+          <p id="feature1-text">Schnell festhalten statt später bereuen – ohne Perfektionismus.</p>
         </div>
+
         <div class="feature-box">
-          <h3>Mini-Tagebuch</h3>
-          <p>Ein Satz reicht – damit du später wieder da bist, wo es passiert ist.</p>
+          <h3 id="feature2-title">Mini-Tagebuch</h3>
+          <p id="feature2-text">Ein Satz reicht – damit du später wieder da bist, wo es passiert ist.</p>
         </div>
+
         <div class="feature-box">
-          <h3>Ziele & Motivation</h3>
-          <p>Machbare Mini-Ziele. Support statt Druck.</p>
+          <h3 id="feature3-title">Ziele & Motivation</h3>
+          <p id="feature3-text">Machbare Mini-Ziele. Support statt Druck.</p>
         </div>
+
         <div class="feature-box">
-          <h3>Gemeinsam leichter</h3>
-          <p>Reactions, Kommentare, Feiern – zusammen dranbleiben macht den Unterschied.</p>
+          <h3 id="feature4-title">Gemeinsam leichter</h3>
+          <p id="feature4-text">Reactions, Kommentare, Feiern – zusammen dranbleiben macht den Unterschied.</p>
         </div>
+
         <div class="feature-box">
-          <h3>Spielwelt-Fortschritt</h3>
-          <p>Dein Fortschritt wird sichtbar – und fühlt sich wie Belohnung an.</p>
+          <h3 id="feature5-title">Spielwelt-Fortschritt</h3>
+          <p id="feature5-text">Dein Fortschritt wird sichtbar – und fühlt sich wie Belohnung an.</p>
         </div>
+
         <div class="feature-box">
-          <h3>Aktive Entwicklung</h3>
-          <p>Performance, Stabilität und neue Inhalte kommen Schritt für Schritt.</p>
+          <h3 id="feature6-title">Aktive Entwicklung</h3>
+          <p id="feature6-text">Performance, Stabilität und neue Inhalte kommen Schritt für Schritt.</p>
         </div>
       </div>
     </div>
@@ -227,13 +239,13 @@
     <div class="container">
       <div class="split-2">
         <div>
-          <h2>Die Spielwelt zeigt euren Fortschritt</h2>
-          <p>Nicht als Zwang – sondern als sichtbare Belohnung. Ihr baut, erkundet und wachst gemeinsam.</p>
+          <h2 id="world-title">Die Spielwelt zeigt euren Fortschritt</h2>
+          <p id="world-text1">Nicht als Zwang – sondern als sichtbare Belohnung. Ihr baut, erkundet und wachst gemeinsam.</p>
 
           <ul class="checklist">
-            <li>Gemeinsam bauen & erkunden</li>
-            <li>Fortschritt wird sichtbar</li>
-            <li>Neue Inhalte über Updates</li>
+            <li id="world-li1">Gemeinsam bauen & erkunden</li>
+            <li id="world-li2">Fortschritt wird sichtbar</li>
+            <li id="world-li3">Neue Inhalte über Updates</li>
           </ul>
         </div>
 
@@ -252,27 +264,27 @@
   <!-- FAQ -->
   <section class="section" id="faq">
     <div class="container">
-      <h2>FAQ</h2>
+      <h2 id="faq-title">FAQ</h2>
 
       <div class="faq">
         <details class="faq-item">
-          <summary>Ist EachPart privat?</summary>
-          <p>Ja. Du kannst private Gruppen nutzen (Freunde/Familie). Öffentliche Bereiche sind optional.</p>
+          <summary id="faq-q1">Ist EachPart privat?</summary>
+          <p id="faq-a1">Ja. Du kannst private Gruppen nutzen (Freunde/Familie). Öffentliche Bereiche sind optional.</p>
         </details>
 
         <details class="faq-item">
-          <summary>Muss ich täglich aktiv sein?</summary>
-          <p>Nein. EachPart soll unterstützen – auch wenn du nur ab und zu Momente speicherst oder Ziele markierst.</p>
+          <summary id="faq-q2">Muss ich täglich aktiv sein?</summary>
+          <p id="faq-a2">Nein. EachPart soll unterstützen – auch wenn du nur ab und zu Momente speicherst oder Ziele markierst.</p>
         </details>
 
         <details class="faq-item">
-          <summary>Brauche ich viele Freunde?</summary>
-          <p>Schon 1–2 Personen reichen, um Support und Motivation zu spüren.</p>
+          <summary id="faq-q3">Brauche ich viele Freunde?</summary>
+          <p id="faq-a3">Schon 1–2 Personen reichen, um Support und Motivation zu spüren.</p>
         </details>
 
         <details class="faq-item">
-          <summary>Was bringt die Spielwelt?</summary>
-          <p>Weil Fortschritt nicht nur „abgehakt“ ist, sondern sichtbar wird – als gemeinsames Erlebnis.</p>
+          <summary id="faq-q4">Was bringt die Spielwelt?</summary>
+          <p id="faq-a4">Weil Fortschritt nicht nur „abgehakt“ ist, sondern sichtbar wird – als gemeinsames Erlebnis.</p>
         </details>
       </div>
     </div>
@@ -281,15 +293,15 @@
   <!-- Kontakt -->
   <section class="section" id="contact">
     <div class="container">
-      <h2>Kontakt</h2>
-      <p>Du hast Fragen oder möchtest Feedback geben? Schreib uns gern.</p>
+      <h2 id="contact-title">Kontakt</h2>
+      <p id="contact-text">Du hast Fragen oder möchtest Feedback geben? Schreib uns gern.</p>
 
       <div class="btn-group btn-group-wrap">
-        <a href="mailto:support@eachpart.com" class="btn-secondary">E-Mail an Support</a>
-        <a href="anleitung.html" class="btn-ghost">Video-Anleitung</a>
+        <a href="mailto:support@eachpart.com" class="btn-secondary" id="contact-button">E-Mail an Support</a>
+        <a href="anleitung.html" class="btn-ghost" id="contact-howto">Video-Anleitung</a>
       </div>
 
-      <p class="muted small">
+      <p class="muted small" id="contact-note">
         Tipp: Wenn du Feedback zur Spielwelt oder Motivation-Features hast, schick gern Screenshots mit.
       </p>
     </div>
@@ -298,10 +310,10 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-container">
-      <p>&copy; 2026 EachPart. Alle Rechte vorbehalten.</p>
+      <p id="footer-text">&copy; 2026 EachPart. Alle Rechte vorbehalten.</p>
       <nav class="footer-nav">
-        <a href="impressum.html">Impressum</a> |
-        <a href="datenschutz.html">Datenschutz</a>
+        <a href="impressum.html" id="footer-impressum">Impressum</a> |
+        <a href="datenschutz.html" id="footer-datenschutz">Datenschutz</a>
       </nav>
     </div>
   </footer>
@@ -331,6 +343,37 @@
 
       video.addEventListener('volumechange', () => {
         if (!video.muted && video.volume > 0) soundBtn.style.display = 'none';
+      });
+
+      // ======================
+      // LANGUAGE SWITCH UI (uses translate.js window.switchLanguage)
+      // ======================
+      const buttons = Array.from(document.querySelectorAll('.lang-btn'));
+
+      function setActiveLang(lang){
+        const l = (lang || 'de').slice(0,2).toLowerCase();
+        buttons.forEach(btn => {
+          const isActive = btn.dataset.lang === l;
+          btn.classList.toggle('is-active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      }
+
+      // initial highlight (translate.js sets <html lang="..">)
+      setTimeout(() => setActiveLang(document.documentElement.lang), 0);
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+
+          if (typeof window.switchLanguage === 'function') {
+            window.switchLanguage(lang);
+            setActiveLang(lang);
+          } else {
+            document.documentElement.lang = lang;
+            setActiveLang(lang);
+          }
+        });
       });
 
       // ======================
@@ -376,11 +419,9 @@
 
       function buildShards() {
         stage.innerHTML = '';
-
         const rect = stage.getBoundingClientRect();
         const W = rect.width;
         const H = rect.height;
-
         if (W < 10 || H < 10) return;
 
         shards.forEach((s, i) => {
@@ -449,7 +490,6 @@
         });
       }
 
-      // Reduced motion: skip effect
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         intro.style.display = 'none';
         content.classList.remove('panel-hidden');
