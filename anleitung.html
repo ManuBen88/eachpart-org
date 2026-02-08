@@ -79,7 +79,7 @@
     <div class="container howto-wrapper">
       <div class="howto-video" aria-label="EachPart – Anleitungsvideo">
         <iframe
-          src="https://www.youtube.com/embed/AMyfaKjhlbQ"
+          src="https://www.youtube.com/embed/1eXRGNIa5mQ"
           title="EachPart – Anleitung"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
@@ -88,7 +88,7 @@
 
       <div>
         <a
-          href="https://www.youtube.com/watch?v=AMyfaKjhlbQ"
+          href="https://www.youtube.com/watch?v=1eXRGNIa5mQ"
           target="_blank"
           rel="noopener"
           class="btn-secondary"
@@ -114,7 +114,7 @@
   <!-- Page-i18n (DE/EN) – funktioniert sofort, auch wenn translate.js hier noch nichts macht -->
   <script>
     (function () {
-      const VIDEO_ID = "AMyfaKjhlbQ";
+      const VIDEO_ID = "1eXRGNIa5mQ";
 
       const t = {
         de: {
@@ -172,11 +172,11 @@
         setText("footer-imprint", t[lang].imprint);
         setText("footer-privacy", t[lang].privacy);
 
-        // Optional: Falls du “Anleitung/Kontakt” im Nav übersetzt haben willst:
+        // Optional: Nav-Labels
         setText("nav-howto", t[lang].navHowto);
         setText("nav-contact", t[lang].navContact);
 
-        // Video link (sicherstellen)
+        // Video link sicherstellen
         const btn = document.getElementById("howto-open-video");
         if (btn) btn.href = "https://www.youtube.com/watch?v=" + VIDEO_ID;
       }
@@ -194,8 +194,7 @@
           localStorage.setItem("language", lang);
           applyLang(lang);
 
-          // Falls deine translate.js eine globale Funktion hat, die alles übersetzt:
-          // (optional – schadet nicht, wenn nicht vorhanden)
+          // Optional: Falls translate.js globale Hooks hat
           try {
             if (typeof window.applyTranslations === "function") window.applyTranslations(lang);
             if (typeof window.setLanguage === "function") window.setLanguage(lang);
