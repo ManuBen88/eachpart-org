@@ -12,8 +12,16 @@
   <!-- kleine Seite-spezifische Hilfe, damit das Video schön groß ist -->
   <style>
     .howto-hero { padding: 40px 20px; background:#333; color:#fff; text-align:center; }
-    .howto-wrapper { display:grid; place-items:center; }
-    .howto-video { width: min(960px, 92vw); aspect-ratio: 16 / 9; background:#000; border-radius:12px; box-shadow: 0 8px 28px rgba(0,0,0,.16); }
+    .howto-wrapper { display:grid; place-items:center; gap: 14px; }
+    .howto-video {
+      width: min(960px, 92vw);
+      aspect-ratio: 16 / 9;
+      background:#000;
+      border-radius:12px;
+      box-shadow: 0 8px 28px rgba(0,0,0,.16);
+      overflow: hidden;
+    }
+    .howto-video iframe { width: 100%; height: 100%; border: 0; display:block; }
     @media (max-width: 520px){ .howto-hero{ padding: 28px 16px; } }
   </style>
 </head>
@@ -34,27 +42,33 @@
   <!-- Kopfbereich -->
   <header class="howto-hero">
     <div class="container">
-      <h1>Video-Anleitung</h1>
-      <p>So nutzt du EachPart – Schritt für Schritt.</p>
+      <h1 id="howto-title">Video-Anleitung</h1>
+      <p id="howto-subtitle">So nutzt du EachPart – Schritt für Schritt.</p>
     </div>
   </header>
 
   <!-- Video-Bereich -->
   <section class="section">
     <div class="container howto-wrapper">
-      <video
-        class="howto-video"
-        controls
-        playsinline
-        preload="metadata"
-        title="EachPart – Anleitung"
-        poster="assets/videos/poster_explain.jpg"
-      >
-        <source src="assets/videos/eachpart_explain.mp4" type="video/mp4" />
-        Dein Browser unterstützt das Video-Tag nicht.
-      </video>
-      <div style="margin-top:14px;">
-        <a href="assets/videos/eachpart_explain.mp4" download class="btn-secondary">Video herunterladen</a>
+      <div class="howto-video" aria-label="EachPart – Anleitungsvideo">
+        <iframe
+          src="https://www.youtube.com/embed/iWxvTYI-jaw"
+          title="EachPart – Anleitung"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div>
+        <a
+          href="https://www.youtube.com/watch?v=iWxvTYI-jaw"
+          target="_blank"
+          rel="noopener"
+          class="btn-secondary"
+          id="howto-open-video"
+        >
+          Auf YouTube ansehen
+        </a>
       </div>
     </div>
   </section>
@@ -69,5 +83,23 @@
       </nav>
     </div>
   </footer>
+
+  <!-- Übersetzungen (falls translate.js eine globale `translations`-Struktur nutzt, ergänze das dort) -->
+  <script>
+    // OPTIONAL: Falls dein translate.js "data-i18n" nutzt, kannst du statt IDs auch data-i18n-Attribute verwenden.
+    // Hier liefere ich nur die Keys/IDs, damit du sie in translate.js einhängen kannst:
+    //
+    // howto-title:
+    //   de: "Video-Anleitung"
+    //   en: "Video Guide"
+    //
+    // howto-subtitle:
+    //   de: "So nutzt du EachPart – Schritt für Schritt."
+    //   en: "How to use EachPart — step by step."
+    //
+    // howto-open-video:
+    //   de: "Auf YouTube ansehen"
+    //   en: "Watch on YouTube"
+  </script>
 </body>
 </html>
