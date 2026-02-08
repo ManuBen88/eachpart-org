@@ -127,61 +127,69 @@
     }
   };
 
-  function setLanguage(lang) {
-    document.documentElement.lang = lang;
+  function setText(id, value, isHtml = false) {
+  const el = document.getElementById(id);
+  if (!el) return; // <- wichtig: Seite hat evtl. dieses Element nicht
+  if (isHtml) el.innerHTML = value;
+  else el.textContent = value;
+}
 
-    // Navigation
-    document.getElementById("nav-home")   .textContent = translations[lang].nav.home;
-    document.getElementById("nav-faq")    .textContent = translations[lang].nav.faq;
-    document.getElementById("nav-contact").textContent = translations[lang].nav.contact;
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
 
-    // Hero
-    document.getElementById("hero-title")      .textContent = translations[lang].hero.title;
-    document.getElementById("hero-description").textContent = translations[lang].hero.description;
-    document.getElementById("hero-android")    .textContent = translations[lang].hero.android;
-    document.getElementById("hero-ios")        .textContent = translations[lang].hero.ios;
+  // Navigation
+  setText("nav-home", translations[lang].nav.home);
+  setText("nav-faq", translations[lang].nav.faq);
+  setText("nav-contact", translations[lang].nav.contact);
 
-    // About
-    document.getElementById("about-title") .textContent = translations[lang].about.title;
-    document.getElementById("about-text1") .textContent = translations[lang].about.text1;
-    document.getElementById("about-text2") .textContent = translations[lang].about.text2;
+  // Hero
+  setText("hero-title", translations[lang].hero.title);
+  setText("hero-description", translations[lang].hero.description);
+  setText("hero-android", translations[lang].hero.android);
+  setText("hero-ios", translations[lang].hero.ios);
 
-    // Features
-    document.getElementById("features-title")     .textContent = translations[lang].features.title;
-    document.getElementById("feature1-title")     .textContent = translations[lang].features.feature1.title;
-    document.getElementById("feature1-text")      .textContent = translations[lang].features.feature1.text;
-    document.getElementById("feature2-title")     .textContent = translations[lang].features.feature2.title;
-    document.getElementById("feature2-text")      .textContent = translations[lang].features.feature2.text;
-    document.getElementById("feature3-title")     .textContent = translations[lang].features.feature3.title;
-    document.getElementById("feature3-text")      .textContent = translations[lang].features.feature3.text;
-    document.getElementById("feature4-title")     .textContent = translations[lang].features.feature4.title;
-    document.getElementById("feature4-text")      .textContent = translations[lang].features.feature4.text;
+  // About
+  setText("about-title", translations[lang].about.title);
+  setText("about-text1", translations[lang].about.text1);
+  setText("about-text2", translations[lang].about.text2);
 
-    // Contact
-    document.getElementById("contact-title") .textContent = translations[lang].contact.title;
-    document.getElementById("contact-text")  .textContent = translations[lang].contact.text;
-    document.getElementById("contact-button").textContent = translations[lang].contact.button;
+  // Features
+  setText("features-title", translations[lang].features.title);
+  setText("feature1-title", translations[lang].features.feature1.title);
+  setText("feature1-text", translations[lang].features.feature1.text);
+  setText("feature2-title", translations[lang].features.feature2.title);
+  setText("feature2-text", translations[lang].features.feature2.text);
+  setText("feature3-title", translations[lang].features.feature3.title);
+  setText("feature3-text", translations[lang].features.feature3.text);
+  setText("feature4-title", translations[lang].features.feature4.title);
+  setText("feature4-text", translations[lang].features.feature4.text);
 
-    // Datenschutz
-    document.getElementById("datenschutz-title")         .textContent = translations[lang].datenschutz.title;
-    document.getElementById("datenschutz-intro")         .textContent = translations[lang].datenschutz.intro;
-    document.getElementById("datenschutz-responsible")   .textContent = translations[lang].datenschutz.responsible;
-    document.getElementById("datenschutz-dataCollection").textContent = translations[lang].datenschutz.dataCollection;
-    document.getElementById("datenschutz-cookies")       .textContent = translations[lang].datenschutz.cookies;
-    document.getElementById("datenschutz-rights")        .textContent = translations[lang].datenschutz.rights;
+  // Contact
+  setText("contact-title", translations[lang].contact.title);
+  setText("contact-text", translations[lang].contact.text);
+  setText("contact-button", translations[lang].contact.button);
 
-    // Impressum
-    document.getElementById("impressum-title")               .textContent = translations[lang].impressum.title;
-    document.getElementById("impressum-company")             .textContent = translations[lang].impressum.company;
-    document.getElementById("impressum-address")             .textContent = translations[lang].impressum.address;
-    document.getElementById("impressum-phone")               .textContent = translations[lang].impressum.phone;
-    document.getElementById("impressum-email")               .textContent = translations[lang].impressum.email;
-    document.getElementById("impressum-representative")      .textContent = translations[lang].impressum.representative;
-    document.getElementById("impressum-contentResponsibility").textContent = translations[lang].impressum.contentResponsibility;
+  // Datenschutz (nur wenn Seite diese IDs hat)
+  setText("datenschutz-title", translations[lang].datenschutz.title);
+  setText("datenschutz-intro", translations[lang].datenschutz.intro);
+  setText("datenschutz-responsible", translations[lang].datenschutz.responsible);
+  setText("datenschutz-dataCollection", translations[lang].datenschutz.dataCollection);
+  setText("datenschutz-cookies", translations[lang].datenschutz.cookies);
+  setText("datenschutz-rights", translations[lang].datenschutz.rights);
 
-    // Footer
-    document.getElementById("footer-text").innerHTML = translations[lang].footer.text;
-  }
+  // Impressum (nur wenn Seite diese IDs hat)
+  setText("impressum-title", translations[lang].impressum.title);
+  setText("impressum-company", translations[lang].impressum.company);
+  setText("impressum-address", translations[lang].impressum.address);
+  setText("impressum-phone", translations[lang].impressum.phone);
+  setText("impressum-email", translations[lang].impressum.email);
+  setText("impressum-representative", translations[lang].impressum.representative);
+  setText("impressum-contentResponsibility", translations[lang].impressum.contentResponsibility);
+
+  // Footer (HTML, wegen &copy;)
+  setText("footer-text", translations[lang].footer.text, true);
+}
+
 
   document.addEventListener("DOMContentLoaded", function() {
     let userLang = (navigator.language || navigator.userLanguage).slice(0,2).toLowerCase();
