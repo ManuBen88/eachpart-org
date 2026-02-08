@@ -30,7 +30,8 @@
   <!-- Hero -->
   <header class="hero">
     <div class="container hero-split">
-      <!-- LINKS: Video -->
+
+      <!-- LINKS: Video (OHNE Intro-Overlay!) -->
       <div class="video-card">
         <div class="video-frame" id="heroFrame">
           <video
@@ -48,7 +49,7 @@
             Dein Browser unterstützt das Video-Tag nicht.
           </video>
 
-          <!-- Sound-Button (Autoplay mit Sound ist meist blockiert → Click löst es sauber) -->
+          <!-- Sound-Button (Browser blockt Autoplay mit Sound -> Click nötig) -->
           <button id="soundOverlay" class="sound-overlay" type="button">
             🔊 Mit Sound starten
           </button>
@@ -59,19 +60,18 @@
         </div>
       </div>
 
-      <!-- RECHTS: Premium-Panel + INTRO-EFFEKT AUF TEXTFELD -->
+      <!-- RECHTS: Textfeld + Effekt NUR HIER -->
       <div class="hero-content hero-panel" id="heroPanel">
-        <!-- Panel Intro Overlay -->
+
+        <!-- Panel Intro Overlay (Scherben + Linse + Foto) -->
         <div class="panel-intro" id="panelIntro" aria-hidden="true">
           <div class="panel-shard-stage" id="panelShardStage" aria-hidden="true"></div>
 
-          <!-- Lens overlay (obvious photo lens) -->
           <div class="lens" id="panelLens" aria-hidden="true">
             <div class="lens-core"></div>
             <div class="lens-glint"></div>
           </div>
 
-          <!-- focus corners -->
           <div class="focus-frame" aria-hidden="true">
             <span class="fc tl"></span>
             <span class="fc tr"></span>
@@ -88,7 +88,7 @@
           <div class="flash" id="panelFlash" aria-hidden="true"></div>
         </div>
 
-        <!-- Actual content (revealed after intro) -->
+        <!-- Der eigentliche Text-Content -->
         <div class="panel-content" id="panelContent">
           <div class="hero-badge" id="hero-badge">Nicht perfekt. Nur echt.</div>
 
@@ -132,6 +132,7 @@
           </p>
         </div>
       </div>
+
     </div>
   </header>
 
@@ -325,6 +326,7 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // ======================
@@ -333,7 +335,6 @@
       const video = document.getElementById('heroVideo');
       const soundBtn = document.getElementById('soundOverlay');
 
-      // Autoplay works best muted (browser policy)
       video.muted = true;
       const p = video.play();
       if (p) p.catch(() => {});
@@ -344,7 +345,7 @@
           video.volume = 1;
           await video.play();
           soundBtn.style.display = 'none';
-        } catch (e) {
+        } catch (_) {
           alert('Tippe auf Play im Video-Player, dann kannst du den Ton aktivieren.');
         }
       });
@@ -354,7 +355,7 @@
       });
 
       // ======================
-      // PANEL INTRO EFFECT (RIGHT)
+      // PANEL INTRO EFFECT (RIGHT ONLY)
       // ======================
       const intro   = document.getElementById('panelIntro');
       const stage   = document.getElementById('panelShardStage');
@@ -365,10 +366,10 @@
       // Content starts hidden, revealed after intro
       content.classList.add('panel-hidden');
 
-      // Optional background source for shards (looks cool even if missing)
+      // Optional photo for shard texture (works even if file missing)
       stage.style.setProperty('--photo', "url('assets/images/world_teaser.jpg')");
 
-      // Irregular shards (percent layout), designed for rectangular panel
+      // Irregular shards for a rectangular panel
       const shards = [
         {x: 0,  y: 0,  w: 24, h: 22, clip: "polygon(0 0, 100% 0, 86% 100%, 6% 78%)"},
         {x: 20, y: 0,  w: 18, h: 18, clip: "polygon(6% 0, 100% 0, 90% 90%, 0 100%)"},
@@ -420,8 +421,8 @@
           el.style.top  = `${top}px`;
           el.style.width  = `${w}px`;
           el.style.height = `${h}px`;
-
           el.style.clipPath = s.clip;
+
           el.style.setProperty('--d', `${baseDelay}ms`);
           el.style.setProperty('--fromX', `${fromX}px`);
           el.style.setProperty('--fromY', `${fromY}px`);
@@ -440,19 +441,14 @@
         });
       }
 
-      // Build shards after layout is stable
-      requestAnimationFrame(() => {
-        buildShards();
-      });
+      requestAnimationFrame(buildShards);
 
       // Timeline
       const lensOnAt = 900;
       const shotAt   = 1300;
       const endAt    = 1850;
 
-      setTimeout(() => {
-        intro.classList.add('lens-on');
-      }, lensOnAt);
+      setTimeout(() => intro.classList.add('lens-on'), lensOnAt);
 
       setTimeout(() => {
         shutter.classList.add('do-shot');
@@ -462,7 +458,6 @@
 
       setTimeout(() => {
         intro.classList.add('fade-out');
-
         setTimeout(() => {
           intro.style.display = 'none';
           content.classList.remove('panel-hidden');
@@ -471,10 +466,10 @@
       }, endAt);
 
       // Rebuild shards on resize
-      let resizeT;
+      let t;
       window.addEventListener('resize', () => {
-        clearTimeout(resizeT);
-        resizeT = setTimeout(() => {
+        clearTimeout(t);
+        t = setTimeout(() => {
           if (intro.style.display !== 'none') buildShards();
         }, 120);
       });
