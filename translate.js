@@ -33,8 +33,10 @@ const translations = {
     },
     about: {
       title: "Warum EachPart?",
-      text1: "Im Alltag gehen die guten Dinge oft leise unter: kleine Momente, kleine Fortschritte, kleine Siege.",
-      text2: "EachPart gibt ihnen einen Platz – damit du dich erinnerst, was war, und ihr gemeinsam dranbleibt.",
+      text1: "In everyday life, the good things often slip by quietly: small moments, small progress, small wins. EachPart gives them a place.",
+      text2: "Whether it’s family life, shared living, or a sports challenge. Whether it’s everyday mom-life with kids, chores, and everything in between: it’s not just about getting things done. It’s about seeing what you truly do — including the parts that usually go unnoticed.",
+      text3: "In families especially, so much work is invisible: planning, remembering, organizing, comforting, caring. This care work holds everything together — and still rarely gets counted. EachPart makes it visible: who carried what, who kept track, who stayed consistent. So recognition isn’t luck — it happens. So you’re not just functioning, but being seen.",
+      text4: "And because motivation doesn’t come from pressure, but from feeling: EachPart makes progress tangible. Your real life connects to a small game world — every checkmark, every moment, every “we did it” moves you forward. You unlock playful content, collect rewards, and see how small days become a story you can be proud of.",
       cardTitle: "Kurz erklärt",
       cardText:
         "Mini-Tagebuch + Motivation mit Freunden – belohnt durch eine Spielwelt, die euren Fortschritt sichtbar macht."
