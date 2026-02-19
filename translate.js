@@ -293,11 +293,17 @@ function setLanguage(lang) {
   setText("hero-b3", t.hero.bullets[2]);
 
   // ABOUT
-  setText("about-title", t.about.title);
-  setText("about-text1", t.about.text1);
-  setText("about-text2", t.about.text2);
-  setText("about-card-title", t.about.cardTitle);
-  setText("about-card-text", t.about.cardText);
+setText("about-title", t.about.title);
+
+// Use HTML because the strings contain <strong> and <br>
+setHTML("about-text1", t.about.text1);
+setHTML("about-text2", t.about.text2);
+setHTML("about-text3", t.about.text3);
+setHTML("about-text4", t.about.text4);
+
+setText("about-card-title", t.about.cardTitle);
+setText("about-card-text", t.about.cardText);
+
 
   // HOW
   setText("how-title", t.how.title);
