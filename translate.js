@@ -33,13 +33,12 @@ const translations = {
     },
     about: {
       title: "Warum EachPart?",
-      text1: "In everyday life, the good things often slip by quietly: small moments, small progress, small wins. EachPart gives them a place.",
-      text2: "Whether it’s family life, shared living, or a sports challenge. Whether it’s everyday mom-life with kids, chores, and everything in between: it’s not just about getting things done. It’s about seeing what you truly do — including the parts that usually go unnoticed.",
-      text3: "In families especially, so much work is invisible: planning, remembering, organizing, comforting, caring. This care work holds everything together — and still rarely gets counted. EachPart makes it visible: who carried what, who kept track, who stayed consistent. So recognition isn’t luck — it happens. So you’re not just functioning, but being seen.",
-      text4: "And because motivation doesn’t come from pressure, but from feeling: EachPart makes progress tangible. Your real life connects to a small game world — every checkmark, every moment, every “we did it” moves you forward. You unlock playful content, collect rewards, and see how small days become a story you can be proud of.",
+      text1: "Im Alltag gehen die guten Dinge oft leise unter: kleine Momente, kleine Fortschritte, kleine Siege. <strong>EachPart gibt ihnen einen Platz.</strong>",
+      text2: "Ob Familienleben, WG oder sportliche Challenge. <strong>Ob Mama-Alltag mit Kindern, Haushalt und allem dazwischen:</strong> Es geht nicht nur darum, dass etwas erledigt wird. Es geht darum, dass man sieht, <strong>was du wirklich leistest</strong> – auch das, was sonst untergeht.",
+      text3: "Gerade in Familien ist so viel Arbeit unsichtbar: <strong>Planen, Erinnern, Organisieren, Trösten, Kümmern.</strong> Diese Care-Arbeit hält alles zusammen – und wird trotzdem selten gezählt. <strong>EachPart macht sie sichtbar:</strong> wer was getragen hat, wer mitgedacht hat, wer drangeblieben ist. Damit Anerkennung nicht Zufall ist, sondern passiert. <strong>Damit du nicht nur funktionierst, sondern gesehen wirst.</strong>",
+      text4: "Und weil Motivation nicht aus Druck entsteht, sondern aus Gefühl: <strong>EachPart macht Fortschritt spürbar.</strong><br><br>Dein echtes Leben verbindet sich mit einer kleinen Spielwelt – jeder Haken, jeder Moment, jedes „wir haben’s geschafft“ bringt euch weiter. Du schaltest spielerische Inhalte frei, sammelst Belohnungen und siehst, wie aus kleinen Tagen eine Geschichte wird, auf die du stolz sein kannst.",
       cardTitle: "Kurz erklärt",
-      cardText:
-        "Mini-Tagebuch + Motivation mit Freunden – belohnt durch eine Spielwelt, die euren Fortschritt sichtbar macht."
+      cardText: "Mini-Tagebuch + Motivation mit Freunden – belohnt durch eine Spielwelt, die euren Fortschritt sichtbar macht."
     },
     how: {
       title: "So funktioniert’s",
@@ -139,11 +138,12 @@ const translations = {
     },
     about: {
       title: "Why EachPart?",
-      text1: "In everyday life, the good things often fade quietly: small moments, small progress, small wins.",
-      text2: "EachPart gives them a place – so you remember what happened, and keep going together.",
+      text1: "In everyday life, the good things often slip by quietly: small moments, small progress, small wins. <strong>EachPart gives them a place.</strong>",
+      text2: "Whether it’s family life, shared living, or a sports challenge. <strong>Whether it’s everyday mom-life with kids, chores, and everything in between:</strong> it’s not just about getting things done. It’s about seeing <strong>what you truly do</strong> — including the parts that usually go unnoticed.",
+      text3: "In families especially, so much work is invisible: <strong>planning, remembering, organizing, comforting, caring.</strong> This care work holds everything together — and still rarely gets counted. <strong>EachPart makes it visible:</strong> who carried what, who kept track, who stayed consistent. So recognition isn’t luck — it happens. <strong>So you’re not just functioning, but being seen.</strong>",
+      text4: "And because motivation doesn’t come from pressure, but from feeling: <strong>EachPart makes progress tangible.</strong><br><br>Your real life connects to a small game world — every checkmark, every moment, every “we did it” moves you forward. You unlock playful content, collect rewards, and see how small days become a story you can be proud of.",
       cardTitle: "In short",
-      cardText:
-        "A mini diary + motivation with friends — rewarded by a game world that makes your progress visible."
+      cardText: "A mini diary + motivation with friends — rewarded by a game world that makes your progress visible."
     },
     how: {
       title: "How it works",
