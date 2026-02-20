@@ -2,6 +2,7 @@
 // Robust i18n for a static multi-page site (index / datenschutz / impressum)
 // - Language selection priority: ?lang=xx -> localStorage -> browser -> fallback "de"
 // - Safe DOM updates: only set text if element exists (prevents null errors across pages)
+// - NEW: If #heroVideo exists, it switches the video source between DE/EN (via data-src-de/en on <video>)
 
 const translations = {
   de: {
@@ -243,6 +244,83 @@ function normalizeLang(lang) {
 }
 
 // ---------------------
+// NEW: Hero video i18n (DE/EN)
+// Expects in HTML:
+// <video id="heroVideo" data-src-de="...de.mp4" data-src-en="...en.mp4">
+//   <source id="heroVideoSource" src="...de.mp4" type="video/mp4">
+// </video>
+// ---------------------
+function setHeroVideoLanguage(lang) {
+  const video = document.getElementById("heroVideo");
+  if (!video) return;
+
+  const l = normalizeLang(lang);
+
+  const src =
+    l === "en"
+      ? (video.getAttribute("data-src-en") || video.dataset.srcEn)
+      : (video.getAttribute("data-src-de") || video.dataset.srcDe);
+
+  if (!src) return;
+
+  const sourceEl =
+    document.getElementById("heroVideoSource") || video.querySelector("source");
+  if (!sourceEl) return;
+
+  const current = sourceEl.getAttribute("src") || "";
+  if (current === src) {
+    // Overlay ggf. konsistent halten
+    const soundBtn = document.getElementById("soundOverlay");
+    if (soundBtn) {
+      soundBtn.style.display =
+        !video.muted && video.volume > 0 ? "none" : "";
+    }
+    return;
+  }
+
+  const wasPlaying = !video.paused && !video.ended;
+  const keepMuted = video.muted;
+  const keepVol = typeof video.volume === "number" ? video.volume : 1;
+  const keepTime = typeof video.currentTime === "number" ? video.currentTime : 0;
+
+  sourceEl.setAttribute("src", src);
+
+  try {
+    video.load();
+  } catch (_) {}
+
+  const onMeta = () => {
+    video.removeEventListener("loadedmetadata", onMeta);
+
+    try {
+      const dur = Number.isFinite(video.duration) ? video.duration : 0;
+      if (dur > 0 && Number.isFinite(keepTime)) {
+        video.currentTime = Math.min(keepTime, Math.max(0, dur - 0.25));
+      }
+    } catch (_) {}
+
+    video.muted = keepMuted;
+    try {
+      video.volume = keepVol;
+    } catch (_) {}
+
+    // Overlay Sichtbarkeit
+    const soundBtn = document.getElementById("soundOverlay");
+    if (soundBtn) {
+      soundBtn.style.display =
+        !video.muted && video.volume > 0 ? "none" : "";
+    }
+
+    if (wasPlaying) {
+      const p = video.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    }
+  };
+
+  video.addEventListener("loadedmetadata", onMeta);
+}
+
+// ---------------------
 // Public API (optional)
 // ---------------------
 function switchLanguage(lang) {
@@ -292,18 +370,20 @@ function setLanguage(lang) {
   setText("hero-b2", t.hero.bullets[1]);
   setText("hero-b3", t.hero.bullets[2]);
 
+  // ✅ NEW: switch hero video source if present
+  setHeroVideoLanguage(lang);
+
   // ABOUT
-setText("about-title", t.about.title);
+  setText("about-title", t.about.title);
 
-// Use HTML because the strings contain <strong> and <br>
-setHTML("about-text1", t.about.text1);
-setHTML("about-text2", t.about.text2);
-setHTML("about-text3", t.about.text3);
-setHTML("about-text4", t.about.text4);
+  // Use HTML because the strings contain <strong> and <br>
+  setHTML("about-text1", t.about.text1);
+  setHTML("about-text2", t.about.text2);
+  setHTML("about-text3", t.about.text3);
+  setHTML("about-text4", t.about.text4);
 
-setText("about-card-title", t.about.cardTitle);
-setText("about-card-text", t.about.cardText);
-
+  setText("about-card-title", t.about.cardTitle);
+  setText("about-card-text", t.about.cardText);
 
   // HOW
   setText("how-title", t.how.title);
@@ -385,9 +465,13 @@ setText("about-card-text", t.about.cardText);
 document.addEventListener("DOMContentLoaded", () => {
   const qLang = getQueryLang();
   const stored = localStorage.getItem("eachpart_lang");
+  const browser = (navigator.language || navigator.userLanguage || "de")
+    .slice(0, 2)
+    .toLowerCase();
 
-  const browser = (navigator.language || navigator.userLanguage || "de").slice(0, 2).toLowerCase();
+  const chosen = normalizeLang(
+    qLang || (translations[stored] ? stored : null) || browser || "de"
+  );
 
-  const chosen = normalizeLang(qLang || (translations[stored] ? stored : null) || browser || "de");
   setLanguage(chosen);
 });
