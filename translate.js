@@ -26,7 +26,7 @@ const translations = {
       ],
       note: "Hinweis: Wir entwickeln aktiv weiter – transparent und Schritt für Schritt.",
       android: "Android herunterladen",
-      ios: "iOS (TestFlight)",
+      ios: "iOS herunterladen",
       howto: "Video-Anleitung",
       more: "Mehr erfahren",
       videoCaption: "Tipp: Ein Klick auf „Mit Sound starten“ aktiviert den Ton.",
@@ -131,7 +131,7 @@ const translations = {
       ],
       note: "Note: We’re actively building – transparently, step by step.",
       android: "Download for Android",
-      ios: "iOS (TestFlight)",
+      ios: "Download for iOS",
       howto: "Video guide",
       more: "Learn more",
       videoCaption: "Tip: Click “Start with sound” to enable audio.",
@@ -269,7 +269,6 @@ function setHeroVideoLanguage(lang) {
 
   const current = sourceEl.getAttribute("src") || "";
   if (current === src) {
-    // Overlay ggf. konsistent halten
     const soundBtn = document.getElementById("soundOverlay");
     if (soundBtn) {
       soundBtn.style.display =
@@ -304,7 +303,6 @@ function setHeroVideoLanguage(lang) {
       video.volume = keepVol;
     } catch (_) {}
 
-    // Overlay Sichtbarkeit
     const soundBtn = document.getElementById("soundOverlay");
     if (soundBtn) {
       soundBtn.style.display =
@@ -329,7 +327,6 @@ function switchLanguage(lang) {
   setLanguage(next);
 }
 
-// Expose to window so you can call it from HTML later if you add a toggle
 window.switchLanguage = switchLanguage;
 
 // ---------------------
@@ -339,7 +336,7 @@ function setLanguage(lang) {
   const t = translations[lang] || translations.de;
   document.documentElement.lang = lang;
 
-  // NAV (only if IDs exist)
+  // NAV
   setText("nav-home", t.nav.home);
   setText("nav-faq", t.nav.faq);
   setText("nav-contact", t.nav.contact);
@@ -347,10 +344,10 @@ function setLanguage(lang) {
   setText("nav-features", t.nav.features);
   setText("nav-world", t.nav.world);
 
-  // HERO (IDs from older + newer versions)
+  // HERO
   setText("hero-title", t.hero.title);
   setText("hero-badge", t.hero.badge);
-  setText("hero-description", t.hero.tagline); // fallback mapping if you still use hero-description
+  setText("hero-description", t.hero.tagline);
   setText("hero-tagline", t.hero.tagline);
   setText("hero-note", t.hero.note);
 
@@ -361,27 +358,20 @@ function setLanguage(lang) {
 
   setText("hero-video-caption", t.hero.videoCaption);
   setText("soundOverlay", t.hero.soundBtn);
-
-  // If you use the new text IDs:
   setText("hero-headline", t.hero.headline);
 
-  // Bullets if you added IDs
   setText("hero-b1", t.hero.bullets[0]);
   setText("hero-b2", t.hero.bullets[1]);
   setText("hero-b3", t.hero.bullets[2]);
 
-  // ✅ NEW: switch hero video source if present
   setHeroVideoLanguage(lang);
 
   // ABOUT
   setText("about-title", t.about.title);
-
-  // Use HTML because the strings contain <strong> and <br>
   setHTML("about-text1", t.about.text1);
   setHTML("about-text2", t.about.text2);
   setHTML("about-text3", t.about.text3);
   setHTML("about-text4", t.about.text4);
-
   setText("about-card-title", t.about.cardTitle);
   setText("about-card-text", t.about.cardText);
 
@@ -407,8 +397,6 @@ function setLanguage(lang) {
   setText("feature3-text", t.features.feature3.text);
   setText("feature4-title", t.features.feature4.title);
   setText("feature4-text", t.features.feature4.text);
-
-  // Optional extra features (if you add IDs later)
   setText("feature5-title", t.features.feature5?.title || "");
   setText("feature5-text", t.features.feature5?.text || "");
   setText("feature6-title", t.features.feature6?.title || "");
@@ -438,7 +426,7 @@ function setLanguage(lang) {
   setText("contact-button", t.contact.button);
   setText("contact-note", t.contact.note);
 
-  // DATENSCHUTZ (only if on that page)
+  // DATENSCHUTZ
   setText("datenschutz-title", t.datenschutz.title);
   setText("datenschutz-intro", t.datenschutz.intro);
   setText("datenschutz-responsible", t.datenschutz.responsible);
@@ -446,7 +434,7 @@ function setLanguage(lang) {
   setText("datenschutz-cookies", t.datenschutz.cookies);
   setText("datenschutz-rights", t.datenschutz.rights);
 
-  // IMPRESSUM (only if on that page)
+  // IMPRESSUM
   setText("impressum-title", t.impressum.title);
   setText("impressum-company", t.impressum.company);
   setText("impressum-address", t.impressum.address);
@@ -455,7 +443,7 @@ function setLanguage(lang) {
   setText("impressum-representative", t.impressum.representative);
   setText("impressum-contentResponsibility", t.impressum.contentResponsibility);
 
-  // FOOTER (HTML because of &copy;)
+  // FOOTER
   setHTML("footer-text", t.footer.text);
 }
 
