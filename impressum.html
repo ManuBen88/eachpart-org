@@ -2,136 +2,539 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="EachPart - Impressum" />
+  <meta name="description" content="EachPart – Mach aus heute etwas, das bleibt. Momente festhalten. Ziele schaffen. Gemeinsam dranbleiben." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EachPart - Impressum</title>
+  <title>EachPart – Momente, Ziele & Spielwelt</title>
+
   <link rel="stylesheet" href="styles.css" />
-  <script>
-    // Übersetzungsobjekt für Impressum, Navigation und Footer
-    const translations = {
-      de: {
-        nav: {
-          home: "Home",
-          faq: "FAQ",
-          contact: "Kontakt"
-        },
-        impressum: {
-          title: "Impressum",
-          company: "EachPart",
-          address: "Neue Str. 2, 29553 Bienenbüttel",
-          phone: "Telefon: +491781464442",
-          representative: "Geschäftsführer: Manuel Benson",
-          contentResponsibility: "Verantwortlich für den Inhalt: Manuel Benson"
-        },
-        footer: {
-          text: "&copy; 2025 EachPart. Alle Rechte vorbehalten."
-        }
-      },
-      en: {
-        nav: {
-          home: "Home",
-          faq: "FAQ",
-          contact: "Contact"
-        },
-        impressum: {
-          title: "Imprint",
-          company: "EachPart UG (limited liability)",
-          address: "",
-          phone: "Phone: ",
-          email: "Email: ",
-          representative: "Managing Director: n",
-          contentResponsibility: "Responsible for content: Manuel Benson"
-        },
-        footer: {
-          text: "&copy; 2025 EachPart. All rights reserved."
-        }
-      }
-    };
-
-    // Funktion, um den Seiteninhalt anhand der erkannten Sprache zu setzen
-    function setLanguage(lang) {
-      document.documentElement.lang = lang;
-
-      // Navigation
-      if (document.getElementById("nav-home")) {
-        document.getElementById("nav-home").textContent = translations[lang].nav.home;
-      }
-      if (document.getElementById("nav-faq")) {
-        document.getElementById("nav-faq").textContent = translations[lang].nav.faq;
-      }
-      if (document.getElementById("nav-contact")) {
-        document.getElementById("nav-contact").textContent = translations[lang].nav.contact;
-      }
-
-      // Impressum-Inhalt
-      if (document.getElementById("impressum-title")) {
-        document.getElementById("impressum-title").textContent = translations[lang].impressum.title;
-      }
-      if (document.getElementById("impressum-company")) {
-        document.getElementById("impressum-company").textContent = translations[lang].impressum.company;
-      }
-      if (document.getElementById("impressum-address")) {
-        document.getElementById("impressum-address").textContent = translations[lang].impressum.address;
-      }
-      if (document.getElementById("impressum-phone")) {
-        document.getElementById("impressum-phone").textContent = translations[lang].impressum.phone;
-      }
-      if (document.getElementById("impressum-email")) {
-        document.getElementById("impressum-email").textContent = translations[lang].impressum.email;
-      }
-      if (document.getElementById("impressum-representative")) {
-        document.getElementById("impressum-representative").textContent = translations[lang].impressum.representative;
-      }
-      if (document.getElementById("impressum-contentResponsibility")) {
-        document.getElementById("impressum-contentResponsibility").textContent = translations[lang].impressum.contentResponsibility;
-      }
-
-      // Footer
-      if (document.getElementById("footer-text")) {
-        document.getElementById("footer-text").innerHTML = translations[lang].footer.text;
-      }
-    }
-
-    // Sobald der DOM geladen ist, wird die Browsersprache ermittelt und gesetzt
-    document.addEventListener("DOMContentLoaded", function() {
-      let userLang = (navigator.language || navigator.userLanguage).slice(0,2).toLowerCase();
-      if (!translations[userLang]) {
-        userLang = "de"; // Fallback auf Deutsch
-      }
-      setLanguage(userLang);
-    });
-  </script>
+  <script src="translate.js" defer></script>
 </head>
+
 <body>
   <!-- Navigation -->
   <nav class="navbar">
-    <div class="nav-container">
-      <a class="nav-logo" href="index.html">EachPart</a>
+    <div class="container nav-container">
+      <a class="nav-logo" href="index.html" aria-label="EachPart Startseite">EachPart</a>
+
       <ul class="nav-menu">
-        <li><a href="index.html" id="nav-home">Home</a></li>
-        <li><a href="faq.html" id="nav-faq">FAQ</a></li>
-        <li><a href="datenschutz.html" id="nav-contact">Kontakt</a></li>
+        <li><a href="index.html" id="nav-home" class="active">Home</a></li>
+        <li><a href="#how" id="nav-how">So funktioniert’s</a></li>
+        <li><a href="#features" id="nav-features">Highlights</a></li>
+        <li><a href="#world" id="nav-world">Spielwelt</a></li>
+        <li><a href="#faq" id="nav-faq">FAQ</a></li>
+        <li><a href="#contact" id="nav-contact">Kontakt</a></li>
       </ul>
+
+      <!-- Language Switch -->
+      <div class="lang-switch" role="group" aria-label="Sprache auswählen">
+        <button type="button" class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
     </div>
   </nav>
 
-  <!-- Impressum Content -->
-  <section class="section">
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-split">
+
+      <!-- LINKS: Video (OHNE Intro-Effekt!) -->
+      <div class="video-card">
+        <div class="video-frame" id="heroFrame">
+          <video
+            id="heroVideo"
+            class="hero-video"
+            playsinline
+            autoplay
+            loop
+            preload="metadata"
+            controls
+            muted
+            title="EachPart Intro"
+            data-src-de="assets/videos/eachpart_intro_de.mp4"
+            data-src-en="assets/videos/eachpart_intro_en.mp4"
+          >
+            <source src="assets/videos/eachpart_intro.mp4" type="video/mp4" />
+            Dein Browser unterstützt das Video-Tag nicht.
+          </video>
+
+          <button id="soundOverlay" class="sound-overlay" type="button">
+            🔊 Mit Sound starten
+          </button>
+        </div>
+
+        <div class="video-caption" id="hero-video-caption">
+          Tipp: Ein Klick auf „Mit Sound starten“ aktiviert den Ton.
+        </div>
+      </div>
+
+      <!-- RECHTS: Textfeld + Effekt NUR HIER -->
+      <div class="hero-content hero-panel" id="heroPanel">
+
+        <!-- Panel Intro Overlay (Scherben + Linse + Foto) -->
+        <div class="panel-intro is-waiting" id="panelIntro" aria-hidden="true">
+          <div class="panel-shard-stage" id="panelShardStage" aria-hidden="true"></div>
+
+          <div class="lens" id="panelLens" aria-hidden="true">
+            <div class="lens-core"></div>
+            <div class="lens-glint"></div>
+          </div>
+
+          <div class="focus-frame" aria-hidden="true">
+            <span class="fc tl"></span>
+            <span class="fc tr"></span>
+            <span class="fc bl"></span>
+            <span class="fc br"></span>
+          </div>
+
+          <div class="camera-ui" aria-hidden="true">
+            <div class="camera-dot"></div>
+            <div class="camera-text">capturing…</div>
+          </div>
+
+          <div class="shutter" id="panelShutter" aria-hidden="true"></div>
+          <div class="flash" id="panelFlash" aria-hidden="true"></div>
+        </div>
+
+        <!-- Der eigentliche Text-Content -->
+        <div class="panel-content" id="panelContent">
+          <div class="hero-badge" id="hero-badge">Nicht perfekt. Nur echt.</div>
+
+          <h1 class="hero-title" id="hero-headline">Mach aus heute etwas, das bleibt.</h1>
+
+          <p class="hero-tagline" id="hero-tagline">Momente festhalten. Ziele schaffen. Gemeinsam dranbleiben.</p>
+
+          <ul class="hero-bullets" aria-label="Vorteile">
+            <li id="hero-b1">Einfach festhalten, was wirklich zählt – ohne Perfektionsdruck.</li>
+            <li id="hero-b2">Mini-Ziele, die machbar sind – und sich gut anfühlen, wenn sie geschafft sind.</li>
+            <li id="hero-b3">Gemeinsam leichter: Reaktionen, Support und kleine Feiern.</li>
+          </ul>
+
+          <div class="btn-group btn-group-wrap">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.eachpart.eachpart"
+              class="btn-primary"
+              id="hero-android"
+              target="_blank"
+              rel="noopener"
+            >Android herunterladen</a>
+
+            <a
+              href="https://apps.apple.com/us/app/eachpart/id6742668468"
+              class="btn-primary"
+              id="hero-ios"
+              target="_blank"
+              rel="noopener"
+            >iOS herunterladen</a>
+
+            <a href="anleitung.html" class="btn-ghost" id="hero-howto">Video-Anleitung</a>
+            <a href="#how" class="btn-ghost" id="hero-more">Mehr erfahren</a>
+          </div>
+
+          <p class="hero-note" id="hero-note">
+            Hinweis: Wir entwickeln aktiv weiter – transparent und Schritt für Schritt.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- About -->
+  <section class="section" id="about">
     <div class="container">
-      <h2 id="impressum-title">Impressum</h2>
-      <p id="impressum-company">EachPart UG (haftungsbeschränkt)</p>
-      <p id="impressum-address">Neue Str. 2, 29553 Bienbüttel</p>
-      <p id="impressum-phone">Telefon: +491781464442</p>
-      <p id="impressum-representative">Geschäftsführer: Manuel Benson</p>
-      <p id="impressum-contentResponsibility">Verantwortlich für den Inhalt: Manuel Benson</p>
+      <div class="split-2">
+        <div>
+          <h2 id="about-title">Warum EachPart?</h2>
+          <p id="about-text1">Im Alltag gehen die guten Dinge oft leise unter: kleine Momente, kleine Fortschritte, kleine Siege.</p>
+          <p id="about-text2">
+            Ob Familienleben, WG oder sportliche Challenge. <strong>Ob Mama-Alltag mit Kindern, Haushalt und allem dazwischen:</strong>
+            Es geht nicht nur darum, dass etwas erledigt wird. Es geht darum, dass man sieht, <strong>was du wirklich leistest</strong> – auch das, was sonst untergeht.
+          </p>
+
+          <p id="about-text3">
+            Gerade in Familien ist so viel Arbeit unsichtbar: <strong>Planen, Erinnern, Organisieren, Trösten, Kümmern.</strong>
+            Diese Care-Arbeit hält alles zusammen – und wird trotzdem selten gezählt.
+            <strong>EachPart macht sie sichtbar:</strong> wer was getragen hat, wer mitgedacht hat, wer drangeblieben ist.
+            Damit Anerkennung nicht Zufall ist, sondern passiert. <strong>Damit du nicht nur funktionierst, sondern gesehen wirst.</strong>
+          </p>
+
+          <p id="about-text4">
+            Und weil Motivation nicht aus Druck entsteht, sondern aus Gefühl: <strong>EachPart macht Fortschritt spürbar.</strong><br><br>
+            Dein echtes Leben verbindet sich mit einer kleinen Spielwelt – jeder Haken, jeder Moment, jedes „wir haben’s geschafft“ bringt euch weiter.
+            Du schaltest spielerische Inhalte frei, sammelst Belohnungen und siehst, wie aus kleinen Tagen eine Geschichte wird, auf die du stolz sein kannst.
+          </p>
+        </div>
+
+        <div class="card soft">
+          <h3 id="about-card-title">Kurz erklärt</h3>
+          <p class="big" id="about-card-text">
+            Mini-Tagebuch + Motivation mit Freunden – belohnt durch eine Spielwelt, die euren Fortschritt sichtbar macht.
+          </p>
+
+          <div class="mini-tags" aria-label="Schlagwörter">
+            <span class="tag">Momente</span>
+            <span class="tag">Tagebuch</span>
+            <span class="tag">Ziele</span>
+            <span class="tag">Support</span>
+            <span class="tag">Spielwelt</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How -->
+  <section class="section bg-light" id="how">
+    <div class="container">
+      <h2 id="how-title">So funktioniert’s</h2>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3 id="how-1-title">Moment festhalten</h3>
+          <p id="how-1-text">Öffnen, aufnehmen, speichern. Ein Satz reicht.</p>
+          <p class="step-mini" id="how-1-mini">1 Moment → 1 Satz → gespeichert</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3 id="how-2-title">Mini-Ziele setzen</h3>
+          <p id="how-2-text">Kleine Ziele, die du wirklich schaffst – mit Reactions und Support.</p>
+          <p class="step-mini" id="how-2-mini">Ziele → Support → Erfolg</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3 id="how-3-title">Spielwelt als Belohnung</h3>
+          <p id="how-3-text">Fortschritt wird sichtbar – als gemeinsames Wachstum in eurer Welt.</p>
+          <p class="step-mini" id="how-3-mini">Dein Leben. Eure Welt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2 id="features-title">Highlights</h2>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <h3 id="feature1-title">Spontane Momente</h3>
+          <p id="feature1-text">Schnell festhalten statt später bereuen – ohne Perfektionismus.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3 id="feature2-title">Mini-Tagebuch</h3>
+          <p id="feature2-text">Ein Satz reicht – damit du später wieder da bist, wo es passiert ist.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3 id="feature3-title">Ziele & Motivation</h3>
+          <p id="feature3-text">Machbare Mini-Ziele. Support statt Druck.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3 id="feature4-title">Gemeinsam leichter</h3>
+          <p id="feature4-text">Reactions, Kommentare, Feiern – zusammen dranbleiben macht den Unterschied.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3 id="feature5-title">Spielwelt-Fortschritt</h3>
+          <p id="feature5-text">Dein Fortschritt wird sichtbar – und fühlt sich wie Belohnung an.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3 id="feature6-title">Aktive Entwicklung</h3>
+          <p id="feature6-text">Performance, Stabilität und neue Inhalte kommen Schritt für Schritt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- World -->
+  <section class="section bg-light" id="world">
+    <div class="container">
+      <div class="split-2">
+        <div>
+          <h2 id="world-title">Die Spielwelt zeigt euren Fortschritt</h2>
+          <p id="world-text1">Nicht als Zwang – sondern als sichtbare Belohnung. Ihr baut, erkundet und wachst gemeinsam.</p>
+
+          <ul class="checklist">
+            <li id="world-li1">Gemeinsam bauen & erkunden</li>
+            <li id="world-li2">Fortschritt wird sichtbar</li>
+            <li id="world-li3">Neue Inhalte über Updates</li>
+          </ul>
+        </div>
+
+        <div class="card media">
+          <img
+            src="assets/images/world_teaser.jpg"
+            alt="EachPart Spielwelt Teaser"
+            loading="lazy"
+            onerror="this.style.display='none';"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <h2 id="faq-title">FAQ</h2>
+
+      <div class="faq">
+        <details class="faq-item">
+          <summary id="faq-q1">Ist EachPart privat?</summary>
+          <p id="faq-a1">Ja. Du kannst private Gruppen nutzen (Freunde/Familie). Öffentliche Bereiche sind optional.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary id="faq-q2">Muss ich täglich aktiv sein?</summary>
+          <p id="faq-a2">Nein. EachPart soll unterstützen – auch wenn du nur ab und zu Momente speicherst oder Ziele markierst.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary id="faq-q3">Brauche ich viele Freunde?</summary>
+          <p id="faq-a3">Schon 1–2 Personen reichen, um Support und Motivation zu spüren.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary id="faq-q4">Was bringt die Spielwelt?</summary>
+          <p id="faq-a4">Weil Fortschritt nicht nur „abgehakt“ ist, sondern sichtbar wird – als gemeinsames Erlebnis.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 id="contact-title">Kontakt</h2>
+      <p id="contact-text">Du hast Fragen oder möchtest Feedback geben? Schreib uns gern.</p>
+
+      <div class="btn-group btn-group-wrap">
+        <a href="mailto:support@eachpart.com" class="btn-secondary" id="contact-button">E-Mail an Support</a>
+        <a href="anleitung.html" class="btn-ghost" id="contact-howto">Video-Anleitung</a>
+      </div>
+
+      <p class="muted small" id="contact-note">
+        Tipp: Wenn du Feedback zur Spielwelt oder Motivation-Features hast, schick gern Screenshots mit.
+      </p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-container">
-      <p id="footer-text">&copy; 2025 EachPart. Alle Rechte vorbehalten.</p>
+      <p id="footer-text">&copy; 2026 EachPart. Alle Rechte vorbehalten.</p>
+      <nav class="footer-nav">
+        <a href="impressum.html" id="footer-impressum">Impressum</a> |
+        <a href="datenschutz.html" id="footer-datenschutz">Datenschutz</a>
+      </nav>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ======================
+      // VIDEO SOUND BUTTON
+      // ======================
+      const video = document.getElementById('heroVideo');
+      const soundBtn = document.getElementById('soundOverlay');
+
+      video.muted = true;
+      const p = video.play();
+      if (p) p.catch(() => {});
+
+      soundBtn.addEventListener('click', async () => {
+        try {
+          video.muted = false;
+          video.volume = 1;
+          await video.play();
+          soundBtn.style.display = 'none';
+        } catch (_) {
+          alert('Tippe auf Play im Video-Player, dann kannst du den Ton aktivieren.');
+        }
+      });
+
+      video.addEventListener('volumechange', () => {
+        if (!video.muted && video.volume > 0) soundBtn.style.display = 'none';
+      });
+
+      // ======================
+      // LANGUAGE SWITCH UI (uses translate.js window.switchLanguage)
+      // ======================
+      const buttons = Array.from(document.querySelectorAll('.lang-btn'));
+
+      function setActiveLang(lang) {
+        const l = (lang || 'de').slice(0, 2).toLowerCase();
+        buttons.forEach(btn => {
+          const isActive = btn.dataset.lang === l;
+          btn.classList.toggle('is-active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+      }
+
+      // initial highlight (translate.js sets <html lang="..">)
+      setTimeout(() => setActiveLang(document.documentElement.lang), 0);
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+
+          if (typeof window.switchLanguage === 'function') {
+            window.switchLanguage(lang);
+            setActiveLang(lang);
+          } else {
+            document.documentElement.lang = lang;
+            setActiveLang(lang);
+          }
+        });
+      });
+
+      // ======================
+      // PANEL INTRO EFFECT (RIGHT ONLY, START WHEN VISIBLE)
+      // ======================
+      const heroPanel = document.getElementById('heroPanel');
+      const intro = document.getElementById('panelIntro');
+      const stage = document.getElementById('panelShardStage');
+      const flash = document.getElementById('panelFlash');
+      const shutter = document.getElementById('panelShutter');
+      const content = document.getElementById('panelContent');
+
+      content.classList.add('panel-hidden');
+      intro.classList.add('is-waiting');
+
+      stage.style.setProperty('--photo', "url('assets/images/world_teaser.jpg')");
+
+      const shards = [
+        { x: 0,  y: 0,  w: 24, h: 22, clip: "polygon(0 0, 100% 0, 86% 100%, 6% 78%)" },
+        { x: 20, y: 0,  w: 18, h: 18, clip: "polygon(6% 0, 100% 0, 90% 90%, 0 100%)" },
+        { x: 36, y: 0,  w: 22, h: 26, clip: "polygon(0 0, 100% 10%, 86% 100%, 8% 92%)" },
+        { x: 56, y: 0,  w: 24, h: 24, clip: "polygon(0 12%, 100% 0, 100% 100%, 10% 90%)" },
+        { x: 78, y: 0,  w: 22, h: 28, clip: "polygon(0 0, 100% 8%, 92% 100%, 12% 86%)" },
+
+        { x: 0,  y: 18, w: 18, h: 26, clip: "polygon(0 0, 96% 10%, 82% 100%, 0 90%)" },
+        { x: 14, y: 16, w: 26, h: 30, clip: "polygon(10% 0, 100% 8%, 90% 100%, 0 86%)" },
+        { x: 38, y: 18, w: 20, h: 32, clip: "polygon(0 12%, 100% 0, 88% 100%, 10% 92%)" },
+        { x: 56, y: 20, w: 22, h: 30, clip: "polygon(8% 0, 100% 12%, 90% 100%, 0 86%)" },
+        { x: 76, y: 22, w: 24, h: 26, clip: "polygon(0 0, 96% 12%, 100% 100%, 10% 92%)" },
+
+        { x: 0,  y: 42, w: 24, h: 24, clip: "polygon(0 10%, 92% 0, 100% 100%, 10% 88%)" },
+        { x: 22, y: 44, w: 22, h: 26, clip: "polygon(0 0, 100% 10%, 88% 100%, 12% 90%)" },
+        { x: 42, y: 48, w: 28, h: 22, clip: "polygon(10% 0, 100% 18%, 90% 100%, 0 82%)" },
+        { x: 68, y: 46, w: 32, h: 26, clip: "polygon(0 12%, 100% 0, 92% 100%, 12% 92%)" },
+
+        { x: 0,  y: 64, w: 30, h: 36, clip: "polygon(0 0, 100% 12%, 82% 100%, 8% 90%)" },
+        { x: 28, y: 68, w: 24, h: 32, clip: "polygon(8% 0, 100% 10%, 92% 100%, 0 86%)" },
+        { x: 50, y: 64, w: 22, h: 36, clip: "polygon(0 10%, 100% 0, 90% 100%, 10% 92%)" },
+        { x: 70, y: 68, w: 30, h: 32, clip: "polygon(0 0, 100% 10%, 92% 100%, 8% 90%)" },
+      ];
+
+      const rand = (min, max) => Math.random() * (max - min) + min;
+
+      function buildShards() {
+        stage.innerHTML = '';
+        const rect = stage.getBoundingClientRect();
+        const W = rect.width;
+        const H = rect.height;
+        if (W < 10 || H < 10) return;
+
+        shards.forEach((s, i) => {
+          const el = document.createElement('div');
+          el.className = 'shard';
+
+          const left = (s.x / 100) * W;
+          const top = (s.y / 100) * H;
+          const w = (s.w / 100) * W;
+          const h = (s.h / 100) * H;
+
+          el.style.left = `${left}px`;
+          el.style.top = `${top}px`;
+          el.style.width = `${w}px`;
+          el.style.height = `${h}px`;
+          el.style.clipPath = s.clip;
+
+          el.style.setProperty('--d', `${i * 50 + rand(0, 160)}ms`);
+          el.style.setProperty('--fromX', `${rand(-180, 180)}px`);
+          el.style.setProperty('--fromY', `${rand(-220, 220)}px`);
+          el.style.setProperty('--rot', `${rand(-24, 24)}deg`);
+
+          el.style.backgroundImage = `var(--photo, none),
+            radial-gradient(180px 150px at 30% 30%, rgba(255,138,42,.22), transparent 62%),
+            linear-gradient(135deg, rgba(10,24,40,.98), rgba(22,54,66,.86))`;
+
+          el.style.backgroundSize = `${W}px ${H}px, cover, cover`;
+          el.style.backgroundPosition = `-${left}px -${top}px, center, center`;
+          el.style.backgroundRepeat = 'no-repeat';
+
+          stage.appendChild(el);
+        });
+      }
+
+      let panelIntroStarted = false;
+
+      function startPanelIntroOnce() {
+        if (panelIntroStarted) return;
+        panelIntroStarted = true;
+
+        intro.classList.remove('is-waiting');
+
+        requestAnimationFrame(() => {
+          buildShards();
+
+          const lensOnAt = 900;
+          const shotAt = 1300;
+          const endAt = 1850;
+
+          setTimeout(() => intro.classList.add('lens-on'), lensOnAt);
+
+          setTimeout(() => {
+            shutter.classList.add('do-shot');
+            flash.classList.add('do-flash');
+            stage.classList.add('captured');
+          }, shotAt);
+
+          setTimeout(() => {
+            intro.classList.add('fade-out');
+            setTimeout(() => {
+              intro.style.display = 'none';
+              content.classList.remove('panel-hidden');
+              content.classList.add('panel-reveal');
+            }, 320);
+          }, endAt);
+        });
+      }
+
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        intro.style.display = 'none';
+        content.classList.remove('panel-hidden');
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              startPanelIntroOnce();
+              io.disconnect();
+              break;
+            }
+          }
+        }, { threshold: 0.35 });
+
+        io.observe(heroPanel);
+      }
+
+      let resizeT;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeT);
+        resizeT = setTimeout(() => {
+          if (!panelIntroStarted) return;
+          if (intro.style.display === 'none') return;
+          buildShards();
+        }, 120);
+      });
+    });
+  </script>
 </body>
 </html>
